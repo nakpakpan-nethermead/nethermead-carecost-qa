@@ -6,10 +6,10 @@
 #
 default: &default
   adapter: postgresql
-  username: dev1-nethermead
-  password: Hacker1*
-  #host: 10.11.16.206
-  host: localhost
+  username: pratip
+  password: root
+  host: 127.0.0.1
+  #host: localhost
 
 # default: &default
 #   adapter: mysql2

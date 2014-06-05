@@ -28831,3 +28831,1956 @@ Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-05 00:42:46 +0530
 
 
 Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-05 00:42:46 +0530
+  [1m[36m (76.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (76.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20140516233747)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (103.8ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (56.2ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (54.5ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140516233747"]]
+  [1m[36m (19.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDiagnoses (20140529103251)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (101.6ms)[0m  [1mCREATE TABLE "diagnoses" ("id" serial primary key, "short_name" character varying(255), "full_name" character varying(255), "codeset" character varying(50), "code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX  "index_diagnoses_on_Id" ON "diagnoses"  ("Id")
+PG::UndefinedColumn: ERROR:  column "Id" does not exist
+: CREATE UNIQUE INDEX  "index_diagnoses_on_Id" ON "diagnoses"  ("Id")
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36m (15.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (74.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20140516233747)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (111.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (54.7ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (43.8ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140516233747"]]
+  [1m[36m (12.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDiagnoses (20140529103251)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (89.2ms)[0m  [1mCREATE TABLE "diagnoses" ("id" serial primary key, "short_name" character varying(255), "full_name" character varying(255), "codeset" character varying(50), "code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (43.7ms)[0m  CREATE UNIQUE INDEX  "index_diagnoses_on_id" ON "diagnoses"  ("id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140529103251"]]
+  [1m[35m (19.0ms)[0m  COMMIT
+Migrating to CreateProviders (20140529103616)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (101.4ms)[0m  CREATE TABLE "providers" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "designations" character varying(50), "img_url" character varying(50), "physian_since" timestamp, "condition_type" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (43.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_providers_on_id" ON "providers"  ("id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140529103616"]]
+  [1m[36m (17.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProviderPractices (20140529103945)
+  [1m[35m (0.9ms)[0m  BEGIN
+  [1m[36m (66.9ms)[0m  [1mCREATE TABLE "provider_practices" ("id" serial primary key, "practice_id" integer, "provider_id" integer, "affiliation_since" timestamp, "practice_scope" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (42.5ms)[0m  CREATE UNIQUE INDEX  "index_provider_practices_on_id" ON "provider_practices"  ("id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140529103945"]]
+  [1m[35m (16.4ms)[0m  COMMIT
+Migrating to CreateNetworkProviders (20140529104709)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (146.8ms)[0m  CREATE TABLE "network_providers" ("id" serial primary key, "network_id" integer, "provider_id" integer, "network_since" timestamp, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (64.8ms)[0m  [1mCREATE UNIQUE INDEX  "index_network_providers_on_id" ON "network_providers"  ("id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140529104709"]]
+  [1m[36m (15.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCities (20140529144931)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (58.4ms)[0m  [1mCREATE TABLE "cities" ("id" serial primary key, "name" character varying(255), "county" character varying(50), "state_code" character varying(50), "zip_code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (45.7ms)[0m  CREATE UNIQUE INDEX  "index_cities_on_id" ON "cities"  ("id")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140529144931"]]
+  [1m[35m (10.0ms)[0m  COMMIT
+Migrating to CreateClients (20140529145331)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (52.0ms)[0m  CREATE TABLE "clients" ("id" serial primary key, "name" character varying(255), "logo_url" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (54.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_clients_on_id" ON "clients"  ("id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140529145331"]]
+  [1m[36m (10.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCounties (20140529145806)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (53.1ms)[0m  [1mCREATE TABLE "counties" ("id" serial primary key, "name" character varying(255), "state_code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (54.0ms)[0m  CREATE UNIQUE INDEX  "index_counties_on_id" ON "counties"  ("id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140529145806"]]
+  [1m[35m (9.3ms)[0m  COMMIT
+Migrating to CreateProviderAdditionalAttributes (20140529150351)
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35m (64.3ms)[0m  CREATE TABLE "provider_additional_attributes" ("id" serial primary key, "attribute_name" character varying(255), "attribute_value" character varying(50), "attribute_value_img" character varying(50), "attribute_data_type" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (44.2ms)[0m  [1mCREATE UNIQUE INDEX  "index_provider_additional_attributes_on_id" ON "provider_additional_attributes"  ("id")[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140529150351"]]
+  [1m[36m (15.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProviderCharges (20140529151110)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (45.3ms)[0m  [1mCREATE TABLE "provider_charges" ("id" serial primary key, "provider_id" integer, "dondition_Procedure_id" integer, "condition_diagnosis_id" integer, "service_charge" character varying(50), "service_quantity" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (55.2ms)[0m  CREATE UNIQUE INDEX  "index_provider_charges_on_id" ON "provider_charges"  ("id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140529151110"]]
+  [1m[35m (16.0ms)[0m  COMMIT
+Migrating to CreatePracticeOrganizations (20140529152134)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (92.5ms)[0m  CREATE TABLE "practice_organizations" ("id" serial primary key, "name" character varying(255), "place_of_service_type" character varying(50), "location_address" character varying(50), "location_city" character varying(50), "location_zip" character varying(50), "location_county" character varying(50), "location_state" character varying(50), "practice_type" character varying(50), "company_number" character varying(50), "company_number_type" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (42.5ms)[0m  [1mCREATE UNIQUE INDEX  "index_practice_organizations_on_id" ON "practice_organizations"  ("id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140529152134"]]
+  [1m[36m (14.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUserlogins (20140529153038)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (46.8ms)[0m  [1mCREATE TABLE "userlogins" ("id" serial primary key, "userId" integer, "password" character varying(50), "status" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (55.0ms)[0m  CREATE UNIQUE INDEX  "index_userlogins_on_id" ON "userlogins"  ("id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140529153038"]]
+  [1m[35m (15.0ms)[0m  COMMIT
+Migrating to CreateZips (20140529154038)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (107.6ms)[0m  CREATE TABLE "zips" ("id" serial primary key, "zip_code" character varying(50), "city_name" character varying(255), "county_name" character varying(255), "state_code" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (42.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_zips_on_id" ON "zips"  ("id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140529154038"]]
+  [1m[36m (10.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProviderNetworks (20140529155101)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (52.6ms)[0m  [1mCREATE TABLE "provider_networks" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (55.0ms)[0m  CREATE UNIQUE INDEX  "index_provider_networks_on_id" ON "provider_networks"  ("id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140529155101"]]
+  [1m[35m (10.1ms)[0m  COMMIT
+Migrating to CreateCategories (20140530072841)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (120.8ms)[0m  CREATE TABLE "categories" ("id" serial primary key, "name" character varying(255), "category" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140530072841"]]
+  [1m[35m (8.5ms)[0m  COMMIT
+Migrating to CreateWelcomes (20140530081756)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (99.6ms)[0m  CREATE TABLE "welcomes" ("id" serial primary key, "name" character varying(255), "condition" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140530081756"]]
+  [1m[35m (17.3ms)[0m  COMMIT
+Migrating to CreatePeople (20140530083527)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (112.9ms)[0m  CREATE TABLE "people" ("id" serial primary key, "name" character varying(255), "condition" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140530083527"]]
+  [1m[35m (17.0ms)[0m  COMMIT
+Migrating to CreateProducts (20140530085722)
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35m (44.8ms)[0m  CREATE TABLE "products" ("id" serial primary key, "name" character varying(255), "price" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140530085722"]]
+  [1m[35m (15.0ms)[0m  COMMIT
+Migrating to DropTablename (20140531130522)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.3ms)[0m  DROP TABLE "diagnoses"
+  [1m[36m (1.1ms)[0m  [1mDROP TABLE "providers"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "provider_practices"
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "network_providers"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "cities"
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "counties"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "provider_additional_attributes"
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "provider_charges"[0m
+  [1m[35m (1.4ms)[0m  DROP TABLE "practice_organizations"
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "userlogins"[0m
+  [1m[35m (1.1ms)[0m  DROP TABLE "zips"
+  [1m[36m (1.1ms)[0m  [1mDROP TABLE "provider_networks"[0m
+  [1m[35m (0.8ms)[0m  DROP TABLE "categories"
+  [1m[36m (1.3ms)[0m  [1mDROP TABLE "welcomes"[0m
+  [1m[35m (97.5ms)[0m  CREATE TABLE "conditions" ("id" serial primary key, "consumer_name" character varying(255), "clinical_name" character varying(255), "type" character varying(50), "codeset" character varying(50), "code" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (90.7ms)[0m  [1mCREATE TABLE "diagnosis" ("id" serial primary key, "short_name" character varying(255), "full_name" character varying(255), "codeset" character varying(50), "code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (89.9ms)[0m  CREATE TABLE "providers" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "designations" character varying(50), "img_url" character varying(50), "physian_since" timestamp, "type" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (44.3ms)[0m  [1mCREATE TABLE "provider_practices" ("id" serial primary key, "practice_id" integer, "provider_id" integer, "affiliation_since" timestamp, "practice_scope" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (43.9ms)[0m  CREATE TABLE "network_providers" ("id" serial primary key, "network_id" integer, "provider_id" integer, "network_since" timestamp, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (44.7ms)[0m  [1mCREATE TABLE "cities" ("id" serial primary key, "name" character varying(255), "county" character varying(50), "state_code" character varying(50), "zip_code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (45.2ms)[0m  CREATE TABLE "counties" ("id" serial primary key, "name" character varying(255), "state_code" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (56.2ms)[0m  [1mCREATE TABLE "provider_additional_attributes" ("id" serial primary key, "attribute_name" character varying(255), "attribute_value" character varying(50), "attribute_value_img" character varying(50), "attribute_data_type" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (43.9ms)[0m  CREATE TABLE "provider_charges" ("id" serial primary key, "provider_id" integer, "condition_procedure_id" integer, "condition_diagnosis_id" integer, "service_charge" character varying(50), "service_quantity" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (88.8ms)[0m  [1mCREATE TABLE "practice_organizations" ("id" serial primary key, "name" character varying(255), "place_of_service_type" character varying(50), "location_address" character varying(50), "location_city" character varying(50), "location_zip" character varying(50), "location_county" character varying(50), "location_state" character varying(50), "type" character varying(50), "company_number" character varying(50), "company_number_type" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (43.9ms)[0m  CREATE TABLE "userlogins" ("id" serial primary key, "user_id" integer, "password" character varying(50), "status" character varying(50), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (89.8ms)[0m  [1mCREATE TABLE "zips" ("id" serial primary key, "zip_code" character varying(50), "city_name" character varying(255), "county_name" character varying(255), "state_code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (45.3ms)[0m  CREATE TABLE "provider_networks" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140531130522"]]
+  [1m[35m (21.2ms)[0m  COMMIT
+Migrating to CreateIndexes (20140531134158)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (74.0ms)[0m  CREATE UNIQUE INDEX  "index_conditions_on_id" ON "conditions"  ("id")
+  [1m[36m (44.0ms)[0m  [1mCREATE UNIQUE INDEX  "index_diagnosis_on_id" ON "diagnosis"  ("id")[0m
+  [1m[35m (43.8ms)[0m  CREATE UNIQUE INDEX  "index_providers_on_id" ON "providers"  ("id")
+  [1m[36m (44.0ms)[0m  [1mCREATE UNIQUE INDEX  "index_provider_practices_on_id" ON "provider_practices"  ("id")[0m
+  [1m[35m (44.1ms)[0m  CREATE UNIQUE INDEX  "index_network_providers_on_id" ON "network_providers"  ("id")
+  [1m[36m (41.8ms)[0m  [1mCREATE UNIQUE INDEX  "index_cities_on_id" ON "cities"  ("id")[0m
+  [1m[35m (43.6ms)[0m  CREATE UNIQUE INDEX  "index_counties_on_id" ON "counties"  ("id")
+  [1m[36m (43.9ms)[0m  [1mCREATE UNIQUE INDEX  "index_provider_additional_attributes_on_id" ON "provider_additional_attributes"  ("id")[0m
+  [1m[35m (42.8ms)[0m  CREATE UNIQUE INDEX  "index_provider_charges_on_id" ON "provider_charges"  ("id")
+  [1m[36m (43.1ms)[0m  [1mCREATE UNIQUE INDEX  "index_practice_organizations_on_id" ON "practice_organizations"  ("id")[0m
+  [1m[35m (43.8ms)[0m  CREATE UNIQUE INDEX  "index_userlogins_on_id" ON "userlogins"  ("id")
+  [1m[36m (44.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_zips_on_id" ON "zips"  ("id")[0m
+  [1m[35m (42.5ms)[0m  CREATE UNIQUE INDEX  "index_provider_networks_on_id" ON "provider_networks"  ("id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140531134158"]]
+  [1m[35m (8.3ms)[0m  COMMIT
+Migrating to AddAutoincrementIndex (20140531140314)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.3ms)[0m  ALTER TABLE "conditions" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "conditions" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.3ms)[0m  ALTER TABLE "diagnosis" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "diagnosis" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "providers" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "providers" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "provider_practices" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "provider_practices" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.4ms)[0m  ALTER TABLE "network_providers" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "network_providers" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.2ms)[0m  ALTER TABLE "cities" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "cities" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "counties" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "counties" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "provider_additional_attributes" ALTER COLUMN "id" TYPE integer
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE "provider_additional_attributes" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.2ms)[0m  ALTER TABLE "provider_charges" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "provider_charges" ALTER "id" SET NOT NULL[0m
+  [1m[35m (3.1ms)[0m  ALTER TABLE "practice_organizations" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "practice_organizations" ALTER "id" SET NOT NULL[0m
+  [1m[35m (2.4ms)[0m  ALTER TABLE "userlogins" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "userlogins" ALTER "id" SET NOT NULL[0m
+  [1m[35m (2.0ms)[0m  ALTER TABLE "zips" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "zips" ALTER "id" SET NOT NULL[0m
+  [1m[35m (1.7ms)[0m  ALTER TABLE "provider_networks" ALTER COLUMN "id" TYPE integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "provider_networks" ALTER "id" SET NOT NULL[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140531140314"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProcedures (20140603062003)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (101.1ms)[0m  [1mCREATE TABLE "procedures" ("id" serial primary key, "condition_id" bigint, "short_name" character varying(255), "full_name" character varying(255), "codeset" character varying(50), "code" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (64.6ms)[0m  CREATE UNIQUE INDEX  "index_procedures_on_id" ON "procedures"  ("id")
+  [1m[36m (2.8ms)[0m  [1mALTER TABLE "procedures" ALTER COLUMN "id" TYPE integer[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "procedures" ALTER "id" SET NOT NULL
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140603062003"]]
+  [1m[35m (12.2ms)[0m  COMMIT
+Migrating to AddColumnDiagnosis (20140603063057)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "diagnosis" ADD COLUMN "condition_id" bigint
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140603063057"]]
+  [1m[35m (7.6ms)[0m  COMMIT
+Migrating to RenameCloumnTypeInCondition (20140604114343)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "conditions" RENAME COLUMN "type" TO "condition_type"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140604114343"]]
+  [1m[35m (6.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/dashboard/get_suggestions?term=Ultra" for 127.0.0.1 at 2014-06-05 20:15:44 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"Ultra"}
+  [1m[35mCondition Load (121.8ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.2ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1682ms (Views: 562.5ms | ActiveRecord: 125.1ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:15:50 +0530
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (10.4ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 1226ms (Views: 1225.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/messages.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/categorys.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.multiselect.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/select2.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.multiselect.filter.css?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/autocomplete-rails.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/select2.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/backbone-1.1.2.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/custome_autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/d3-3.4.6.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.multi-select.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/jquery.multiselect-min.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/typeahead.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/Topbar.png" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/Topbar_control_wheel.png" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+
+Started GET "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" for 127.0.0.1 at 2014-06-05 20:15:52 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.9ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.0ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (37.1ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Ultr" for 127.0.0.1 at 2014-06-05 20:15:55 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Ultr"}
+  [1m[35mCondition Load (111.2ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultr%'
+  [1m[36mProcedure Load (1.4ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultr%')[0m
+Completed 200 OK in 1826ms (Views: 621.2ms | ActiveRecord: 112.6ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Ultra" for 127.0.0.1 at 2014-06-05 20:16:15 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"Ultra"}
+  [1m[35mCondition Load (124.4ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.2ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1814ms (Views: 742.2ms | ActiveRecord: 125.7ms)
+
+
+Started GET "/dashboard/get_suggestions?term=dia" for 127.0.0.1 at 2014-06-05 20:16:34 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"dia"}
+  [1m[35mCondition Load (2.4ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'dia%'
+  [1m[36mProcedure Load (1.4ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'dia%')[0m
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/dashboard/get_suggestions?term=dia" for 127.0.0.1 at 2014-06-05 20:16:41 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"dia"}
+  [1m[35mCondition Load (2.0ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'dia%'
+  [1m[36mProcedure Load (1.3ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'dia%')[0m
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 30ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.multiselect.filter.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/categorys.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/messages.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.multiselect.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/select2.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/autocomplete-rails.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/select2.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/backbone-1.1.2.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/custome_autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/d3-3.4.6.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.multi-select.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/jquery.multiselect-min.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/typeahead.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-05 20:17:10 +0530
+
+
+Started GET "/assets/Topbar_control_wheel.png" for 127.0.0.1 at 2014-06-05 20:17:12 +0530
+
+
+Started GET "/assets/Topbar.png" for 127.0.0.1 at 2014-06-05 20:17:12 +0530
+
+
+Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-05 20:17:12 +0530
+
+
+Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-05 20:17:12 +0530
+
+
+Started GET "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" for 127.0.0.1 at 2014-06-05 20:17:12 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.1ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.3ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (45.3ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultra" for 127.0.0.1 at 2014-06-05 20:17:18 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"ultra"}
+  [1m[35mCondition Load (2.1ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'ultra%'
+  [1m[36mProcedure Load (1.4ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'ultra%')[0m
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultra" for 127.0.0.1 at 2014-06-05 20:17:27 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"ultra"}
+  [1m[35mCondition Load (1.8ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'ultra%'
+  [1m[36mProcedure Load (1.2ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'ultra%')[0m
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Ultra" for 127.0.0.1 at 2014-06-05 20:17:33 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"Ultra"}
+  [1m[35mCondition Load (118.2ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (2.9ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1936ms (Views: 619.6ms | ActiveRecord: 121.1ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Ultra" for 127.0.0.1 at 2014-06-05 20:17:38 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Ultra"}
+  [1m[35mCondition Load (116.7ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.2ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1787ms (Views: 593.2ms | ActiveRecord: 117.9ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Ultr" for 127.0.0.1 at 2014-06-05 20:17:52 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Ultr"}
+  [1m[35mCondition Load (122.8ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultr%'
+  [1m[36mProcedure Load (1.8ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultr%')[0m
+Completed 200 OK in 1911ms (Views: 711.6ms | ActiveRecord: 124.6ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:20:40 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 489ms (Views: 467.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categorys.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/messages.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/select2.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.multiselect.filter.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.multiselect.css?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:41 +0530
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/autocomplete-rails.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/select2.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/backbone-1.1.2.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/custome_autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/d3-3.4.6.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.multi-select.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/jquery.multiselect-min.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/typeahead.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/Topbar_control_wheel.png" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/Topbar.png" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+
+Started GET "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" for 127.0.0.1 at 2014-06-05 20:20:42 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.2ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.7ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (32.5ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultr" for 127.0.0.1 at 2014-06-05 20:20:45 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"ultr"}
+  [1m[35mCondition Load (111.4ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultr%'
+  [1m[36mProcedure Load (1.4ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultr%')[0m
+Completed 200 OK in 1773ms (Views: 614.7ms | ActiveRecord: 114.8ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultra" for 127.0.0.1 at 2014-06-05 20:20:47 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"ultra"}
+  [1m[35mCondition Load (109.6ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.0ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1637ms (Views: 598.9ms | ActiveRecord: 110.5ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Ultra" for 127.0.0.1 at 2014-06-05 20:21:14 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Ultra"}
+  [1m[35mCondition Load (108.6ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.8ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1699ms (Views: 649.2ms | ActiveRecord: 110.4ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Ultras" for 127.0.0.1 at 2014-06-05 20:21:31 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Ultras"}
+  [1m[35mCondition Load (107.6ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultras%'
+  [1m[36mProcedure Load (0.9ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultras%')[0m
+Completed 200 OK in 1670ms (Views: 625.8ms | ActiveRecord: 108.5ms)
+
+
+Started GET "/dahsbaord" for 127.0.0.1 at 2014-06-05 20:22:14 +0530
+
+ActionController::RoutingError (No route matches [GET] "/dahsbaord"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.5ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (31.6ms)
+
+
+Started GET "/dashbaord" for 127.0.0.1 at 2014-06-05 20:22:18 +0530
+
+ActionController::RoutingError (No route matches [GET] "/dashbaord"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.6ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (35.7ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 37ms (Views: 36.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categorys.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.multiselect.filter.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.multiselect.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/messages.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/select2.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/autocomplete-rails.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/select2.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/backbone-1.1.2.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/custome_autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/d3-3.4.6.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.multiselect-min.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/jquery.multi-select.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/typeahead.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/Topbar.png" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/Topbar_control_wheel.png" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-05 20:22:24 +0530
+
+
+Started GET "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" for 127.0.0.1 at 2014-06-05 20:22:25 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.4ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (34.6ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultra" for 127.0.0.1 at 2014-06-05 20:22:28 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"ultra"}
+  [1m[35mCondition Load (106.8ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (0.9ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1707ms (Views: 618.5ms | ActiveRecord: 107.7ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:24:27 +0530
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 29ms (Views: 28.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:26:43 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (7.6ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 506ms (Views: 487.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:43 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:43 +0530
+
+
+Started GET "/assets/backbone-min.map" for 127.0.0.1 at 2014-06-05 20:26:44 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/backbone-min.map"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.8ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.4ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (33.1ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 31ms (Views: 30.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categorys.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/messages.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.multiselect.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.multiselect.filter.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:47 +0530
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/autocomplete-rails.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/backbone-1.1.2.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/custome_autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/d3-3.4.6.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.multi-select.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/typeahead.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/jquery.multiselect-min.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/Topbar.png" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/Topbar_control_wheel.png" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+
+Started GET "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.6ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.8ms)
+
+
+Started GET "/assets/backbone-min.map" for 127.0.0.1 at 2014-06-05 20:26:48 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/backbone-min.map"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.7ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (30.9ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 34ms (Views: 33.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/categorys.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/messages.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.multiselect.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.multiselect.filter.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:51 +0530
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/autocomplete-rails.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/backbone-1.1.2.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/custome_autocomplete.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/d3-3.4.6.min.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/jquery.multi-select.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/jquery.multiselect-min.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/typeahead.js?body=1" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/Topbar.png" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/Topbar_control_wheel.png" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+
+Started GET "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/ui-bg_highlight-soft_100_eeeeee_1x100.png"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.4ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.6ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (38.5ms)
+
+
+Started GET "/assets/backbone-min.map" for 127.0.0.1 at 2014-06-05 20:26:52 +0530
+
+ActionController::RoutingError (No route matches [GET] "/assets/backbone-min.map"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.6ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (36.7ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultra" for 127.0.0.1 at 2014-06-05 20:26:56 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"ultra"}
+  [1m[35mCondition Load (112.3ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.3ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1698ms (Views: 576.3ms | ActiveRecord: 115.8ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultra" for 127.0.0.1 at 2014-06-05 20:27:19 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"ultra"}
+  [1m[35mCondition Load (164.9ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.6ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 2417ms (Views: 891.7ms | ActiveRecord: 166.5ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultra" for 127.0.0.1 at 2014-06-05 20:27:46 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"ultra"}
+  [1m[35mCondition Load (109.4ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultra%'
+  [1m[36mProcedure Load (1.2ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultra%')[0m
+Completed 200 OK in 1706ms (Views: 601.9ms | ActiveRecord: 110.6ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Anesthesia" for 127.0.0.1 at 2014-06-05 20:27:50 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"Anesthesia"}
+  [1m[35mCondition Load (42.7ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Anesthesia%'
+  [1m[36mProcedure Load (1.0ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Anesthesia%')[0m
+Completed 200 OK in 778ms (Views: 318.6ms | ActiveRecord: 43.6ms)
+
+
+Started GET "/dashboard/get_suggestions?term=ultrasonic" for 127.0.0.1 at 2014-06-05 20:27:56 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"ultrasonic"}
+  [1m[35mCondition Load (9.1ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Ultrasonic%'
+  [1m[36mProcedure Load (1.0ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Ultrasonic%')[0m
+Completed 200 OK in 115ms (Views: 38.0ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Anesthesia" for 127.0.0.1 at 2014-06-05 20:27:59 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Anesthesia"}
+  [1m[35mCondition Load (44.1ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Anesthesia%'
+  [1m[36mProcedure Load (1.8ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Anesthesia%')[0m
+Completed 200 OK in 782ms (Views: 388.8ms | ActiveRecord: 45.9ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Anesthes" for 127.0.0.1 at 2014-06-05 20:28:09 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Anesthes"}
+  [1m[35mCondition Load (44.3ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Anesthes%'
+  [1m[36mProcedure Load (1.5ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Anesthes%')[0m
+Completed 200 OK in 774ms (Views: 268.5ms | ActiveRecord: 45.8ms)
+
+
+Started GET "/dashboard/get_suggestions?term=endoscop" for 127.0.0.1 at 2014-06-05 20:28:36 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"endoscop"}
+  [1m[35mCondition Load (1.5ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Endoscop%'
+  [1m[36mProcedure Load (1.8ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Endoscop%')[0m
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/dashboard/get_suggestions?term=endoscope" for 127.0.0.1 at 2014-06-05 20:28:39 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"endoscope"}
+  [1m[35mCondition Load (1.5ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Endoscope%'
+  [1m[36mProcedure Load (0.8ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Endoscope%')[0m
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Administration" for 127.0.0.1 at 2014-06-05 20:28:49 +0530
+Processing by DashboardController#get_suggestions as HTML
+  Parameters: {"term"=>"Administration"}
+  [1m[35mCondition Load (5.4ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Administration%'
+  [1m[36mProcedure Load (0.9ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Administration%')[0m
+Completed 200 OK in 70ms (Views: 22.4ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/dashboard/get_suggestions?term=Administration" for 127.0.0.1 at 2014-06-05 20:28:54 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"Administration"}
+  [1m[35mCondition Load (5.6ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Administration%'
+  [1m[36mProcedure Load (1.2ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Administration%')[0m
+Completed 200 OK in 70ms (Views: 24.9ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/dashboard/get_suggestions?term=dia" for 127.0.0.1 at 2014-06-05 20:29:04 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"dia"}
+  [1m[35mCondition Load (3.6ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Dia%'
+  [1m[36mProcedure Load (1.2ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Dia%')[0m
+Completed 200 OK in 29ms (Views: 8.9ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/dashboard/get_suggestions?term=dia" for 127.0.0.1 at 2014-06-05 20:29:18 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"dia"}
+  [1m[35mCondition Load (5.4ms)[0m  SELECT conditions.*, procedures.*,procedures.id AS p_id FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Dia%'
+  [1m[36mProcedure Load (1.1ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Dia%')[0m
+Completed 200 OK in 33ms (Views: 8.9ms | ActiveRecord: 6.5ms)
