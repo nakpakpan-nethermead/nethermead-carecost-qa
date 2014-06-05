@@ -1,7 +1,22 @@
+var selectProcedure = [];
+var city = 0;
 $(function() {
     $(document).on('click','.delete_row',function(){
         if(confirm("Are you sure?"))
             $(this).closest('tr').hide();
+    });
+
+    $("#location").click(function(){
+        $("#zipCodeContainer").show();
+    });
+    
+    $("#addZip").click(function(){
+        var cityAdded = true;
+        city += 1;
+        console.log(city);
+        $("#zipCode").val('');
+        renderProcedure();
+        return false;
     });
 
     $.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -18,14 +33,13 @@ $(function() {
     }
     });
 
+    
+
     $("#procedure-btn").click(function(){
-        if($("#category_consumer_name").val() != null){
-            var html = '<tr><td>'+$("#category_consumer_name").val()+'</td><td><i class="glyphicon glyphicon-trash delete_row"></i></td></tr>';
-            $("#procedure").append(html);
-            $("#category_consumer_name").val('');
-        }
+        renderProcedure();
     });
- 
+
+    
     $( "#category_consumer_name" ).catcomplete({
       source: "/dashboard/get_suggestions",
       minLength: 3
@@ -48,5 +62,18 @@ $(function() {
 
     
     //Multiselect functionality
-    $("select").multiselect({});
+    // $("select").multiselect({});
 });
+
+function renderProcedure() {
+    var procedure = $("#category_consumer_name").val();
+    $("#category_consumer_name").val('');
+    if( procedure != ""){
+        var data = {};
+        data['name'] = procedure;
+        selectProcedure.push(data);
+    }
+    var template = $("#proceduresList").html();
+    $("#procedure").html(_.template(template,{items:selectProcedure,city:city}));
+}
+

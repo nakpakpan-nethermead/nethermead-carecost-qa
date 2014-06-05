@@ -2,10 +2,7 @@
 <html>
 	<head>
   		<title>NALC HEALTHCARE PLAN</title>
-  		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
   		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   		<%= csrf_meta_tags %>
 	</head>
@@ -38,13 +35,17 @@
         	
         	<div id="dash-img4"><!--DIV DASH-IMG4 STARTS-->
         		<%= image_tag("Topbar3.png", :alt => "procedures") %>
-            <table id='procedure'>
-              <tr>
-                <th>Labs</th>
-                <th>Delete</th>
-              </tr>
-            </table>
-                  	
+            <div id="locationContainer">
+              <span id="location">Location</span>
+              <div id="zipCodeContainer" style="display:none">
+                <input type="text" placeholder="Enter ZIP Code" id="zipCode">
+                <a href="#" class="btn" id="addZip"> ADD </a>
+              </div>
+            </div>
+            <div id='procedure'>
+              
+            </div>
+                  	 
         	</div>   
                    
         	<%= yield %>
@@ -56,9 +57,3 @@
       
 </body>
 </html>
-<script type='text/javascript'>
-  function delete_row(index)
-{
-  document.getElementById("procedure").deleteRow(index);
-}
-</script>

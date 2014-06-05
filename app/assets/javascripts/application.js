@@ -15,4 +15,5 @@
 //= require jquery.ui.all
 //= require autocomplete-rails
 //= require turbolinks
+//= require underscore
 //= require_tree .
