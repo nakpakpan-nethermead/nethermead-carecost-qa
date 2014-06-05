@@ -1,0 +1,21 @@
+class DashboardController < ApplicationController
+	before_action :get_default_data
+
+	def index
+           session[:category]='-----'
+         end
+
+	def create
+		@proc_list = Procedure.get_procedure_list(params[:category][:consumer_name]) 
+                puts " ================create fuction is calling"
+                session[:category]=params[:category][:consumer_name]
+		render :index
+	end
+
+	private
+
+	def get_default_data
+		#@condition = Condition.get_conditions
+		@procedure = Procedure.get_procedures
+	end
+end

@@ -1,0 +1,38 @@
+<div id="search-bar"><!--DIV SEARCH-BAR STARTS-->
+	<%= form_for :category, url: dashboard_index_path, method: :post do |f| %>
+		<%= f.text_field :consumer_name, value: get_consumer_name(params[:category]), class: "serch-text" %>
+		<%#= f.submit "ADD PROCEDURE", id: "procedure"%>
+	<% end %>
+	<div id="procedure-btn-div">
+	<%= button_tag "ADD PROCEDURE", id: "procedure-btn" %>
+	</div>
+</div><!--DIV SEARCH-BAR ENDS-->
+
+<div id="wrapper"><!--DIV WRAPPER STARTS-->
+	<div id="total-deductible"><!--DIV TOTAL-DEDUCTIBLE STARTS-->
+		<div id="tot-ded-label">
+			<%= label(:post, :title, "Total Deductible") %>
+		</div>
+	</div><!--DIV TOTAL-DEDUCTIBLE ENDS-->
+
+	<div id="deductible-ptd"><!--DIV DEDUCTIBLE-PTD STARTS-->
+		<div id="ded-ptd-label">
+			<%= label(:post, :title, "Deductible Paid-To-Date") %>
+		</div>
+	</div><!--DIV DEDUCTIBLE-PTD ENDS-->
+	
+	<div id="copay"><!--DIV COPAY STARTS-->
+		<div id="copay-label">
+			<%= label(:post, :title, "Copay") %>
+		</div>
+	</div><!--DIV COPAY ENDS-->
+	
+	<div id="coinsurance"><!--DIV COINSURANCE STARTS-->
+		<div id="coinsurance-label">
+			<%= label(:post, :title, "Coinsurance") %>
+		</div>
+	</div><!--DIV COINSURANCE ENDS-->
+	
+</div><!--DIV WRAPPER ENDS-->
+
+

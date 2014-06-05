@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Id: 1
+  Short_name: MyString
+  Full_name: MyString
+  Codeset: MyString
+  Code: MyString
+
+two:
+  Id: 1
+  Short_name: MyString
+  Full_name: MyString
+  Codeset: MyString
+  Code: MyString

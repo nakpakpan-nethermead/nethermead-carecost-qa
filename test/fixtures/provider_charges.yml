@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Id: 1
+  Provider_ID: 1
+  Condition_Procedure_ID: 1
+  Condition_Diagnosis_ID: 1
+  Service_Charge: MyString
+  Service_quantity: MyString
+
+two:
+  Id: 1
+  Provider_ID: 1
+  Condition_Procedure_ID: 1
+  Condition_Diagnosis_ID: 1
+  Service_Charge: MyString
+  Service_quantity: MyString

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Id: 1
+  Practice_ID: 
+  Provider_ID: 
+  Affiliation_since: 2014-05-29 16:09:45
+  Practice_scope: MyString
+
+two:
+  Id: 1
+  Practice_ID: 
+  Provider_ID: 
+  Affiliation_since: 2014-05-29 16:09:45
+  Practice_scope: MyString

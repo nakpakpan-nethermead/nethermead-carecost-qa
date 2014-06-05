@@ -1,0 +1,25 @@
+<div id="check-box"><!--DIV CHECK-BOX STARTS-->
+<tr>
+	<td><%= check_box_tag 'procedure', value: pro.id %><%= pro.full_name %></td>
+</div><!--DIV CHECK-BOX ENDS-->
+<div id="drop">
+	<td><%= select_tag "provider_#{pro.id}", options_for_select([ ["In-Network1", "In-Network"],['Out-Network', 'Out-Network'] ], "In-Network1") %></td>
+	<td><%= select_tag "facility_#{pro.id}", options_for_select([ ["Office-Visit", "Office-Visit"], ['Home-Visit', 'Home-Visit']], 'Office-Visit') %></td>
+</div>	
+	<td>$300</td>
+	<td>$410</td>
+  		</td>
+	<td><%= link_to 'Destroy', '#', class: "procedure", data: {} %>		
+</tr>
+
+
+<table>
+   <tr>
+ <th>
+    lab
+  <th>
+    </tr>
+</table>
+
+
+
