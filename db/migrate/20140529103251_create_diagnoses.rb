@@ -8,6 +8,6 @@ class CreateDiagnoses < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :diagnoses, :Id,                unique: true
+    add_index :diagnoses, :id,                unique: true
   end
 end

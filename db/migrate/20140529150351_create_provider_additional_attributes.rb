@@ -8,6 +8,6 @@ class CreateProviderAdditionalAttributes < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :provider_additional_attributes, :Id,                unique: true
+    add_index :provider_additional_attributes, :id,                unique: true
   end
 end
