@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
 	end
 
   def get_suggestions
-    result = Condition.joins("LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE '#{params[:term]}%'").select("conditions.*, procedures.*,procedures.id AS p_id")
+    result = Condition.joins("LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE '#{params[:term].capitalize}%'").select("conditions.*, procedures.*,procedures.id AS p_id")
     condition_array = Array.new
     result.each do |c|
       element = Hash.new
@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
         condition_array << element
       end
     end
-    result = Procedure.where("full_name LIKE '#{params[:term]}%'")
+    result = Procedure.where("full_name LIKE '#{params[:term].capitalize}%'")
     result.each do |p|
       element = Hash.new
       if p.full_name != ''
