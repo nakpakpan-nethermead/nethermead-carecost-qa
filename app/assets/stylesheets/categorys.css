@@ -1,13 +1,18 @@
 #procedure{
-    margin: 0px 0px 40px 90px;
+    margin: 0px 0px 40px 13px;
 }
 #procedure th{
     padding: 10px;
     border: 1px solid #aaa;
 }
 #procedure tr > td:first-child{
-    width: 400px;
+    width: 300px;
     text-align: left;
+}
+
+#locationContainer {
+    text-align: right;
+    margin-right: 133px;
 }
 
 #procedure td{

@@ -35,4 +35,63 @@
 	
 </div><!--DIV WRAPPER ENDS-->
 
+<script type="foo/bar" id='proceduresList'>
+  <table cellspacing='0' cellpadding='0' border='1' >
+    <thead>
+      <tr>
+        <th>Labs</th>
+        <th>Provider</th>
+        <th>Facility</th>
+        
+        <%% if(city > 0) { %>
+        	<th>Average Cost</th>
+        	<%%
+        		_(city).times(function(n){ 
+      		%>
+      			
+        		<th>City <%%=n+1%>, State <%%=n+1%>, ZIP code <i class='glyphicon glyphicon-trash'></i> </th>
+        	<%%
+        		});
+        	} %>
+      </tr>
+    </thead>
+    <tbody>
+      <%%
+        _.each(items,function(item,key,list){
+      %>
+        <tr>
+          <td><%%= item.name %></td>
+          <td>
+            <select>
+              <option>In-Network</option>
+              <option>Out-Of-Network</option>
+            </select>
+          </td>
+          <td>
+            <select>
+              <option>Office Visit</option>
+              <option>Office Visit 2</option>
+              <option>Office Visit 3</option>
+            </select>
+          </td>
+          <%% 
+          	if(city > 0) { 
+          	%>
+          	<td>$250</td>
+          	<%%
+        			_(city).times(function(n){ 
+      		%>
+	          <td>$250<%%=n%></td>
+          <%%
+        			}); 
+        		} 
+        	%>
 
+          <td><i class="glyphicon glyphicon-trash"></i></td>
+        </tr>
+      <%%
+        });
+      %>
+    </tbody>
+  </table>
+</script>

@@ -4,17 +4,15 @@ class DashboardController < ApplicationController
          end
 
 	def create
-		@proc_list = Procedure.get_procedure_list(params[:category][:consumer_name]) 
-                session[:category]=params[:category][:consumer_name]
-		render :index
+		
 	end
 
   def get_suggestions
-    result = Condition.joins("LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE '#{params[:term].capitalize}%'").select("conditions.*, procedures.*,procedures.id AS p_id")
+    result = Condition.joins("LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE '#{params[:term].capitalize}%'").select("conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name")
     condition_array = Array.new
     result.each do |c|
       element = Hash.new
-      if c.clinical_name != ''
+      if c.consumer_name != ''
         element[:category] = c.consumer_name
         element[:label] = c.short_name
         element[:id] = c.p_id
