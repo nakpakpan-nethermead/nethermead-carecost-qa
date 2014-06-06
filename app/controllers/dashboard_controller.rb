@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
       if c.clinical_name != ''
         element[:category] = c.consumer_name
         element[:label] = c.short_name
-        element[:id] = c.p_id
+        #element[:id] = c.p_id
         condition_array << element
       end
     end

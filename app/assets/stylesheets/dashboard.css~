@@ -54,7 +54,7 @@
 
 #search-bar
 {
-	margin-top: 20px;
+	margin-top: 68px;
 	margin-left: 107px;
 	position: absolute;
 }
@@ -63,11 +63,11 @@
 {
 	font-size: 20px;
 	padding: 5px;
-	border: 1px solid #CCC;
+	/*border: 1px solid #CCC;*/
 	display: block;
-	margin-top: 0px;
-	margin: 50px 0px;
-	background: #fff;
+	margin-top: 2px;
+	/*margin: 50px 0px;*/
+	/*background: #fff;*/
 	width: 500px;
 	height: 40px;
 	float: left;
@@ -100,7 +100,7 @@
 	float: right;
 	margin-left: 500px;
 	position: absolute;
-	margin-top: 48px;
+	
 	padding-left: 20px;
 }
 #procedure-btn
@@ -132,13 +132,55 @@
    width: 1005px;
    #margin: 0 112px;
    padding: 0;
-   overflow: auto;
+   #overflow: auto;
    #margin-top: 260px;
-   margin-left: 106px;
+   margin-left: 89px;
    #position: fixed;
    padding-top: 175px;
 }
 
+.slider-label
+{
+	position: center;
+	text-align:center;
+	margin-top: 15px;
+	font-size: 15px;
+}
+
+.range_value_doller
+{
+	border:0; 
+	color:#d54b41;
+	text-align:center;
+	font-size: 36pt;
+    height: 40pt;
+    width: 1.75in;
+    
+}
+
+.slider_style
+{
+	width:170px;  
+	margin-left: 30px;
+	margin-top: 15px;
+    color:#FFA500;
+
+}
+
+.slider-box
+{
+	width: 230px;
+	height: 150px;
+	background: #fff;
+	margin-top: 150px;
+	margin-left: 20px;
+	border: 1px solid #CCC;
+	float: left;
+	padding: 0;
+   display: block;
+ }
+ 
+ 
 #total-deductible
 {
 	width: 230px;
@@ -275,7 +317,7 @@
  	margin-top: 100px;
  	float: left;
  	margin-left: 100px;
- 	#position: absolute;
+ 	position: absolute;
  }
  
  #drop
@@ -284,4 +326,9 @@
 	position: absolute; 	
  }
  	
+ .ui-autocomplete-loading {
+ 	color: black;
+ 	border: 1px solid #aaa;
+
+ }
  

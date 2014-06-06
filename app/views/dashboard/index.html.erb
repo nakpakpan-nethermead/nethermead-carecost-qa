@@ -1,3 +1,18 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<style>
+ #copay-slide .ui-slider-range { background:#3d4753; }
+#copay-slide .ui-slider-handle { border-color:#3d4753; }
+#total-ded-slide .ui-slider-range { background:#3d4753; }
+#total-ded-slide .ui-slider-handle { border-color:#3d4753; }
+#ded-paid-slide .ui-slider-range { background:#3d4753; }
+#ded-paid-slide .ui-slider-handle { border-color:#3d4753; }
+#coinsurance-slider .ui-slider-range { background:#3d4753; }
+#coinsurance-slider .ui-slider-handle { border-color:#3d4753; }
+
+</style>
 <div id="search-bar"><!--DIV SEARCH-BAR STARTS-->
 	<%= form_for :category, url: dashboard_index_path, method: :post do |f| %>
 		<%= f.text_field :consumer_name, value: get_consumer_name(params[:category]), class: "serch-text" %>
@@ -9,30 +24,143 @@
 </div><!--DIV SEARCH-BAR ENDS-->
 
 <div id="wrapper"><!--DIV WRAPPER STARTS-->
-	<div id="total-deductible"><!--DIV TOTAL-DEDUCTIBLE STARTS-->
-		<div id="tot-ded-label">
+	<div class="slider-box"><!--DIV TOTAL-DEDUCTIBLE STARTS-->
+		<div class="slider-label">
 			<%= label(:post, :title, "Total Deductible") %>
+			<br/>
+			 <p><input type="text" id="total-ded-range" class='range_value_doller'></p>
+				   
+			        <p><div id="total-ded-slide"  class="slider_style"></div></p>			      
+			
 		</div>
 	</div><!--DIV TOTAL-DEDUCTIBLE ENDS-->
 
-	<div id="deductible-ptd"><!--DIV DEDUCTIBLE-PTD STARTS-->
-		<div id="ded-ptd-label">
+	<div class="slider-box"><!--DIV DEDUCTIBLE-PTD STARTS-->
+		<div class="slider-label">
 			<%= label(:post, :title, "Deductible Paid-To-Date") %>
+			 <br/> 
+			 	<p><input type="text" id="ded-paid-range" class='range_value_doller' ></p>
+			 	<p><div id="ded-paid-slide"  class="slider_style"></div></p>
+			    
+			 
 		</div>
 	</div><!--DIV DEDUCTIBLE-PTD ENDS-->
 	
-	<div id="copay"><!--DIV COPAY STARTS-->
-		<div id="copay-label">
+	<div class="slider-box"><!--DIV COPAY STARTS-->
+		<div class="slider-label">
 			<%= label(:post, :title, "Copay") %>
+			<br/>
+				<p><input type="text" id="copay-range" class='range_value_doller'></p>
+			     <p><div id="copay-slide"  class="slider_style" ></div></p>
+		   				 
 		</div>
 	</div><!--DIV COPAY ENDS-->
 	
-	<div id="coinsurance"><!--DIV COINSURANCE STARTS-->
-		<div id="coinsurance-label">
+	<div class="slider-box"><!--DIV COINSURANCE STARTS-->
+		<div class="slider-label">
 			<%= label(:post, :title, "Coinsurance") %>
+			 <br/>
+				<p><input type="text" id="coinsurance_range" class='range_value_doller'></p>
+			    <p><div id="coinsurance-slider"  class="slider_style"></div></p>		           
+			
 		</div>
 	</div><!--DIV COINSURANCE ENDS-->
 	
 </div><!--DIV WRAPPER ENDS-->
 
+<script type='text/javascript'>
+ $(function() {
+$( "#total-ded-slide" ).slider({
+range: "min",
+value: 0,
+min: 0,
+max: 5000,
+slide: function( event, ui ) {
+$( "#total-ded-range" ).val( "$" + ui.value );
+}
+});
+$( "#total-ded-range" ).val( "$" + $( "#total-ded-slide" ).slider( "value" ) );
+});
+$( "#total-ded-slide" ).css( "background-color", "#000000");
+$(function() {
+$( "#total-ded-slide" ).slider({
+range: "min",
+value: 0,
+min: 0,
+max: 5000,
+slide: function( event, ui ) {
+$( "#total-ded-range" ).val( "$" + ui.value );
+}
+});
+$( "#total-ded-range" ).val( "$" + $( "#total-ded-slide" ).slider( "value" ) );
+});
+$(function() {
+$( "#ded-paid-slide" ).slider({
+range: "min",
+value: 0,
+min: 0,
+max: 700,
+slide: function( event, ui ) {
+$( "#ded-paid-range" ).val( "$" + ui.value );
+}
+});
+$( "#ded-paid-range" ).val( "$" + $( "#ded-paid-slide" ).slider( "value" ) );
+});
 
+
+
+$(function() {
+$( "#copay-slide" ).slider({
+range: "min",
+value: 0,
+min: 0,
+max: 700,
+slide: function( event, ui ) {
+$( "#copay-range" ).val( "$" + ui.value );
+}
+});
+$( "#copay-range" ).val( "$" + $( "#copay-slide" ).slider( "value" ) );
+});
+
+$(function() {
+$( "#coinsurance-slider" ).slider({
+range: "min",
+value: 0,
+min: 0,
+max: 100,
+slide: function( event, ui ) {
+$( "#coinsurance_range" ).val(ui.value +  "%" );
+}
+});
+$( "#coinsurance_range" ).val($( "#coinsurance-slider" ).slider( "value" ) + "%" );
+});
+ 
+
+
+  function delete_row(index)
+{
+  document.getElementById("diagnosis").deleteRow(index);
+
+}
+
+function showValue(element,status)
+{ 
+ if(status=='total deductible')
+ {
+	document.getElementById("total_ded_range_val").innerHTML=element.value;
+ }
+ else if(status=='deductible paid to date')
+ {
+	document.getElementById("ded_paid_range_val").innerHTML=element.value;
+  }
+ else if(status=='copay value')
+  {
+	document.getElementById("copay_range_val").innerHTML=element.value;
+  }
+else if(status=='coinsurance')
+ {
+  document.getElementById("coinsurance_range_val").innerHTML=element.value;
+  }
+	
+}
+</script>
