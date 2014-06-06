@@ -50,12 +50,13 @@
 	position: relative;
 	margin-left: 1049px;
 	background: transparent;
+	cursor: pointer;
 }
 
 #search-bar
 {
 	margin-top: 68px;
-	margin-left: 182px;
+	margin-left: 107px;
 	position: absolute;
 }
 
@@ -132,13 +133,55 @@
    width: 1005px;
    #margin: 0 112px;
    padding: 0;
-   overflow: auto;
+   #overflow: auto;
    #margin-top: 260px;
-   margin-left: 106px;
+   margin-left: 89px;
    #position: fixed;
    padding-top: 175px;
 }
 
+.slider-label
+{
+	position: center;
+	text-align:center;
+	margin-top: 15px;
+	font-size: 15px;
+}
+
+.range_value_doller
+{
+	border:0; 
+	color:#d54b41;
+	text-align:center;
+	font-size: 36pt;
+    height: 40pt;
+    width: 1.75in;
+    
+}
+
+.slider_style
+{
+	width:170px;  
+	margin-left: 30px;
+	margin-top: 15px;
+    color:#FFA500;
+
+}
+
+.slider-box
+{
+	width: 230px;
+	height: 150px;
+	background: #fff;
+	margin-top: 150px;
+	margin-left: 20px;
+	border: 1px solid #CCC;
+	float: left;
+	padding: 0;
+   display: block;
+ }
+ 
+ 
 #total-deductible
 {
 	width: 230px;
