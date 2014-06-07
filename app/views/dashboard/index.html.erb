@@ -68,7 +68,6 @@
 	
 </div><!--DIV WRAPPER ENDS-->
 
-<<<<<<< HEAD
 <script type="foo/bar" id='proceduresList'>
   <table cellspacing='0' cellpadding='0' border='1' >
     <thead>
@@ -128,101 +127,93 @@
       %>
     </tbody>
   </table>
-=======
+</script>
 <script type='text/javascript'>
  $(function() {
-$( "#total-ded-slide" ).slider({
-range: "min",
-value: 0,
-min: 0,
-max: 5000,
-slide: function( event, ui ) {
-$( "#total-ded-range" ).val( "$" + ui.value );
-}
-});
-$( "#total-ded-range" ).val( "$" + $( "#total-ded-slide" ).slider( "value" ) );
-});
-$( "#total-ded-slide" ).css( "background-color", "#000000");
-$(function() {
-$( "#total-ded-slide" ).slider({
-range: "min",
-value: 0,
-min: 0,
-max: 5000,
-slide: function( event, ui ) {
-$( "#total-ded-range" ).val( "$" + ui.value );
-}
-});
-$( "#total-ded-range" ).val( "$" + $( "#total-ded-slide" ).slider( "value" ) );
-});
-$(function() {
-$( "#ded-paid-slide" ).slider({
-range: "min",
-value: 0,
-min: 0,
-max: 700,
-slide: function( event, ui ) {
-$( "#ded-paid-range" ).val( "$" + ui.value );
-}
-});
-$( "#ded-paid-range" ).val( "$" + $( "#ded-paid-slide" ).slider( "value" ) );
-});
+  $( "#total-ded-slide" ).slider({
+    range: "min",
+    value: 0,
+    min: 0,
+    max: 5000,
+    slide: function( event, ui ) {
+      $( "#total-ded-range" ).val( "$" + ui.value );
+      }
+    });
+    $( "#total-ded-range" ).val( "$" + $( "#total-ded-slide" ).slider( "value" ) );
+  });
 
+  $( "#total-ded-slide" ).css( "background-color", "#000000");
 
+  $(function() {
+    $( "#total-ded-slide" ).slider({
+      range: "min",
+      value: 0,
+      min: 0,
+      max: 5000,
+      slide: function( event, ui ) {
+        $( "#total-ded-range" ).val( "$" + ui.value );
+      }
+    });
+    $( "#total-ded-range" ).val( "$" + $( "#total-ded-slide" ).slider( "value" ) );
+  });
 
-$(function() {
-$( "#copay-slide" ).slider({
-range: "min",
-value: 0,
-min: 0,
-max: 700,
-slide: function( event, ui ) {
-$( "#copay-range" ).val( "$" + ui.value );
-}
-});
-$( "#copay-range" ).val( "$" + $( "#copay-slide" ).slider( "value" ) );
-});
+  $(function() {
+    $( "#ded-paid-slide" ).slider({
+      range: "min",
+      value: 0,
+      min: 0,
+      max: 700,
+      slide: function( event, ui ) {
+        $( "#ded-paid-range" ).val( "$" + ui.value );
+      }
+    });
+    $( "#ded-paid-range" ).val( "$" + $( "#ded-paid-slide" ).slider( "value" ) );
+  });
 
-$(function() {
-$( "#coinsurance-slider" ).slider({
-range: "min",
-value: 0,
-min: 0,
-max: 100,
-slide: function( event, ui ) {
-$( "#coinsurance_range" ).val(ui.value +  "%" );
-}
-});
-$( "#coinsurance_range" ).val($( "#coinsurance-slider" ).slider( "value" ) + "%" );
-});
+  $(function() {
+    $( "#copay-slide" ).slider({
+      range: "min",
+      value: 0,
+      min: 0,
+      max: 700,
+      slide: function( event, ui ) {
+        $( "#copay-range" ).val( "$" + ui.value );
+      }
+    });
+    $( "#copay-range" ).val( "$" + $( "#copay-slide" ).slider( "value" ) );
+  });
+
+  $(function() {
+    $( "#coinsurance-slider" ).slider({
+      range: "min",
+      value: 0,
+      min: 0,
+      max: 100,
+      slide: function( event, ui ) {
+        $( "#coinsurance_range" ).val(ui.value +  "%" );
+      }
+    });
+    $( "#coinsurance_range" ).val($( "#coinsurance-slider" ).slider( "value" ) + "%" );
+  });
  
 
-
-  function delete_row(index)
-{
-  document.getElementById("diagnosis").deleteRow(index);
-
-}
-
-function showValue(element,status)
-{ 
- if(status=='total deductible')
- {
-	document.getElementById("total_ded_range_val").innerHTML=element.value;
- }
- else if(status=='deductible paid to date')
- {
-	document.getElementById("ded_paid_range_val").innerHTML=element.value;
+  function delete_row(index) {
+    document.getElementById("diagnosis").deleteRow(index);
   }
- else if(status=='copay value')
-  {
-	document.getElementById("copay_range_val").innerHTML=element.value;
+
+  function showValue(element,status)
+  { 
+    if(status=='total deductible') {
+  	 document.getElementById("total_ded_range_val").innerHTML=element.value;
+    }
+    else if(status=='deductible paid to date') {
+  	 document.getElementById("ded_paid_range_val").innerHTML=element.value;
+    }
+    else if(status=='copay value') {
+  	 document.getElementById("copay_range_val").innerHTML=element.value;
+    }
+    else if(status=='coinsurance') {
+      document.getElementById("coinsurance_range_val").innerHTML=element.value;
+    }
   }
-else if(status=='coinsurance')
- {
-  document.getElementById("coinsurance_range_val").innerHTML=element.value;
-  }
-	
-}
->>>>>>> pratip
 </script>
