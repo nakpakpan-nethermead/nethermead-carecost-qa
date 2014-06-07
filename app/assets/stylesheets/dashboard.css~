@@ -50,6 +50,7 @@
 	position: relative;
 	margin-left: 1049px;
 	background: transparent;
+	cursor: pointer;
 }
 
 #search-bar
@@ -129,7 +130,7 @@
 
 #wrapper 
 {
-   width: 1005px;
+   width: 1020px;
    #margin: 0 112px;
    padding: 0;
    #overflow: auto;
@@ -228,7 +229,7 @@
  	background: #fff;
  	margin-top: 150px;
  	border: 1px solid #CCC;
- 	margin-left: 15px;
+ 	#margin-left: 15px;
  	display: block;
  	float: left;
  }
