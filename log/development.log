@@ -59498,3 +59498,230 @@ Processing by DashboardController#get_suggestions as JSON
   [1m[35mCondition Load (4.3ms)[0m  SELECT conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Dia%'
   [1m[36mProcedure Load (1.8ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Dia%')[0m
 Completed 200 OK in 27ms (Views: 10.0ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 401ms (Views: 382.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/categorys.css?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.multiselect.css?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.multiselect.filter.css?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/messages.css?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:26 +0530
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/autocomplete-rails.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/underscore.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/backbone-1.1.2.min.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/custome_autocomplete.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/d3-3.4.6.min.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.multi-select.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/jquery.multiselect-min.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/typeahead.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/resources/demos/style.css" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+ActionController::RoutingError (No route matches [GET] "/resources/demos/style.css"):
+  actionpack (4.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.1) lib/rails/engine.rb:514:in `call'
+  railties (4.1.1) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/pratip/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.8ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.1ms)
+  Rendered /home/pratip/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.8ms)
+
+
+Started GET "/assets/Topbar.png" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/Topbar_control_wheel.png" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/Topbar2.png" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/assets/Topbar3.png" for 127.0.0.1 at 2014-06-07 15:47:27 +0530
+
+
+Started GET "/dashboard/get_suggestions?term=dia" for 127.0.0.1 at 2014-06-07 15:47:32 +0530
+Processing by DashboardController#get_suggestions as JSON
+  Parameters: {"term"=>"dia"}
+  [1m[35mCondition Load (7.0ms)[0m  SELECT conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name FROM "conditions" LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE 'Dia%'
+  [1m[36mProcedure Load (2.0ms)[0m  [1mSELECT "procedures".* FROM "procedures"  WHERE (full_name LIKE 'Dia%')[0m
+Completed 200 OK in 67ms (Views: 8.2ms | ActiveRecord: 12.9ms)
