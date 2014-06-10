@@ -6,54 +6,7 @@
   		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   		<%= csrf_meta_tags %>
 	</head>
-	<body style="background-color:#f7f7f7">
-	
-		<div id="container"><!--DIV CONTAINER STARTS-->
-		
-			<div id="header"><!--DIV HEADER STARTS-->
-			</div><!--DIV HEADER ENDS-->
-			
-			<div id="nav-bar"><!--DIV NAV-BAR STARTS-->
-			</div><!--DIV NAV-BAR ENDS-->
-			
-			<div id="email-button"><!--DIV EMAIL-BUTTON STARTS-->
-			</div><!--DIV EMAIL-BUTTON ENDS-->
-		
-        	<div id="dash-img1"><!--DIV DASH-IMG1 STARTS-->
-        		<%= image_tag("Topbar.png", :alt => "med condition") %>
-        	</div><!--DIV DASH-IMG1 ENDS-->
-        	
-			<div id="dash-img2"><!--DIV DASH-IMG2 STARTS-->
-        		<%= image_tag("Topbar_control_wheel.png", :alt => "med condition") %>
-        	</div><!--DIV DASH-IMG2 ENDS-->
-        	<div></br></div>
-        	<!--<div id="view-status"><!--DIV VIEW-STATUS STARTS-->
-        		<div id="dash-img3"><!--DIV DASH-IMG3 STARTS-->
-        			<%= image_tag("Topbar2.png", :alt => "insurance status") %>
-        		</div><!--DIV DASH-IMG3 ENDS-->
-        	<!--</div><!--DIV VIEW-STATUS ENDS-->    
-        	
-        	<div id="dash-img4"><!--DIV DASH-IMG4 STARTS-->
-        		<%= image_tag("Topbar3.png", :alt => "procedures") %>
-            <div id="locationContainer">
-              <span id="location">Location</span>
-              <div id="zipCodeContainer" style="display:none">
-                <input type="text" placeholder="Enter ZIP Code" id="zipCode">
-                <a href="#" class="btn" id="addZip"> ADD </a>
-              </div>
-            </div>
-            <div id='procedure'>
-              
-            </div>
-                  	 
-        	</div>   
-                   
-        	<%= yield %>
-
-
-      </div><!--DIV CONTAINER ENDS-->
-        
-      <%= render 'layouts/messages' %>
-      
+<body>
+  <%= yield %>
 </body>
 </html>

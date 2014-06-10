@@ -1,0 +1,174 @@
+@import url(fonts.css);
+
+.navbar-brand{
+	height: auto !important;
+}
+.navbar-nav>li>a {
+	padding-top: 45px;
+	padding-bottom: 15px;
+}
+.navbar-brand img{
+	width: 85px;
+	height: 85px;
+}
+.navbar{
+	margin-bottom: 0;
+}
+.navbar-nav .user-pic a{
+	padding-top: 30px;
+}
+.navbar-nav>li>a .fa-user{
+	border: 2px #fff solid;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	font-size: 22px;
+	text-align: center;
+	padding-top: 15%;
+}
+.border{
+	border-top: 2px #fff solid;
+	border-color: #fff !important;
+}
+
+.sub-header .navbar-nav>li>a{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+main{
+	background: #f7f7f7;
+	padding-top: 4%;
+}
+.content-header{
+	border-top: 4px #3d4753 solid;
+	position: relative;
+}
+.menu-icon{
+	position: absolute;
+	background: #3d4753;
+	padding: 1% 1.7%;
+	display: inline-block;
+}
+.menu-icon i{
+	color: #fff;
+	font-size: 30px;
+}
+.menu-icon-2{
+	background: #3d4753;
+	padding: 0.5%;
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.menu-icon-2 i{
+	color: #fff;
+	font-size: 18px;
+}
+.content-title{
+	font-size: 32px;
+	font-family: 'OpenSansSemibold';
+	margin-left: 7%;
+	margin-top: 5px;
+	display: inline-block;
+	color: #3d4753;
+}
+.search-bar{
+	margin: 5% 0;
+}
+.search-bar input{
+	width: 500px;
+	padding: 10px;
+
+}
+.search-bar .btn-success{
+	background: #fd9288;
+	padding: 12px;
+	outline: none;
+	border: none;
+	font-size: 16px;
+	vertical-align: top;
+}
+.status-box{
+	font-family: 'OpenSansRegular';
+	text-align: center;
+	margin: 5% 0;
+}
+.status-box .total-ded, .status-box .ded-date, .status-box .copay, .status-box .coinsurance{
+	border: 1px #3d4753 solid;
+	padding: 1%;
+	text-align: center;
+	height: 165px;
+	background: #fff;
+}
+.status-box .title{
+	font-family: 'OpenSansRegular';
+	font-weight: bolder;
+	margin: 3% 0;
+}
+.status-box .amount{
+	font-size: 52px;
+	color: #d74b3e;
+}
+.content-body{
+	position: relative;
+}
+.content-view{
+	display: inline-block;
+	margin-left: 28%;
+	vertical-align: top;
+	margin-top: 1.5%;
+}
+.content-view .btn-default:active, .content-view .btn-default:focus, .content-view .btn-default:visited{
+	background: #3d4753;
+	color: #fff;
+}
+.content-view .btn-default{
+	padding: 7px 40px;
+	outline: none;
+}
+.content-body table{
+	margin-top: 3%;
+	font-family: 'OpenSansRegular';
+	font-size: 16px;
+}
+.content-body table tr th, .content-body table tr td{
+	border: none;
+	padding: 1%;
+}
+.content-body table th{
+	font-size: 18px;
+}
+.content-body table .scroll-arrow a{
+	font-size: 16px;
+}
+.content-body table .labs{
+	color: #fcada8;
+}
+.content-body table .labs label{
+	font-weight: normal;
+	cursor: pointer;
+}
+.content-body table .fa-map-marker{
+	font-size: 18px;
+}
+.content-body table .fa-plus{
+	font-size: 14px;
+}
+.content-body table i{
+	color: #000;
+}
+.content-body table i:hover{
+	text-decoration: none;
+	color: #000;
+}
+.content-body table .avg-cost, .content-body table .zip-cost{
+	font-size: 26px;
+	text-align: center;
+}
+.content-body table .zip-cost-heading{
+	color: #fe9487;
+}
+.content-body table .zip-cost-heading, .content-body table .scroll-arrow, .content-body table .arrow-col, .content-body table .zip-cost{
+	background: #F3F2F2;
+}
