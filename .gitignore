@@ -3,3 +3,9 @@
 tmp/*
 
 *.log
+
+*.log
+
+*.css~
+
+app/assets/stylesheets/dashboard.css~
