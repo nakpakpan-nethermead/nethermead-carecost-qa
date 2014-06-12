@@ -8,13 +8,13 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-            <img src="/assets/logo.png"> NALC Health Benefit Plan
+            <img src="assets/logo.png"> <span>NALC</span> HEALTH BENEFIT PLAN
           </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">demo@demo.com</a></li>
-            <li class="user-pic"><a href="#"><i class="fa fa-user"></i></a></li>
+            <li class="user-email"><a href="#">demo@demo.com</a></li>
+            <li class="user-pic"><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
           </ul>
         </div>
       </div>
@@ -23,18 +23,20 @@
       <div class="container">
         <div class="navbar-collapse collapse sub-header">
           <ul class="nav navbar-nav">
-            <li><a><input type="text"></a></li>
-            <li><a href="#"><i class="fa fa-folder"></i></a></li>
-            <li><a href="#"><i class="fa fa-folder"></i></a></li>
+            <li><a><input type="text" placeholder="Search"></a></li>
+            <li class="subheader-folder"><a href="#"><img src="assets/add-folder.png"></a></li>
+            <li class="subheader-folder"><a href="#"><i class="icon-box-add"></i></a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
   <main class="container">
+
+    <!-- My Medical Conditions -->
     <div class="content-header">
       <div class="menu-icon">
-        <i class="fa fa-stethoscope"></i>
+        <img src="assets/stethoscope.png">
       </div>
       <div class="content-title">
         MY MEDICAL CONDITIONS
@@ -46,13 +48,15 @@
     <div class="search-bar">
       <input type="text"> 
       <button class="btn btn-success">Add Procedure</button>
-    </div>
+    </div> <!-- My medical conditions -->
+
+    <!-- My Insurance status -->
     <div class="content-header">
       <div class="menu-icon">
-        <i class="fa fa-stethoscope"></i>
+        <img src="assets/insurance.png">
       </div>
       <div class="content-title">
-       MY INSURANCE STATUS
+        MY INSURANCE STATUS
       </div>
     </div>
     <div class="status-box">
@@ -106,13 +110,15 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> <!-- Insurance status -->
+
+    <!-- My procedures -->
     <div class="content-header">
       <div class="menu-icon">
-        <i class="fa fa-stethoscope"></i>
+        <img src="assets/procedures.png">
       </div>
       <div class="content-title">
-       MY PROCEDURES
+        MY PROCEDURES
       </div>
       <div class="content-view">
         <button class="btn btn-default"> List view</button>
@@ -120,56 +126,304 @@
       </div>
     </div>
 
-    <div class="content-body">
-      <table class="table">
-        <tr>
-          <th>Labs</th>
-          <th>Provider</th>
-          <th>Facility</th>
-          <th>Average Cost</th>
-          <th class="scroll-arrow"><a href=""><i class="fa fa-chevron-left"></i></a></th>
-          <th class="zip-cost-heading">City,State | ZIP Cost&nbsp;<a href=""><i class="fa fa-trash-o"></i></a></th>
-          <th class="zip-cost-heading">City,State | ZIP Cost&nbsp;<a href=""><i class="fa fa-trash-o"></i></a></th>
-          <th class="scroll-arrow"><a href=""><i class="fa fa-chevron-right"></i></a></th>
-          <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
-        </tr>
-        <tr>
-          <td class="labs">
-          <label><input type="checkbox" name="labs" /> Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="arrow-col"></td>
-          <td class="zip-cost">$230</td>
-          <td class="zip-cost">$230</td>
-          <td class="arrow-col"></td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-        <tr>
-          <td class="labs">
-          <label><input type="checkbox" name="labs" /> Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="arrow-col"></td>
-          <td class="zip-cost">$230</td>
-          <td class="zip-cost">$230</td>
-          <td class="arrow-col"></td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-        <tr>
-          <td class="labs">
-          <label><input type="checkbox" name="labs" /> Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="arrow-col"></td>
-          <td class="zip-cost">$230</td>
-          <td class="zip-cost">$230</td>
-          <td class="arrow-col"></td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-      </table>
+    <!-- list view -->
+    <div class="list-view">
+      <div class="table-responsive content-body">
+        <table class="table">
+          <tr>
+            <th>Labs</th>
+            <th>Provider</th>
+            <th>Facility</th>
+            <th class="avg-cost-heading">Average Cost</th>
+            <th class="zip-cost-heading">
+              <a href=""><i class="fa fa-chevron-left"></i></a>
+              &nbsp;&nbsp;City,State | ZIP Cost&nbsp;<a href=""><i class="fa fa-trash-o"></i></a>&nbsp;&nbsp;
+              <a href=""><i class="fa fa-chevron-right"></i></a>
+            </th>
+            <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
+          </tr>
+          <tr>
+            <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
+            <td><select><option value="volvo">In-Network</option></select></td>
+            <td><select><option value="volvo">Office Visit</option></select></td>
+            <td class="avg-cost">$250</td>
+            <td class="zip-cost">$230</td>
+            <td><a href=""><i class="fa fa-trash-o"></i></a></td>
+          </tr>
+          <tr>
+            <td class="labs"><input type="checkbox" class="style-check"  id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
+            <td><select><option value="volvo">In-Network</option></select></td>
+            <td><select><option value="volvo">Office Visit</option></select></td>
+            <td class="avg-cost">$250</td>
+            <td class="zip-cost">$230</td>
+            <td><a href=""><i class="fa fa-trash-o"></i></a></td>
+          </tr>
+          <tr>
+            <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
+            <td><select><option value="volvo">In-Network</option></select></td>
+            <td><select><option value="volvo">Office Visit</option></select></td>
+            <td class="avg-cost">$250</td>
+            <td class="zip-cost">$230</td>
+            <td><a href=""><i class="fa fa-trash-o"></i></a></td>
+          </tr>
+        </table>
+      </div> <!-- my procedures -->
+    </div> <!-- list-view -->
+
+    <!-- map-view -->
+    <div class="map-view">
+    </div> <!-- map-view -->
+    
+    <!-- Recommended Physicians -->
+    <div class="content-header">
+      <div class="menu-icon">
+        <img src="assets/physicians.png">
+      </div>
+      <div class="content-title">
+        RECOMMENDED PHYSICIANS
+      </div>
+      <div class="content-view physicians">
+        <button class="btn btn-default"> In-Network
+        </button>
+        <button class="btn btn-default"> Out-Of-Network
+        </button>
+        <button class="btn btn-default"> My Favorite
+        </button>
+      </div>
     </div>
-  </div>
-</main>
+
+    <div class="physician-selection">
+      <div class="selection-items">
+        <ul>
+          <li>Quality of Care &nbsp;<i class="fa fa-caret-down"></i></li>
+          <li>Location ( <span>10010</span> ) &nbsp;<i class="fa fa-caret-down"></i></li>
+          <li>Cost &nbsp;<i class="fa fa-caret-down"></i></li>
+          <li>Physician Name &nbsp;<i class="fa fa-caret-down"></i></li>
+        </ul>
+      </div>
+      <div class="physician-list">
+        <div class="physician-available">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 clo-xs-6">
+              <div class="physician-details">
+                <div class="row">
+                  <div class="col-lg-4 details-col">
+                    <div class="profile-pic">
+                      <img src="assets/profile-pic.png">
+                    </div>
+                    <div class="physician-name">
+                      Dr. Smith
+                    </div>
+                  </div>
+                  <div class="col-lg-8 details-col">
+                    <div class="profile-content">
+                      <ul>
+                        <li><span class="profile-fields">Speciality :</span> Opthamology </li>
+                        <li><span class="profile-fields">Years In Practice :</span> 11 </li>
+                        <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
+                        <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                        <li><span class="profile-fields">NCQA Rating :</span> 
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="profile-icons">
+                      <a href=""><i class="fa fa-heart"></i></a>
+                      <a href=""><img src="assets/growth.png"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="physician-map">
+                  <img src="assets/map.png">
+                </div>
+              </div> <!-- physician details -->
+            </div>
+            <div class="col-lg-4 col-md-4 clo-xs-6">
+              <div class="physician-details performance-info">
+                <div class="row">
+                  <div class="col-lg-10">
+                    <div class="physician-name">
+                      Dr. Ranier's Performance
+                    </div>
+                    <div class="profile-content">
+                      <ul>
+                        <li><span class="profile-fields">NALC Member Patients :</span> 2 </li>
+                        <li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                        <li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                        <li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <div class="profile-icons">
+                      <a href="" class="active"><i class="fa fa-heart"></i></a>
+                      <a href=""><i class="icon-user"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="performance-graph">
+                  <img src="assets/performance-graph.png">
+                </div>
+              </div> <!-- physician details -->
+            </div>
+            <div class="col-lg-4 col-md-4 clo-xs-6">
+              <div class="physician-details">
+                <div class="row">
+                  <div class="col-lg-4 details-col">
+                    <div class="profile-pic">
+                      <img src="assets/profile-pic.png">
+                    </div>
+                    <div class="physician-name">
+                      Dr. Smith
+                    </div>
+                  </div>
+                  <div class="col-lg-8 details-col">
+                    <div class="profile-content">
+                      <ul>
+                        <li><span class="profile-fields">Speciality :</span> Opthamology </li>
+                        <li><span class="profile-fields">Years In Practice :</span> 11 </li>
+                        <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
+                        <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                        <li><span class="profile-fields">NCQA Rating :</span> 
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="profile-icons">
+                      <a href=""><i class="fa fa-heart"></i></a>
+                      <a href=""><img src="assets/growth.png"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="physician-map">
+                  <img src="assets/map.png">
+                </div>
+              </div> <!-- physician details -->
+            </div>
+          </div> <!-- row -->
+        </div> <!-- physician available -->
+        <div class="physician-available">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 clo-xs-6">
+              <div class="physician-details">
+                <div class="row">
+                  <div class="col-lg-4 details-col">
+                    <div class="profile-pic">
+                      <img src="assets/profile-pic.png">
+                    </div>
+                    <div class="physician-name">
+                      Dr. Smith
+                    </div>
+                  </div>
+                  <div class="col-lg-8 details-col">
+                    <div class="profile-content">
+                      <ul>
+                        <li><span class="profile-fields">Speciality :</span> Opthamology </li>
+                        <li><span class="profile-fields">Years In Practice :</span> 11 </li>
+                        <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
+                        <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                        <li><span class="profile-fields">NCQA Rating :</span> 
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="profile-icons">
+                      <a href=""><i class="fa fa-heart"></i></a>
+                      <a href=""><img src="assets/growth.png"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="physician-map">
+                  <img src="assets/map.png">
+                </div>
+              </div> <!-- physician details -->
+            </div>
+            <div class="col-lg-4 col-md-4 clo-xs-6">
+              <div class="physician-details">
+                <div class="row">
+                  <div class="col-lg-4 details-col">
+                    <div class="profile-pic">
+                      <img src="assets/profile-pic.png">
+                    </div>
+                    <div class="physician-name">
+                      Dr. Smith
+                    </div>
+                  </div>
+                  <div class="col-lg-8 details-col">
+                    <div class="profile-content">
+                      <ul>
+                        <li><span class="profile-fields">Speciality :</span> Opthamology </li>
+                        <li><span class="profile-fields">Years In Practice :</span> 11 </li>
+                        <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
+                        <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                        <li><span class="profile-fields">NCQA Rating :</span> 
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="profile-icons">
+                      <a href=""><i class="fa fa-heart"></i></a>
+                      <a href=""><img src="assets/growth.png"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="physician-map">
+                  <img src="assets/map.png">
+                </div>
+              </div> <!-- physician details -->
+            </div>
+            <div class="col-lg-4 col-md-4 clo-xs-6">
+              <div class="physician-details">
+                <div class="row">
+                  <div class="col-lg-4 details-col">
+                    <div class="profile-pic">
+                      <img src="assets/profile-pic.png">
+                    </div>
+                    <div class="physician-name">
+                      Dr. Smith
+                    </div>
+                  </div>
+                  <div class="col-lg-8 details-col">
+                    <div class="profile-content">
+                      <ul>
+                        <li><span class="profile-fields">Speciality :</span> Opthamology </li>
+                        <li><span class="profile-fields">Years In Practice :</span> 11 </li>
+                        <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
+                        <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                        <li><span class="profile-fields">NCQA Rating :</span> 
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="profile-icons">
+                      <a href=""><i class="fa fa-heart"></i></a>
+                      <a href=""><img src="assets/growth.png"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="physician-map">
+                  <img src="assets/map.png">
+                </div>
+              </div> <!-- physician details -->
+            </div>
+          </div> <!-- row -->
+        </div> <!-- physician available -->
+      </div> <!-- physician-list -->
+    </div> 
+    <!-- Recommended Physicians -->
+  </main>
