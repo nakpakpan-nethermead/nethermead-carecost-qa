@@ -10,10 +10,24 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+// require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
-//= require autocomplete-rails
+//= require jquery.ui.autocomplete
 //= require turbolinks
 //= require underscore
 //= require_tree .
+
+$("document").ready(function(){
+  $("[data-toggle=popover]").each(function () {
+    var elem = $(this);
+    elem.popover({
+      trigger: 'hover',
+      html: 'true',
+      container: elem,
+      content: function() {
+        return $("#"+$(this).attr("data-contentId")).html();
+      },
+      placement: 'bottom'
+    });
+  });
+});
