@@ -45,8 +45,8 @@
     </div>
   </div>
   <div class="search-bar">
-    <input type="text">
-    <button class="btn btn-success">Add Procedure</button>
+    <textarea id="medicalCondition" placeholder="Type your Condition"></textarea>
+    <button class="btn btn-success" id="procedure-btn">Add Procedure</button>
   </div> <!-- My medical conditions -->
 
   <!-- My Insurance status -->
@@ -128,7 +128,7 @@
   <!-- list view -->
   <div class="list-view procedureLayout">
     <div class="table-responsive content-body">
-      <table class="table">
+      <table class="table" id="procedureTable">
         <tr>
           <th>Labs</th>
           <th>Provider</th>
@@ -140,30 +140,6 @@
             <a href=""><i class="fa fa-chevron-right"></i></a>
           </th>
           <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
-        </tr>
-        <tr>
-          <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="zip-cost">$230</td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-        <tr>
-          <td class="labs"><input type="checkbox" class="style-check"  id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="zip-cost">$230</td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-        <tr>
-          <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="zip-cost">$230</td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
         </tr>
       </table>
     </div> <!-- my procedures -->
@@ -507,3 +483,20 @@
     Click
   </a>
 </div>
+
+<script type="foo/bar" id='proceduresList'>
+  <%%
+    _.each(items,function(item,key,list){
+  %>
+  <tr>
+    <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing"><%%= item.name %></label></td>
+    <td><select><option value="volvo">In-Network</option></select></td>
+    <td><select><option value="volvo">Office Visit</option></select></td>
+    <td class="avg-cost">$250</td>
+    <td class="zip-cost">$230</td>
+    <td><a href=""><i class="fa fa-trash-o"></i></a></td>
+  </tr>
+  <%%
+    });
+  %>
+</script>

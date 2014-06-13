@@ -126,7 +126,8 @@ main{
 	outline: none;
 	border: none;
 	font-size: 16px;
-	vertical-align: top;
+	display: inline-block;
+	margin-top: -99px;
 }
 .status-box{
 	font-family: 'OpenSansRegular';
@@ -196,6 +197,7 @@ main{
 	color: #df8181;
 	padding: 24px 15px;
 	padding-left: 0;
+	width: 30%;
 }
 
 .content-body table .labs label{
@@ -462,3 +464,9 @@ main{
 		background: #3d4753 !important;
 		color: #fff !important;
 	}
+
+	
+ #medicalCondition {
+ 	height: 100px;
+ 	width: 600px;
+ }
