@@ -25,14 +25,13 @@
         <ul class="nav navbar-nav">
           <li><a><input type="text" placeholder="Search"></a></li>
           <li class="subheader-folder"><a href="#"><img src="/assets/add-folder.png"></a></li>
-          <li class="subheader-folder"><a href="#"><i class="icon-box-add"></i></a></li>
+          <li class="subheader-folder" data-toggle="popover" data-contentId="searchPopContent"><a href="#"><i class="icon-box-add"></i></a></li>
         </ul>
       </div>
     </div>
   </div>
 </header>
 <main class="container">
-
   <!-- My Medical Conditions -->
   <div class="content-header">
     <div class="menu-icon">
@@ -41,13 +40,13 @@
     <div class="content-title">
       MY MEDICAL CONDITIONS
     </div>
-    <div class="menu-icon-2">
+    <div class="menu-icon-2" data-toggle="popover" data-contentId="settingContent">
       <i class="fa fa-cog"></i>
     </div>
   </div>
   <div class="search-bar">
-    <input type="text"> 
-    <button class="btn btn-success">Add Procedure</button>
+    <textarea id="medicalCondition" placeholder="Type your Condition"></textarea>
+    <button class="btn btn-success" id="procedure-btn">Add Procedure</button>
   </div> <!-- My medical conditions -->
 
   <!-- My Insurance status -->
@@ -121,15 +120,15 @@
       MY PROCEDURES
     </div>
     <div class="content-view">
-      <button id="list" class="btn btn-default"> List view</button>
-      <button id="map" class="btn btn-default"> Map view</button>
+      <button class="btn btn-default procedureView" data-show="list-view">List view</button>
+      <button class="btn btn-default procedureView" data-show="map-view">Map view</button>
     </div>
   </div>
 
   <!-- list view -->
-  <div class="list-view">
+  <div class="list-view procedureLayout">
     <div class="table-responsive content-body">
-      <table class="table">
+      <table class="table" id="procedureTable">
         <tr>
           <th>Labs</th>
           <th>Provider</th>
@@ -142,36 +141,12 @@
           </th>
           <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
         </tr>
-        <tr>
-          <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="zip-cost">$230</td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-        <tr>
-          <td class="labs"><input type="checkbox" class="style-check"  id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="zip-cost">$230</td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-        <tr>
-          <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
-          <td class="zip-cost">$230</td>
-          <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-        </tr>
       </table>
     </div> <!-- my procedures -->
   </div> <!-- list-view -->
 
   <!-- map-view -->
-  <div class="map-view">
+  <div class="map-view procedureLayout">
     <div class="row">
       <div class="col-lg-6">
         <div class="map-display">
@@ -496,3 +471,32 @@
   </div> 
   <!-- Recommended Physicians -->
 </main>
+
+
+<!-- Templates -->
+<div id="settingContent" class="hide">
+  Check Now
+</div>
+
+<div id="searchPopContent" class="hide">
+  <a id="searchClick">
+    Click
+  </a>
+</div>
+
+<script type="foo/bar" id='proceduresList'>
+  <%%
+    _.each(items,function(item,key,list){
+  %>
+  <tr>
+    <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing"><%%= item.name %></label></td>
+    <td><select><option value="volvo">In-Network</option></select></td>
+    <td><select><option value="volvo">Office Visit</option></select></td>
+    <td class="avg-cost">$250</td>
+    <td class="zip-cost">$230</td>
+    <td><a href=""><i class="fa fa-trash-o"></i></a></td>
+  </tr>
+  <%%
+    });
+  %>
+</script>
