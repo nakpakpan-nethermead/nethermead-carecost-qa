@@ -8,18 +8,39 @@ class DashboardController < ApplicationController
 	end
 
   def get_suggestions
-    result = Condition.joins("LEFT JOIN procedures on conditions.codeset = procedures.codeset where conditions.consumer_name LIKE '#{params[:term].capitalize}%'").select("conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name")
+    result = Condition.joins(
+             "INNER JOIN procedures on conditions.code = procedures.code 
+              where conditions.consumer_name ILIKE '%#{params[:term]}%' AND conditions.condition_type='procedure' order by conditions.id")
+              .select("conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name")
+
     condition_array = Array.new
     result.each do |c|
       element = Hash.new
       if c.consumer_name != ''
-        element[:category] = c.consumer_name
-        element[:label] = c.short_name
+        element[:category] = c.id.to_s + ": " + c.consumer_name
+        element[:label] = 'Procedure: ' + c.p_id.to_s + ": " + c.short_name
         #element[:id] = c.p_id
+        condition_array << element
+      end 
+    end
+
+    result = Condition.joins(
+             "INNER JOIN diagnosis on conditions.code = diagnosis.code 
+              where conditions.consumer_name ILIKE '%#{params[:term]}%' AND conditions.condition_type='diagnosis' order by conditions.id")
+              .select("conditions.id,conditions.consumer_name, diagnosis.id AS d_id, diagnosis.short_name")
+
+    result.each do |d|
+      element = Hash.new
+      if d.consumer_name != ''
+        element[:category] = d.id.to_s + ": " + d.consumer_name
+        element[:label] = 'Diagnosis: ' + d.d_id.to_s + ": " + d.short_name
+        #element[:id] = d.d_id
         condition_array << element
       end
     end
-    result = Procedure.where("full_name LIKE '#{params[:term].capitalize}%'")
+
+
+    result = Procedure.where("short_name ILIKE '%#{params[:term]}%'")
     result.each do |p|
       element = Hash.new
       if p.full_name != ''
