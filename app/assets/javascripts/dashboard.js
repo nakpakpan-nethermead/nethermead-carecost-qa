@@ -83,13 +83,15 @@ function extractLast( term ) {
 
 function ContactController($scope, $http) {
   $scope.items = []
+  $scope.procedures = {}
 
   $scope.add = function() {
-    var data = {};
-    data['name'] = $scope.procedure
-    $scope.items.push(data);
+    // var data = {};
+    // data['name'] = $scope.procedure
+    // $scope.items.push(data);
     $http.get('/procedure/price/'+$scope.procedure).success(function(response) {
       console.log(response);
+       $scope.items.push(response);
     });
     $scope.procedure = ''
   }
@@ -97,4 +99,20 @@ function ContactController($scope, $http) {
   $scope.destroy = function($index) {
     $scope.items.splice($index,1);
   }
+
+  $scope.network_change = function(item){
+    console.log(item);
+    response = $http({
+      url: '/procedure/price/'+item.id,
+      method: 'GET',
+      params: item
+    }).success(function (result) {
+      for(i=0;i<$scope.items.length;++i) {
+        if($scope.items[i].id == result.id){
+          console.log($scope.items[i].charge,result.charge);
+          $scope.items[i].charge = result.charge;
+        }
+      }
+    });
+  } 
 }

@@ -142,10 +142,21 @@
           <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
         </tr>
         <tr ng-repeat="item in items track by $index">
-          <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">{{ item.name }}</label></td>
-          <td><select><option value="volvo">In-Network</option></select></td>
-          <td><select><option value="volvo">Office Visit</option></select></td>
-          <td class="avg-cost">$250</td>
+          <td class="labs">
+            <input type="checkbox" class="style-check" id="{{item.id}}" /> 
+            <label for="{{item.id}}">{{ item.name }}</label>
+          </td>
+          <td>
+            <select ng-model="item.service_network_type" ng-change="network_change(item)" >
+              <option ng-repeat="network_type in item.all_service_network_type" value="{{network_type}}">{{network_type}}</option>
+            </select>
+          </td>
+          <td>
+            <select ng-model="item.service_place" ng-change="network_change(item)">
+              <option ng-repeat="place in item.all_service_place" value="{{place}}">{{place}}</option>
+            </select>
+          </td>
+          <td class="avg-cost">${{ item.charge }}</td>
           <td class="zip-cost">$230</td>
           <td><a href=""><i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy( $index)"></i></a></td>
         </tr>
