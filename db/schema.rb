@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140603062009) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "conditions", force: true do |t|
     t.text     "consumer_name"
     t.text     "clinical_name"
