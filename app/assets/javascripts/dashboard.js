@@ -37,7 +37,9 @@ $(document).ready(function(){
         // // add placeholder to get the comma-and-space at the end
         // terms.push( "" );
         // this.value = terms.join( " | " );
-        $(this).val(ui.item.id);
+        // document.getElementById($(this).id).value = ui.item.id;
+        $("#procedureId").val(ui.item.id);
+        // $(this).val(ui.item.id);
         $(this).trigger('input');
       },
       search: function() {
@@ -82,18 +84,17 @@ function extractLast( term ) {
 }
 
 function ContactController($scope, $http) {
-  $scope.items = []
-  $scope.procedures = {}
-
+  $scope.items = [];
+  $scope.procedures = {};
   $scope.add = function() {
     // var data = {};
     // data['name'] = $scope.procedure
     // $scope.items.push(data);
-    $http.get('/procedure/price/'+$scope.procedure).success(function(response) {
+    $http.get('/procedure/price/'+$("#procedureId").val()).success(function(response) {
       console.log(response);
        $scope.items.push(response);
     });
-    $scope.procedure = ''
+    $("#procedureId").val('');
   }
 
   $scope.destroy = function($index) {
