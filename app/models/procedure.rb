@@ -1,3 +1,3 @@
 class Procedure < ActiveRecord::Base
-	self.primary_key = 'id'	
+	self.primary_key = 'id'
 end

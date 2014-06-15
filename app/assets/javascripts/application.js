@@ -13,8 +13,8 @@
 // require jquery
 //= require jquery_ujs
 //= require jquery.ui.autocomplete
-//= require turbolinks
 //= require underscore
+//= require angular
 //= require_tree .
 
 $("document").ready(function(){

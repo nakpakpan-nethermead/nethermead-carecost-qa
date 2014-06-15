@@ -15,10 +15,6 @@ $(document).ready(function(){
     }
   });
 
-  $("#procedure-btn").click(function(){
-    renderProcedure();
-  });
-  
   $( "#medicalCondition" )
     .bind( "keydown", function( event ) {
       if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -33,15 +29,16 @@ $(document).ready(function(){
       },
       minLength: 3,
       select: function( event, ui ) {
-        var terms = split( this.value );
-        // remove the current input
-        terms.pop();
-        // add the selected item
-        terms.push( ui.item.value );
-        // add placeholder to get the comma-and-space at the end
-        terms.push( "" );
-        this.value = terms.join( " | " );
-        return false;
+        // var terms = split( this.value );
+        // // remove the current input
+        // terms.pop();
+        // // add the selected item
+        // terms.push( ui.item.value );
+        // // add placeholder to get the comma-and-space at the end
+        // terms.push( "" );
+        // this.value = terms.join( " | " );
+        $(this).val(ui.item.id);
+        $(this).trigger('input');
       },
       search: function() {
         // custom minLength
@@ -55,10 +52,6 @@ $(document).ready(function(){
         return false;
       },
     });
-  
-  $(document).on("click","#searchClick",function(){
-    alert("I am the trigger for click");
-  });
 
   $(".procedureView").click(function(){
     $(".procedureLayout").hide();
@@ -79,32 +72,6 @@ $(document).ready(function(){
       $(".physician-details").height(maxHeight);
     });
   },300);
-
-  $("#procedure-btn").click(function(){
-    renderProcedure();
-    return false;
-  });
-
-  var selectProcedure = [];
-  function renderProcedure() {
-    var procedure = $("#medicalCondition").val();
-    $("#medicalCondition").val('');
-    if( procedure != ""){
-      var proList = procedure.split('|');
-      console.log(proList);
-      $.each(proList,function(key,value){
-        if($.trim(value) != "") {
-          var data = {};
-          data['name'] = value;
-          selectProcedure.push(data);
-        }
-      });
-    }
-    var template = $("#proceduresList").html();
-    $("#procedureTable").append(_.template(template,{items:selectProcedure}));
-    return false;
-  }
-
 });
 
 function split( val ) {
@@ -112,4 +79,22 @@ function split( val ) {
 }
 function extractLast( term ) {
   return split( term ).pop();
+}
+
+function ContactController($scope, $http) {
+  $scope.items = []
+
+  $scope.add = function() {
+    var data = {};
+    data['name'] = $scope.procedure
+    $scope.items.push(data);
+    $http.get('/procedure/price/'+$scope.procedure).success(function(response) {
+      console.log(response);
+    });
+    $scope.procedure = ''
+  }
+
+  $scope.destroy = function($index) {
+    $scope.items.splice($index,1);
+  }
 }
