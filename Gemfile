@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-# ruby '2.1.2'
+ ruby '2.1.2'
 
 # Heroku gem for deployment
 gem 'heroku', '3.7.3'
@@ -61,3 +61,5 @@ gem 'angularjs-rails'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#Enable all platform features in Heroku
+ gem 'rails_12factor'
