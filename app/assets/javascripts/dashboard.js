@@ -94,7 +94,7 @@ function ContactController($scope, $http) {
       console.log(response);
        $scope.items.push(response);
     });
-    $("#procedureId").val('');
+    $("#medicalCondition").val('');
   }
 
   $scope.destroy = function($index) {
