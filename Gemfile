@@ -62,4 +62,4 @@ gem 'angularjs-rails'
 # gem 'debugger', group: [:development, :test]
 
 #Enable all platform features in Heroku
- gem 'rails_12factor'
+ gem 'rails_12factor', group: :production
