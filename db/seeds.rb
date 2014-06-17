@@ -21,4 +21,5 @@ unless Rails.env.production?
   insertDatafor('diagonsis',connection);
   insertDatafor('procedures',connection);
   insertDatafor('provider_charges',connection);
+  insertDatafor('providers',connection);
 end
