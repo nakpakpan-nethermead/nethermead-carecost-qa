@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603062009) do
+ActiveRecord::Schema.define(version: 20140617044505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,5 +97,27 @@ ActiveRecord::Schema.define(version: 20140603062009) do
   end
 
   add_index "provider_charges", ["id"], name: "index_provider_charges_on_id", unique: true, using: :btree
+
+  create_table "providers", force: true do |t|
+    t.text     "npi"
+    t.text     "npi_surrogate"
+    t.text     "last_org_name"
+    t.text     "first_name"
+    t.string   "mi"
+    t.string   "credentials"
+    t.string   "gender",        limit: 1
+    t.string   "entity_code"
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "state"
+    t.string   "country"
+    t.string   "provider_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "providers", ["id"], name: "index_providers_on_id", unique: true, using: :btree
 
 end
