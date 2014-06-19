@@ -463,3 +463,9 @@ main{
 		background: #3d4753 !important;
 		color: #fff !important;
 	}
+
+	.ui-autocomplete-category {
+		border: 1px #aaa solid;
+		width: 40%;
+		background: #aaa;
+	}

@@ -337,3 +337,7 @@
  	height: 100px;
  	width: 600px;
  }
+
+ .ui-autocomplete-category {
+ 	border: 1px #aaa solid;
+ }

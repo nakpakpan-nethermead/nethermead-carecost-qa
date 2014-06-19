@@ -15,13 +15,7 @@ $(document).ready(function(){
     }
   });
 
-  $( "#medicalCondition" )
-    .bind( "keydown", function( event ) {
-      if ( event.keyCode === $.ui.keyCode.TAB &&
-          $( this ).data( "ui-autocomplete" ).menu.active ) {
-        event.preventDefault();
-      }
-    }).catcomplete({
+  $( "#medicalCondition" ).catcomplete({
       source: function( request, response ) {
         $.getJSON( "/dashboard/get_suggestions", {
           term: extractLast( request.term )
@@ -29,30 +23,22 @@ $(document).ready(function(){
       },
       minLength: 3,
       select: function( event, ui ) {
-        // var terms = split( this.value );
-        // // remove the current input
-        // terms.pop();
-        // // add the selected item
-        // terms.push( ui.item.value );
-        // // add placeholder to get the comma-and-space at the end
-        // terms.push( "" );
-        // this.value = terms.join( " | " );
-        // document.getElementById($(this).id).value = ui.item.id;
         $("#procedureId").val(ui.item.id);
-        // $(this).val(ui.item.id);
-        $(this).trigger('input');
+        $("#procedureId").trigger('input');
+      }
+    });
+
+  $( "#cityComplete" ).catcomplete({
+      source: function( request, response ) {
+        $.getJSON( "/procedure/get_city_suggestions", {
+          term: extractLast( request.term )
+        }, response );
       },
-      search: function() {
-        // custom minLength
-        var term = extractLast( this.value );
-        if ( term.length < 2 ) {
-          return false;
-        }
-      },
-      focus: function() {
-        // prevent value inserted on focus
-        return false;
-      },
+      minLength: 3,
+      select: function( event, ui ) {
+        $("#cityComplete").val(ui.item.label);
+        $("#cityComplete").trigger('input');
+      }
     });
 
   $(".procedureView").click(function(){
@@ -81,39 +67,4 @@ function split( val ) {
 }
 function extractLast( term ) {
   return split( term ).pop();
-}
-
-function ContactController($scope, $http) {
-  $scope.items = [];
-  $scope.procedures = {};
-  $scope.add = function() {
-    // var data = {};
-    // data['name'] = $scope.procedure
-    // $scope.items.push(data);
-    $http.get('/procedure/price/'+$("#procedureId").val()).success(function(response) {
-      console.log(response);
-       $scope.items.push(response);
-    });
-    $("#medicalCondition").val('');
-  }
-
-  $scope.destroy = function($index) {
-    $scope.items.splice($index,1);
-  }
-
-  $scope.network_change = function(item){
-    console.log(item);
-    response = $http({
-      url: '/procedure/price/'+item.id,
-      method: 'GET',
-      params: item
-    }).success(function (result) {
-      for(i=0;i<$scope.items.length;++i) {
-        if($scope.items[i].id == result.id){
-          console.log($scope.items[i].charge,result.charge);
-          $scope.items[i].charge = result.charge;
-        }
-      }
-    });
-  } 
 }
