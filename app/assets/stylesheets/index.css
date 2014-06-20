@@ -81,7 +81,26 @@ main{
 .content-header{
 	border-top: 4px #3d4753 solid;
 	position: relative;
+	clear: both;
 }
+
+#procedureTable {
+	float: left;
+	width: 50%;
+}
+
+#costTable {
+	float: left;
+	width: 100%;
+}
+
+.overflowScroll {
+	width: 50%;
+	overflow: scroll;
+	float: right;
+	margin-top: 15px;
+}
+
 .menu-icon{
 	position: absolute;
 	background: #3d4753;

@@ -36,8 +36,8 @@ class ProcedureController < ApplicationController
     sendBack["all_networks"] = service_networks
     sendBack["all_facilities"] = service_facilities
 
-    sendBack["charge"] = Hash.new
-    sendBack["charge"]["average"] = price
+    sendBack["charge"] = []
+    sendBack["charge"] << price
 
     render :json => sendBack
   end
@@ -49,7 +49,9 @@ class ProcedureController < ApplicationController
     cities.each do |c|
       element = Hash.new
       element[:category] = "City"
-      element[:label] = c.service_city
+      element[:city] = c.service_city
+      element[:state] = c.service_state
+      element[:zip] = c.service_zip
       element[:id] = c.service_city
       condition_array << element
     end
@@ -63,6 +65,6 @@ class ProcedureController < ApplicationController
       condition_array << element
     end
 
-    render :json => condition_array
+    render :json => condition_array.uniq{|x| x}
   end
 end

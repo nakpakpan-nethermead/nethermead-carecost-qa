@@ -13,6 +13,7 @@
 // require jquery
 //= require jquery_ujs
 //= require jquery.ui.autocomplete
+//= require jquery.ui.slider
 //= require underscore
 //= require angular
 //= require_tree .

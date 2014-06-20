@@ -1,6 +1,24 @@
 var maxHeight=0;
 $(document).ready(function(){
 
+  $( ".slider-range" ).each(function() {
+    $( this ).slider({
+      range: "max",
+      min: 0,
+      max: $(this).attr('max'),
+      value: 0,
+      slide: function( event, ui ) {
+        var value;
+        if ($(event.target).attr("prefix") == "%") {
+          value = ui.value+$(event.target).attr("prefix");
+        } else {
+          value = $(event.target).attr("prefix")+ui.value;
+        }
+        $(event.target).prev().html(value);
+      }
+    });
+  });
+
   $.widget( "custom.catcomplete", $.ui.autocomplete, {
     _renderMenu: function( ul, items ) {
       var that = this,
@@ -18,7 +36,7 @@ $(document).ready(function(){
   $( "#medicalCondition" ).catcomplete({
       source: function( request, response ) {
         $.getJSON( "/dashboard/get_suggestions", {
-          term: extractLast( request.term )
+          term: request.term
         }, response );
       },
       minLength: 3,
@@ -31,10 +49,10 @@ $(document).ready(function(){
   $( "#cityComplete" ).catcomplete({
       source: function( request, response ) {
         $.getJSON( "/procedure/get_city_suggestions", {
-          term: extractLast( request.term )
+          term: request.term
         }, response );
       },
-      minLength: 3,
+      minLength: 2,
       select: function( event, ui ) {
         $("#cityComplete").val(ui.item.label);
         $("#cityComplete").trigger('input');

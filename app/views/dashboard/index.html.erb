@@ -69,7 +69,7 @@
           <div class="amount">
             $0
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="10000" prefix="$">
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
           <div class="amount">
             $0
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="10000" prefix="$">
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
           <div class="amount">
             $0
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="100" prefix="$">
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
           <div class="amount">
             0%
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="100" prefix="%">
           </div>
         </div>
       </div>
@@ -136,13 +136,6 @@
           <th>Labs</th>
           <th>Provider</th>
           <th>Facility</th>
-          <th class="avg-cost-heading">Average Cost</th>
-          <th class="zip-cost-heading">
-            <a href=""><i class="fa fa-chevron-left"></i></a>
-            &nbsp;&nbsp;City,State | ZIP Cost&nbsp;<a href=""><i class="fa fa-trash-o"></i></a>&nbsp;&nbsp;
-            <a href=""><i class="fa fa-chevron-right"></i></a>
-          </th>
-          <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
         </tr>
         <tr ng-repeat="procedure in procedures track by $index">
           <td class="labs">
@@ -159,11 +152,28 @@
               <option ng-repeat="facility in procedure.all_facilities" value="{{facility}}">{{facility}}</option>
             </select>
           </td>
-          <td class="avg-cost">${{ procedure.charge.average }}</td>
-          <td class="zip-cost">$230</td>
-          <td><i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy( $index)"></i></td>
-        </tr>
+        <tr>
       </table>
+      <div class="overflowScroll">
+        <table id="costTable">
+          <tr>
+            <th class="avg-cost-heading">Average Cost</th>
+            <th class="zip-cost-heading">
+              <a href=""><i class="fa fa-chevron-left"></i></a>
+               City,State | ZIP Cost 
+              <a href=""><i class="fa fa-trash-o"></i></a>
+              <a href=""><i class="fa fa-chevron-right"></i></a>
+            </th>
+            <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
+          </tr>
+          <tr ng-repeat="procedure in procedures track by $index">
+            {{ procedure }}
+            <td class="avg-cost" ng-repeat="c in procedure.charge track by $index">  ${{c}}
+            </td>
+            <td><i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i></td>
+          </tr>
+        </table>
+      </div>
     </div> <!-- my procedures -->
   </div> <!-- list-view -->
 
@@ -497,7 +507,9 @@
 
 <!-- Templates -->
 <div id="settingContent" class="hide">
-  Check Now
+  <input type="checkbox" name="" id=""> Sam1
+  <input type="checkbox" name="" id=""> Sam2
+  <input type="checkbox" name="" id=""> Sam3
 </div>
 
 <div id="searchPopContent" class="hide">
