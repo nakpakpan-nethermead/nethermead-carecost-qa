@@ -61,10 +61,3 @@ $(document).ready(function(){
     });
   },300);
 });
-
-function split( val ) {
-  return val.split(' | ');
-}
-function extractLast( term ) {
-  return split( term ).pop();
-}
