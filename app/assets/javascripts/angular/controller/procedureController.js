@@ -64,10 +64,6 @@ function cityController($scope, $http, Procedure) {
   $scope.add = function() {
     if($.inArray( $scope.newCity, $scope.cities ) == -1)
       $scope.cities.push($scope.newCity)
-    
-    
-
-
     $scope.newCity = ''
   }
 

@@ -36,7 +36,9 @@ $(document).ready(function(){
   $( "#medicalCondition" ).catcomplete({
       source: function( request, response ) {
         $.getJSON( "/dashboard/get_suggestions", {
-          term: request.term
+          term: request.term,
+          diagnosis: $("#searchDiagnosis").is(':checked'),
+          procedure: $("#searchProcedure").is(':checked')
         }, response );
       },
       minLength: 3,

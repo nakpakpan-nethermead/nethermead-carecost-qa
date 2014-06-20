@@ -488,3 +488,11 @@ main{
 		width: 40%;
 		background: #aaa;
 	}
+
+	#conditionSetting {
+		color: white;
+	}
+
+	#conditionSetting input {
+		margin-left: 10px;
+	}

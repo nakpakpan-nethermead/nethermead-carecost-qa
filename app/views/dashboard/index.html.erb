@@ -40,8 +40,9 @@
     <div class="content-title">
       MY MEDICAL CONDITIONS
     </div>
-    <div class="menu-icon-2" data-toggle="popover" data-contentId="settingContent">
-      <i class="fa fa-cog"></i>
+    <div class="menu-icon-2" id="conditionSetting">
+      <input type="checkbox" name="searchDiagnosis" id="searchDiagnosis"> Diagonis
+      <input type="checkbox" name="searchProcedure" id="searchProcedure"> Procedure
     </div>
   </div>
   <div class="search-bar" ng-controller="conditionController">
@@ -506,12 +507,6 @@
 
 
 <!-- Templates -->
-<div id="settingContent" class="hide">
-  <input type="checkbox" name="" id=""> Sam1
-  <input type="checkbox" name="" id=""> Sam2
-  <input type="checkbox" name="" id=""> Sam3
-</div>
-
 <div id="searchPopContent" class="hide">
   <a id="searchClick">
     Click

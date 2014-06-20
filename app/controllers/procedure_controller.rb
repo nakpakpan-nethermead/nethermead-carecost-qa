@@ -45,13 +45,21 @@ class ProcedureController < ApplicationController
   def get_city_suggestions
 
     condition_array = Array.new
-    cities = ProviderCharge.where("service_city LIKE '%#{params[:term]}%'").limit(10).select(:service_city)
+
+    pincodes = ProviderCharge.where("service_zip_code LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
+    pincodes.each do |c|
+      element = Hash.new
+      element[:category] = "Zip Code"
+      element[:label] = "#{c.service_city}, #{c.service_state} , #{c.service_zip_code}"
+      element[:id] = c.service_city
+      condition_array << element
+    end
+
+    cities = ProviderCharge.where("service_city LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
     cities.each do |c|
       element = Hash.new
       element[:category] = "City"
-      element[:city] = c.service_city
-      element[:state] = c.service_state
-      element[:zip] = c.service_zip
+      element[:label] = "#{c.service_city}, #{c.service_state} , #{c.service_zip_code}"
       element[:id] = c.service_city
       condition_array << element
     end
