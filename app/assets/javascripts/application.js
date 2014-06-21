@@ -16,7 +16,8 @@
 //= require jquery.ui.slider
 //= require underscore
 //= require angular
-//= require_tree .
+//= require dashboard
+//= require bootstrap.min
 
 $("document").ready(function(){
   $("[data-toggle=popover]").each(function () {
