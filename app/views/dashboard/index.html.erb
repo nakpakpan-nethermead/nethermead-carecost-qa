@@ -31,7 +31,7 @@
     </div>
   </div>
 </header>
-<main class="container" ng-controller="ContactController">
+<main class="container">
   <!-- My Medical Conditions -->
   <div class="content-header">
     <div class="menu-icon">
@@ -40,13 +40,14 @@
     <div class="content-title">
       MY MEDICAL CONDITIONS
     </div>
-    <div class="menu-icon-2" data-toggle="popover" data-contentId="settingContent">
-      <i class="fa fa-cog"></i>
+    <div class="menu-icon-2" id="conditionSetting">
+      <input type="checkbox" name="searchDiagnosis" id="searchDiagnosis"> Diagnosis
+      <input type="checkbox" name="searchProcedure" id="searchProcedure"> Procedure
     </div>
   </div>
-  <div class="search-bar">
+  <div class="search-bar" ng-controller="conditionController">
     <input id="medicalCondition" placeholder="Type your Condition" />
-    <input type="hidden" id="procedureId">
+    <input ng-show="0" id="procedureId" ng-model="newProcedure">
     <button class="btn btn-success" id="procedure-btn" ng-click="add()">Add Procedure</button>
   </div> <!-- My medical conditions -->
 
@@ -69,7 +70,7 @@
           <div class="amount">
             $0
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="10000" prefix="$">
           </div>
         </div>
       </div>
@@ -81,7 +82,7 @@
           <div class="amount">
             $0
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="10000" prefix="$">
           </div>
         </div>
       </div>
@@ -93,7 +94,7 @@
           <div class="amount">
             $0
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="100" prefix="$">
           </div>
         </div>
       </div>
@@ -105,7 +106,7 @@
           <div class="amount">
             0%
           </div>
-          <div class="slider-range">
+          <div class="slider-range" max="100" prefix="%">
           </div>
         </div>
       </div>
@@ -120,48 +121,60 @@
     <div class="content-title">
       MY PROCEDURES
     </div>
-    <div class="content-view">
+    <div class="content-view" ng-controller="cityController">
       <button class="btn btn-default procedureView" data-show="list-view">List view</button>
       <button class="btn btn-default procedureView" data-show="map-view">Map view</button>
+      <input type="text" id="cityComplete" ng-model="newCity" placeholder="State / City / Zip">
+      <input type="submit" value="+" ng-click="add()">
     </div>
   </div>
-
+  
   <!-- list view -->
-  <div class="list-view procedureLayout">
+  <div class="list-view procedureLayout"  ng-controller="procedureController">
     <div class="table-responsive content-body">
       <table class="table" id="procedureTable">
         <tr>
           <th>Labs</th>
           <th>Provider</th>
           <th>Facility</th>
-          <th class="avg-cost-heading">Average Cost</th>
-          <th class="zip-cost-heading">
-            <a href=""><i class="fa fa-chevron-left"></i></a>
-            &nbsp;&nbsp;City,State | ZIP Cost&nbsp;<a href=""><i class="fa fa-trash-o"></i></a>&nbsp;&nbsp;
-            <a href=""><i class="fa fa-chevron-right"></i></a>
-          </th>
-          <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
         </tr>
-        <tr ng-repeat="item in items track by $index">
+        <tr ng-repeat="procedure in procedures track by $index">
           <td class="labs">
-            <input type="checkbox" class="style-check" id="{{item.id}}" /> 
-            <label for="{{item.id}}">{{ item.name }}</label>
+            <input type="checkbox" class="style-check" id="{{procedure.id}}" /> 
+            <label for="{{procedure.id}}">{{ procedure.name }}</label>
           </td>
           <td>
-            <select ng-model="item.service_network_type" ng-change="network_change(item)" >
-              <option ng-repeat="network_type in item.all_service_network_type" value="{{network_type}}">{{network_type}}</option>
+            <select ng-model="procedures.current_network" ng-change="filter($index)" >
+              <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
             </select>
           </td>
           <td>
-            <select ng-model="item.service_place" ng-change="network_change(item)">
-              <option ng-repeat="place in item.all_service_place" value="{{place}}">{{place}}</option>
+            <select ng-model="procedure.current_facility" ng-change="filter($index)">
+              <option ng-repeat="facility in procedure.all_facilities" value="{{facility}}">{{facility}}</option>
             </select>
           </td>
-          <td class="avg-cost">${{ item.charge }}</td>
-          <td class="zip-cost">$230</td>
-          <td><a href=""><i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy( $index)"></i></a></td>
-        </tr>
+        <tr>
       </table>
+      <div class="overflowScroll">
+        <table id="costTable">
+          <tr>
+            <th class="avg-cost-heading">Average Cost</th>
+            <th class="zip-cost-heading">
+              <a href=""><i class="fa fa-chevron-left"></i></a>
+               City,State | ZIP Cost 
+              <a href=""><i class="fa fa-trash-o"></i></a>
+              <a href=""><i class="fa fa-chevron-right"></i></a>
+            </th>
+            <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
+          </tr>
+          <tr ng-repeat="procedure in procedures track by $index">
+            {{ procedure }}
+            <td class="avg-cost" ng-repeat="c in procedure.charge track by $index">  ${{c}}
+            </td>
+            <td><i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i></td>
+          </tr>
+        </table>
+      </div>
     </div> <!-- my procedures -->
   </div> <!-- list-view -->
 
@@ -494,10 +507,6 @@
 
 
 <!-- Templates -->
-<div id="settingContent" class="hide">
-  Check Now
-</div>
-
 <div id="searchPopContent" class="hide">
   <a id="searchClick">
     Click

@@ -81,7 +81,26 @@ main{
 .content-header{
 	border-top: 4px #3d4753 solid;
 	position: relative;
+	clear: both;
 }
+
+#procedureTable {
+	float: left;
+	width: 50%;
+}
+
+#costTable {
+	float: left;
+	width: 100%;
+}
+
+.overflowScroll {
+	width: 50%;
+	overflow: scroll;
+	float: right;
+	margin-top: 15px;
+}
+
 .menu-icon{
 	position: absolute;
 	background: #3d4753;
@@ -462,4 +481,18 @@ main{
 	.current {
 		background: #3d4753 !important;
 		color: #fff !important;
+	}
+
+	.ui-autocomplete-category {
+		border: 1px #aaa solid;
+		width: 40%;
+		background: #aaa;
+	}
+
+	#conditionSetting {
+		color: white;
+	}
+
+	#conditionSetting input {
+		margin-left: 10px;
 	}

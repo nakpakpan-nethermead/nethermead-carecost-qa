@@ -10,12 +10,12 @@ default: &default
   password: root
   host: 127.0.0.1
 
-# default: &default
-#  adapter: mysql2
-#  encoding: utf8
-#  pool: 5
-#  username: root
-#  password: root
+#default: &default
+# adapter: mysql2
+# encoding: utf8
+# pool: 5
+# username: root
+# password: root
 
 development:
   <<: *default

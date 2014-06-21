@@ -5,19 +5,21 @@ class ProcedureController < ApplicationController
         .where(:condition_procedure_id => params[:id])
         .order(:service_charge)
     
-    service_network_type = allCharges.map {|a| a.service_network_type}.uniq
-    service_place = allCharges.map {|a| a.service_place}.uniq
+    service_networks = allCharges.map {|a| a.service_network_type}.uniq
+    service_facilities = allCharges.map {|a| a.service_place}.uniq
 
-    if(params["service_network_type"])
-      current_network_type = params["service_network_type"]
-      current_place = params["service_place"]
+    if(params["current_facility"])
+      current_network = params["current_network"]
+      current_facility = params["current_facility"]
     else
-      current_network_type = service_network_type[0]
-      current_place = service_place[0]
+      current_network = service_networks[0]
+      current_facility = service_facilities[0]
     end
     
     charges = ProviderCharge
-      .where(:condition_procedure_id => params[:id], :service_network_type => current_network_type , :service_place => current_place)
+      .where(:condition_procedure_id => params[:id], 
+             :service_network_type => current_network , 
+             :service_place => current_facility)
       .order(:service_charge)
 
     if (charges[0])
@@ -29,11 +31,48 @@ class ProcedureController < ApplicationController
     sendBack = Hash.new
     sendBack["id"] = params[:id]
     sendBack["name"] = Procedure.find(params[:id]).full_name
-    sendBack["charge"] = price
-    sendBack["service_place"] = current_place
-    sendBack["service_network_type"] = current_network_type
-    sendBack["all_service_place"] = service_place
-    sendBack["all_service_network_type"] = service_network_type
+    sendBack["current_network"] = current_network
+    sendBack["current_facility"] = current_facility
+    sendBack["all_networks"] = service_networks
+    sendBack["all_facilities"] = service_facilities
+
+    sendBack["charge"] = []
+    sendBack["charge"] << price
+
     render :json => sendBack
+  end
+
+  def get_city_suggestions
+
+    condition_array = Array.new
+
+    pincodes = ProviderCharge.where("service_zip_code LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
+    pincodes.each do |c|
+      element = Hash.new
+      element[:category] = "Zip Code"
+      element[:label] = "#{c.service_city}, #{c.service_state} , #{c.service_zip_code}"
+      element[:id] = c.service_city
+      condition_array << element
+    end
+
+    cities = ProviderCharge.where("service_city LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
+    cities.each do |c|
+      element = Hash.new
+      element[:category] = "City"
+      element[:label] = "#{c.service_city}, #{c.service_state} , #{c.service_zip_code}"
+      element[:id] = c.service_city
+      condition_array << element
+    end
+
+    states = ProviderCharge.where("service_state LIKE '%#{params[:term]}%'").limit(10).select(:service_state)
+    states.each do |c|
+      element = Hash.new
+      element[:category] = "State"
+      element[:label] = c.service_state
+      element[:id] = c.service_state
+      condition_array << element
+    end
+
+    render :json => condition_array.uniq{|x| x}
   end
 end
