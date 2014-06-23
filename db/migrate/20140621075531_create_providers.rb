@@ -22,6 +22,6 @@ class CreateProviders < ActiveRecord::Migration
 
 	t.timestamps
     end
-    add_index :providers, :id, :primary_key, unique: true
+    add_index :providers, :id, unique: true
   end
 end
