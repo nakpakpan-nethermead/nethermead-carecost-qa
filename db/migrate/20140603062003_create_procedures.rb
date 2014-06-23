@@ -1,6 +1,6 @@
 class CreateProcedures < ActiveRecord::Migration
   def up
-    drop_table :procedures
+    drop_table :procedures if table_exists? :procedures
   	create_table :procedures do |t|
   	  t.integer :condition_id, :limit =>8
       t.text :short_name

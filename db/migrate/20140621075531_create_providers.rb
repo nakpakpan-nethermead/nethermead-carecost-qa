@@ -1,6 +1,6 @@
 class CreateProviders < ActiveRecord::Migration
   def up
-    drop_table :providers
+    drop_table :providers if table_exists? :providers
     create_table :providers do |t|
     	t.text :npi
     	t.text :npi_surrogate
@@ -22,6 +22,6 @@ class CreateProviders < ActiveRecord::Migration
 
       t.timestamps
     end
-      add_index :providers, :id, :primary_key, unique: true
+    add_index :providers, :id, unique: true
   end
 end

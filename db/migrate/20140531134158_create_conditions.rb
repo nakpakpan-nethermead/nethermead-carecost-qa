@@ -1,6 +1,6 @@
 class CreateConditions < ActiveRecord::Migration
   def change
-    drop_table :conditions
+    drop_table :conditions if table_exists? :conditions
     create_table :conditions do |t|
       t.text :consumer_name
       t.text :clinical_name

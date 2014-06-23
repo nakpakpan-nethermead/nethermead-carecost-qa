@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617044505) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140621081356) do
 
   create_table "conditions", force: true do |t|
     t.text     "consumer_name"
@@ -58,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140617044505) do
     t.string   "service_claim_line_number"
     t.integer  "provider_id"
     t.integer  "condition_procedure_id"
-    t.string   "condition_procedure_type_id"
+    t.integer  "condition_procedure_type_id"
     t.integer  "condition_icd_diagnosis_1_id"
     t.integer  "condition_icd_diagnosis_2_id"
     t.integer  "condition_icd_diagnosis_3_id"
@@ -73,25 +70,23 @@ ActiveRecord::Schema.define(version: 20140617044505) do
     t.integer  "condition_icd_procedure_6_id"
     t.integer  "service_charge"
     t.integer  "service_quantity"
-    t.string   "service_quantity_units"
-    t.string   "service_anesthesia_time"
-    t.integer  "service_modifier_1_id"
-    t.integer  "service_modifier_2_id"
-    t.string   "service_state"
-    t.string   "service_city"
+    t.text     "service_quantity_units"
+    t.text     "service_anesthesia_time"
+    t.text     "service_modifier_1"
+    t.text     "service_modifier_2"
+    t.text     "service_state"
+    t.text     "service_city"
     t.string   "service_zip_code"
     t.text     "service_specialty"
     t.text     "service_network_type"
-    t.integer  "service_year_from"
-    t.integer  "service_year_to"
-    t.string   "service_place"
-    t.string   "service_type"
-    t.string   "service_plan_type"
-    t.integer  "patient_id"
+    t.string   "service_year_from"
+    t.string   "service_year_to"
+    t.text     "service_place"
+    t.text     "service_type"
+    t.text     "service_plan_type"
+    t.string   "patient_id"
     t.string   "patient_year_of_birth"
     t.string   "patient_gender"
-    t.text     "plan_name"
-    t.text     "network_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,21 +96,22 @@ ActiveRecord::Schema.define(version: 20140617044505) do
   create_table "providers", force: true do |t|
     t.text     "npi"
     t.text     "npi_surrogate"
-    t.text     "last_org_name"
     t.text     "first_name"
-    t.string   "mi"
-    t.string   "credentials"
-    t.string   "gender",        limit: 1
-    t.string   "entity_code"
-    t.string   "street1"
-    t.string   "street2"
-    t.string   "city"
-    t.string   "zip"
-    t.string   "state"
-    t.string   "country"
-    t.string   "provider_type"
+    t.text     "org_last_name"
+    t.text     "designations",          limit: 255
+    t.string   "img_url",               limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider_type",         limit: 50
+    t.string   "gender",                limit: 1
+    t.string   "provider_address",      limit: 50
+    t.string   "provider_suite_number", limit: 50
+    t.string   "provider_city"
+    t.string   "provider_zip"
+    t.string   "provider_county"
+    t.string   "provider_state"
+    t.string   "provider_country"
+    t.string   "provider_entity_type"
   end
 
   add_index "providers", ["id"], name: "index_providers_on_id", unique: true, using: :btree

@@ -1,6 +1,6 @@
 class CreateProviderCharges < ActiveRecord::Migration
   def up
-    drop_table :provider_charges
+    drop_table :provider_charges if table_exists? :provider_charges
   	create_table :provider_charges do |t|
       t.string :service_claim_number
       t.string :service_claim_type
