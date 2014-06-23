@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-# ruby '2.1.2'
+ ruby '2.1.2'
 
 # Heroku gem for deployment
 gem 'heroku', '3.7.3'
@@ -16,10 +16,10 @@ gem 'rails', '4.1.1'
 # gem 'sqlite3'
 
 # Use postgres rather than sqlite3 as the database for Active Record
- # gem 'pg', '0.17.1'
+ gem 'pg', '0.17.1'
 
 #temp
-gem 'mysql2'
+#gem 'mysql2'
 #temp
 
 # Use SCSS for stylesheets
@@ -61,3 +61,5 @@ gem 'angularjs-rails'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#Enable all platform features in Heroku
+ gem 'rails_12factor', group: :production
