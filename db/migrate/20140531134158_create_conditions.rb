@@ -1,5 +1,6 @@
 class CreateConditions < ActiveRecord::Migration
   def change
+    drop_table :conditions
     create_table :conditions do |t|
       t.text :consumer_name
       t.text :clinical_name
