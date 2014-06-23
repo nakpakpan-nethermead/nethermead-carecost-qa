@@ -56,8 +56,10 @@ $(document).ready(function(){
       },
       minLength: 2,
       select: function( event, ui ) {
-        $("#cityComplete").val(ui.item.label);
-        $("#cityComplete").trigger('input');
+        $("#newLocation").val(ui.item.id);
+        $("#newLocationType").val(ui.item.originalCat);
+        $("#newLocation").trigger('input');
+        $("#newLocationType").trigger('input');
       }
     });
 

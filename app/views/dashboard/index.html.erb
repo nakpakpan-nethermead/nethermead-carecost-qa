@@ -114,7 +114,7 @@
   </div> <!-- Insurance status -->
 
   <!-- My procedures -->
-  <div class="content-header">
+  <div class="content-header" id="myProDiv">
     <div class="menu-icon">
       <img src="/assets/procedures.png">
     </div>
@@ -124,7 +124,9 @@
     <div class="content-view" ng-controller="cityController">
       <button class="btn btn-default procedureView" data-show="list-view">List view</button>
       <button class="btn btn-default procedureView" data-show="map-view">Map view</button>
-      <input type="text" id="cityComplete" ng-model="newCity" placeholder="State / City / Zip">
+      <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
+      <input ng-show="0" id="newLocation" ng-model="newLocation">
+      <input ng-show="0" id="newLocationType" ng-model="newLocationType">
       <input type="submit" value="+" ng-click="add()">
     </div>
   </div>
@@ -155,17 +157,14 @@
           </td>
         <tr>
       </table>
-      <div class="overflowScroll">
+      <div class="overflowScroll table-responsive">
         <table id="costTable">
           <tr>
             <th class="avg-cost-heading">Average Cost</th>
-            <th class="zip-cost-heading">
-              <a href=""><i class="fa fa-chevron-left"></i></a>
-               City,State | ZIP Cost 
+            <th class="zip-cost-heading" ng-repeat="city in cities">
+               {{city.data}},{{city.dataDisType}}
               <a href=""><i class="fa fa-trash-o"></i></a>
-              <a href=""><i class="fa fa-chevron-right"></i></a>
             </th>
-            <th><i class="fa fa-map-marker"></i><i class="fa fa-plus"></i></th>
           </tr>
           <tr ng-repeat="procedure in procedures track by $index">
             {{ procedure }}
