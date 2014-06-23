@@ -14,6 +14,13 @@ myApp.service('Procedure',function($http){
       procedures.splice(index,1);
   }
 
+  var removeCityCost = function(index) {
+    for(i=0;i<procedures.length;i++) {
+      console.log(procedures[i].charge);
+      procedures[i].charge.splice(index,1);
+    }
+  }
+
   var filter = function(cities) {
     
     var toSend = {};
@@ -31,7 +38,7 @@ myApp.service('Procedure',function($http){
       method: 'GET',
       params: toSend
     }).success(function (result) {
-      for(i=0;i<procedures.length;++i) {
+      for(i=0;i<procedures.length;i++) {
         if(procedures[i].id == result[i].id){
           procedures[i] = result[i];
         }
@@ -42,6 +49,7 @@ myApp.service('Procedure',function($http){
   return {
     add: add,
     destroy: destroy,
+    removeCityCost: removeCityCost,
     filter: filter,
     all: procedures
   };
@@ -64,7 +72,9 @@ myApp.service('City',function($http){
   }
 
   var destroy = function(index) {
-      cities.splice(index,1);
+    cities.splice(index-1,1);
+    var width = $("#costTable").width();
+    $("#costTable").width(width-200);
   }
 
   return {
@@ -84,8 +94,14 @@ function conditionController($scope, $http, Procedure) {
 function procedureController($scope, $http, Procedure, City) {
   $scope.procedures = Procedure.all;
   $scope.cities = City.all;
+
   $scope.destroy = function(index) {
     Procedure.destroy(index);
+  }
+
+  $scope.cityDestroy = function(index) {
+    City.destroy(index);
+    Procedure.removeCityCost(index);
   }
 
   $scope.filter = function(index){
@@ -107,6 +123,4 @@ function cityController($scope, $http, Procedure, City) {
     $scope.autoLocation = ''
     Procedure.filter();
   }
-
-
 }

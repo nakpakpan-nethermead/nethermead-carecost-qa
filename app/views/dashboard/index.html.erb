@@ -161,9 +161,9 @@
         <table id="costTable">
           <tr>
             <th class="avg-cost-heading">Average Cost</th>
-            <th class="zip-cost-heading" ng-repeat="city in cities">
+            <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
                {{city.data}},{{city.dataDisType}}
-              <a href=""><i class="fa fa-trash-o"></i></a>
+              <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
             </th>
           </tr>
           <tr ng-repeat="procedure in procedures track by $index">
