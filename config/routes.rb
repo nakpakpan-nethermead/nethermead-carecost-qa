@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "/procedure/get_city_suggestions" => "procedure#get_city_suggestions"
   resources :dashboard
   resources :procedure
+  resources :provider
 end
