@@ -17,9 +17,9 @@ unless Rails.env.production?
     connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
   end
 
-  insertDatafor('conditions',connection);
-  insertDatafor('diagonsis',connection);
-  insertDatafor('procedures',connection);
-  insertDatafor('provider_charges',connection);
   insertDatafor('providers',connection);
+  # insertDatafor('diagonsis',connection);
+  # insertDatafor('procedures',connection);
+  # insertDatafor('provider_charges',connection);
+  # insertDatafor('providers',connection);
 end
