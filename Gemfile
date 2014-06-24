@@ -16,10 +16,10 @@ gem 'rails', '4.1.1'
 # gem 'sqlite3'
 
 # Use postgres rather than sqlite3 as the database for Active Record
- # gem 'pg', '0.17.1'
+ gem 'pg', '0.17.1'
 
 #temp
-gem 'mysql2'
+# gem 'mysql2'
 #temp
 
 # Use SCSS for stylesheets
