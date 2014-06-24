@@ -91,12 +91,15 @@ main{
 
 #costTable {
 	float: left;
-	width: 100%;
-}
+	width: 350px;
 
+}
+.zip-cost{
+	width: 50%;
+}
 .overflowScroll {
 	width: 50%;
-	overflow: scroll;
+	overflow-x: scroll;
 	float: right;
 	margin-top: 15px;
 }
@@ -223,6 +226,10 @@ main{
 	cursor: pointer;
 	font-size: 14px;
 	vertical-align: text-top;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 120px;
 }
 .content-body table .labs input.style-check{
 	width: 15px;

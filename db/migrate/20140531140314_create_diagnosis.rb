@@ -1,5 +1,6 @@
 class CreateDiagnosis < ActiveRecord::Migration
   def change
+    drop_table :diagnosis if table_exists? :diagnosis
     create_table :diagnosis do |t|
       t.integer :condition_id
       t.text :short_name

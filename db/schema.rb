@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617044505) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140623163210) do
 
   create_table "conditions", force: true do |t|
     t.text     "consumer_name"
@@ -52,6 +49,15 @@ ActiveRecord::Schema.define(version: 20140617044505) do
 
   add_index "procedures", ["id"], name: "index_procedures_on_id", unique: true, using: :btree
 
+  create_table "provider_attributes", force: true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.string   "img"
+    t.string   "data_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "provider_charges", force: true do |t|
     t.string   "service_claim_number"
     t.string   "service_claim_type"
@@ -75,8 +81,8 @@ ActiveRecord::Schema.define(version: 20140617044505) do
     t.integer  "service_quantity"
     t.string   "service_quantity_units"
     t.string   "service_anesthesia_time"
-    t.integer  "service_modifier_1_id"
-    t.integer  "service_modifier_2_id"
+    t.integer  "service_modifier_1"
+    t.integer  "service_modifier_2"
     t.string   "service_state"
     t.string   "service_city"
     t.string   "service_zip_code"
@@ -101,21 +107,23 @@ ActiveRecord::Schema.define(version: 20140617044505) do
   create_table "providers", force: true do |t|
     t.text     "npi"
     t.text     "npi_surrogate"
-    t.text     "last_org_name"
     t.text     "first_name"
-    t.string   "mi"
-    t.string   "credentials"
-    t.string   "gender",        limit: 1
-    t.string   "entity_code"
-    t.string   "street1"
-    t.string   "street2"
-    t.string   "city"
-    t.string   "zip"
-    t.string   "state"
-    t.string   "country"
-    t.string   "provider_type"
+    t.text     "org_last_name"
+    t.text     "designations",          limit: 255
+    t.string   "img_url",               limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider_type",         limit: 50
+    t.string   "gender",                limit: 1
+    t.string   "provider_address",      limit: 50
+    t.string   "provider_suite_number", limit: 50
+    t.string   "provider_city"
+    t.string   "provider_zip"
+    t.string   "provider_county"
+    t.string   "provider_state"
+    t.string   "provider_country"
+    t.string   "provider_entity_type"
+    t.string   "physician_since"
   end
 
   add_index "providers", ["id"], name: "index_providers_on_id", unique: true, using: :btree
