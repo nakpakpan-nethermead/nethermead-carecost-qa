@@ -6,7 +6,6 @@ myApp.service('Procedure',function($http){
   var add = function(id) {
     $http.get('/procedure/price/'+id).success(function(response) {
       procedures.push(response);
-      console.log(procedures);
     });
   }
 
@@ -54,59 +53,6 @@ myApp.service('Procedure',function($http){
     all: procedures
   };
 })
-
-myApp.service('Physician',function($http){
-  var physicians = [];
-
-  var add = function(id) {
-    $http.get('/provider/physician/').success(function(response) {
-      physicians.push(response);
-      console.log(physicians);
-    });
-  }
-
-  // var destroy = function(index) {
-  //     procedures.splice(index,1);
-  // }
-
-  // var removeCityCost = function(index) {
-  //   for(i=0;i<procedures.length;i++) {
-  //     console.log(procedures[i].charge);
-  //     procedures[i].charge.splice(index,1);
-  //   }
-  // }
-
-  // var filter = function(cities) {
-    
-  //   var toSend = {};
-  //   toSend["procedures"] = [];
-  //   toSend["procedures"].push(procedures);
-  //   toSend["cities"] = [];
-  //   toSend["cities"].push(cities);
-   
-  //   $http({
-  //     url: '/procedure/price/1',
-  //     method: 'GET',
-  //     params: toSend
-  //   }).success(function (result) {
-  //     for(i=0;i<procedures.length;i++) {
-  //       if(procedures[i].id == result[i].id){
-  //         procedures[i] = result[i];
-  //       }
-  //     }
-  //   });
-  // }
-
-  return {
-    add: add,
-    // destroy: destroy,
-    // removeCityCost: removeCityCost,
-    // filter: filter,
-    all: procedures
-  };
-})
-
-
 
 myApp.service('City',function($http){
   var cities = [];
@@ -180,5 +126,13 @@ function cityController($scope, $http, Procedure, City) {
 
 
 function physicianController($scope, $http) {
-  
+  $scope.physicians = []
+  $http.get('/provider/').success(function(response) {
+    $scope.physicians = response;
+  });
+
+  $scope.flipGraph = function(index){
+    $("#f"+index).toggleClass('hide');
+    $("#b"+index).toggleClass('hide');
+  }
 }

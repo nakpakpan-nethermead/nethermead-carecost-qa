@@ -280,23 +280,23 @@
     <div class="physician-list">
       <div class="physician-available">
         <div class="row">
-          <div class="col-lg-4 col-md-4 clo-xs-6">
-            <div class="physician-details">
-              <div class="row">
+          <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians track by $index">
+            <div class="physician-details" id="f{{$index}}">
+              <div class="row" >
                 <div class="col-lg-4 details-col">
                   <div class="profile-pic">
-                    <img src="/assets/profile-pic.png">
+                    <img src="/assets/{{physician.img_url}}">
                   </div>
                   <div class="physician-name">
-                    Dr. Smith
+                    Dr. {{physician.first_name}}
                   </div>
                 </div>
                 <div class="col-lg-8 details-col">
                   <div class="profile-content">
                     <ul>
-                      <li><span class="profile-fields">Speciality :</span> Opthamology </li>
-                      <li><span class="profile-fields">Years In Practice :</span> 11 </li>
-                      <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
+                      <li><span class="profile-fields">Speciality :</span> {{physician.provider_type}} </li>
+                      <li><span class="profile-fields">Years In Practice :</span> From {{physician.physician_since}} </li>
+                      <li><span class="profile-fields">Location :</span> {{physician.provider_address}} </li>
                       <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
                       <li><span class="profile-fields">NCQA Rating :</span> 
                         <i class="fa fa-star"></i>
@@ -308,7 +308,7 @@
                   </div>
                   <div class="profile-icons">
                     <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><img src="/assets/growth.png"></a>
+                    <a href="" ng-click="flipGraph($index)"><img src="/assets/growth.png"></a>
                   </div>
                 </div>
               </div>
@@ -316,13 +316,11 @@
                 <img src="/assets/map.png">
               </div>
             </div> <!-- physician details -->
-          </div>
-          <div class="col-lg-4 col-md-4 clo-xs-6">
-            <div class="physician-details performance-info">
+            <div class="physician-details performance-info hide" id="b{{$index}}">
               <div class="row">
                 <div class="col-lg-10">
                   <div class="physician-name">
-                    Dr. Ranier's Performance
+                    Dr. {{physician.first_name}}'s Performance
                   </div>
                   <div class="profile-content">
                     <ul>
@@ -336,164 +334,12 @@
                 <div class="col-lg-2">
                   <div class="profile-icons">
                     <a href="" class="active"><i class="fa fa-heart"></i></a>
-                    <a href=""><i class="icon-user"></i></a>
+                    <a href=""><i class="icon-user" ng-click="flipGraph($index)"></i></a>
                   </div>
                 </div>
               </div>
               <div class="performance-graph">
                 <img src="/assets/performance-graph.png">
-              </div>
-            </div> <!-- physician details -->
-          </div>
-          <div class="col-lg-4 col-md-4 clo-xs-6">
-            <div class="physician-details">
-              <div class="row">
-                <div class="col-lg-4 details-col">
-                  <div class="profile-pic">
-                    <img src="/assets/profile-pic.png">
-                  </div>
-                  <div class="physician-name">
-                    Dr. Smith
-                  </div>
-                </div>
-                <div class="col-lg-8 details-col">
-                  <div class="profile-content">
-                    <ul>
-                      <li><span class="profile-fields">Speciality :</span> Opthamology </li>
-                      <li><span class="profile-fields">Years In Practice :</span> 11 </li>
-                      <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
-                      <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
-                      <li><span class="profile-fields">NCQA Rating :</span> 
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="profile-icons">
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><img src="/assets/growth.png"></a>
-                  </div>
-                </div>
-              </div>
-              <div class="physician-map">
-                <img src="/assets/map.png">
-              </div>
-            </div> <!-- physician details -->
-          </div>
-        </div> <!-- row -->
-      </div> <!-- physician available -->
-      <div class="physician-available">
-        <div class="row">
-          <div class="col-lg-4 col-md-4 clo-xs-6">
-            <div class="physician-details">
-              <div class="row">
-                <div class="col-lg-4 details-col">
-                  <div class="profile-pic">
-                    <img src="/assets/profile-pic.png">
-                  </div>
-                  <div class="physician-name">
-                    Dr. Smith
-                  </div>
-                </div>
-                <div class="col-lg-8 details-col">
-                  <div class="profile-content">
-                    <ul>
-                      <li><span class="profile-fields">Speciality :</span> Opthamology </li>
-                      <li><span class="profile-fields">Years In Practice :</span> 11 </li>
-                      <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
-                      <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
-                      <li><span class="profile-fields">NCQA Rating :</span> 
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="profile-icons">
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><img src="/assets/growth.png"></a>
-                  </div>
-                </div>
-              </div>
-              <div class="physician-map">
-                <img src="/assets/map.png">
-              </div>
-            </div> <!-- physician details -->
-          </div>
-          <div class="col-lg-4 col-md-4 clo-xs-6">
-            <div class="physician-details">
-              <div class="row">
-                <div class="col-lg-4 details-col">
-                  <div class="profile-pic">
-                    <img src="/assets/profile-pic.png">
-                  </div>
-                  <div class="physician-name">
-                    Dr. Smith
-                  </div>
-                </div>
-                <div class="col-lg-8 details-col">
-                  <div class="profile-content">
-                    <ul>
-                      <li><span class="profile-fields">Speciality :</span> Opthamology </li>
-                      <li><span class="profile-fields">Years In Practice :</span> 11 </li>
-                      <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
-                      <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
-                      <li><span class="profile-fields">NCQA Rating :</span> 
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="profile-icons">
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><img src="/assets/growth.png"></a>
-                  </div>
-                </div>
-              </div>
-              <div class="physician-map">
-                <img src="/assets/map.png">
-              </div>
-            </div> <!-- physician details -->
-          </div>
-          <div class="col-lg-4 col-md-4 clo-xs-6">
-            <div class="physician-details">
-              <div class="row">
-                <div class="col-lg-4 details-col">
-                  <div class="profile-pic">
-                    <img src="/assets/profile-pic.png">
-                  </div>
-                  <div class="physician-name">
-                    Dr. Smith
-                  </div>
-                </div>
-                <div class="col-lg-8 details-col">
-                  <div class="profile-content">
-                    <ul>
-                      <li><span class="profile-fields">Speciality :</span> Opthamology </li>
-                      <li><span class="profile-fields">Years In Practice :</span> 11 </li>
-                      <li><span class="profile-fields">Location :</span> Brooklyn, NY (1126) </li>
-                      <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
-                      <li><span class="profile-fields">NCQA Rating :</span> 
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="profile-icons">
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><img src="/assets/growth.png"></a>
-                  </div>
-                </div>
-              </div>
-              <div class="physician-map">
-                <img src="/assets/map.png">
               </div>
             </div> <!-- physician details -->
           </div>
@@ -503,12 +349,3 @@
   </div> 
   <!-- Recommended Physicians -->
 </main>
-
-
-<!-- Templates -->
-<div id="searchPopContent" class="hide">
-  <a id="searchClick">
-    Click
-  </a>
-</div>
-<%= javascript_include_tag 'dashboard' %>
