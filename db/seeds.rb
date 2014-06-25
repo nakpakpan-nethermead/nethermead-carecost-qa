@@ -18,6 +18,7 @@ unless Rails.env.production?
   end
 
   insertDatafor('providers',connection);
+  insertDatafor('conditions',connection);
   insertDatafor('diagnosis',connection);
   insertDatafor('procedures',connection);
   insertDatafor('provider_charges',connection);
