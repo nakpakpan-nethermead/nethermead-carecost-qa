@@ -1,5 +1,5 @@
 def insertDatafor(file,connection)
-  fileName = "sql/#{file}.sql"
+  fileName = "db/sql/#{file}.sql"
   sql = File.read(fileName)
   statements = sql.split(/;$/)
   statements.pop
@@ -18,8 +18,8 @@ unless Rails.env.production?
   end
 
   insertDatafor('providers',connection);
-  # insertDatafor('diagnosis',connection);
-  # insertDatafor('procedures',connection);
-  # insertDatafor('provider_charges',connection);
-  # insertDatafor('providers',connection);
+  insertDatafor('diagnosis',connection);
+  insertDatafor('procedures',connection);
+  insertDatafor('provider_charges',connection);
+  insertDatafor('providers',connection);
 end
