@@ -1,5 +1,5 @@
 def insertDatafor(file,connection)
-  fileName = "db/sql/#{file}.sql"
+  fileName = "sql/#{file}.sql"
   sql = File.read(fileName)
   statements = sql.split(/;$/)
   statements.pop
