@@ -288,21 +288,11 @@
         <li>Cost &nbsp;<i class="fa fa-caret-down"></i></li>
         <li>Physician Name &nbsp;<i class="fa fa-caret-down"></i></li>
         <li> 
-          <select name="" id="" class="selectpicker" data-live-search="true" ng-change="updatePhysician()">
+          <select name="" id="" class="selectpicker" ng-change="updatePhysician()">
             <option ng-repeat="procedure in procedures" value="{{procedure.id}}">
               {{procedure.name}}
             </option>
           </select>
-        </li>
-        <li class="dropdown">
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Messages <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-              <li><a href="#">Inbox</a></li>
-              <li><a href="#">Drafts</a></li>
-              <li><a href="#">Sent Items</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Trash</a></li>
-          </ul>
         </li>
       </ul>
     </div>
