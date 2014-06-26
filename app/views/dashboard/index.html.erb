@@ -142,7 +142,7 @@
         </tr>
         <tr ng-repeat="procedure in procedures track by $index">
           <td class="labs">
-            <input type="checkbox" class="style-check" id="{{procedure.id}}" /> 
+            <input type="checkbox" ng-click="updatePhysician($event, procedure.id)" class="style-check" id="{{procedure.id}}" /> 
             <label for="{{procedure.id}}">{{ procedure.name }}</label>
           </td>
           <td>

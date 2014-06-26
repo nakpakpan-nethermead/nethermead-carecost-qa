@@ -44,7 +44,7 @@ class DashboardController < ApplicationController
         element = Hash.new
         if d.consumer_name != ''
           element[:category] = d.consumer_name
-          element[:label] = 'Diagnosis: ' + d.short_name
+          element[:label] =  d.short_name
           element[:id] = d.d_id
           condition_array << element
         end

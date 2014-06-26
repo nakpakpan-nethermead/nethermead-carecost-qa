@@ -65,9 +65,6 @@ myApp.service('City',function($http){
     tmpCity["dataType"] = dataType;
     tmpCity["dataDisType"] = dataDisType;
     cities.push(tmpCity);
-    // console.log(cities);
-    $("#costTable th:last").scrollIntoView();
-    $(window).scrollTop($('#myProDiv').offset().top);
   }
 
   var destroy = function(index) {
@@ -83,6 +80,45 @@ myApp.service('City',function($http){
   };
 })
 
+myApp.service('Physician',function($http){
+  var physicians = [];
+  var phyProcedure = [];
+  var toSend = {};
+
+  var refresh = function(fetch) {
+    
+    physicians = []
+    toSend["selectedPro"] = [];
+    toSend['selectedPro'].push(phyProcedure);
+
+    $http({
+      url: '/provider/',
+      method: 'GET',
+      params: toSend
+    }).success(function (response) {
+      $.each(response, function(index, value){
+        physicians.push(value);
+      });
+      console.log(physicians);
+    });
+  }
+
+  var addProcedure = function(pId){
+    phyProcedure.push(pId);
+  }
+
+  var removeProcedure = function(pId){
+    phyProcedure.splice( $.inArray(pId, phyProcedure), 1 );
+  }
+
+  return {
+    refresh: refresh,
+    all: physicians,
+    addProcedure: addProcedure,
+    removeProcedure: removeProcedure
+  };
+})
+
 function conditionController($scope, $http, Procedure) {
   $scope.add = function() {
     Procedure.add($scope.newProcedure);
@@ -90,9 +126,11 @@ function conditionController($scope, $http, Procedure) {
   }
 }
 
-function procedureController($scope, $http, Procedure, City) {
+function procedureController($scope, $http, Procedure, City, Physician) {
   $scope.procedures = Procedure.all;
+  $scope.physicians = Physician.all;
   $scope.cities = City.all;
+
 
   $scope.destroy = function(index) {
     Procedure.destroy(index);
@@ -105,6 +143,15 @@ function procedureController($scope, $http, Procedure, City) {
 
   $scope.filter = function(index){
     Procedure.filter($scope.cities);
+  }
+
+  $scope.updatePhysician = function($event, procedureId){
+    if($($event.target).prop('checked'))
+      Physician.addProcedure(procedureId);
+    else
+      Physician.removeProcedure(procedureId);
+
+    Physician.refresh();
   }
 
 }
@@ -120,17 +167,15 @@ function cityController($scope, $http, Procedure, City) {
     if(!cityExists)
       City.add($scope.newLocation,$scope.newLocationType,$scope.autoLocation);
     $scope.autoLocation = ''
-    Procedure.filter();
+    Procedure.filter($scope.cities);
   }
 }
 
 
-function physicianController($scope, $http) {
-  $scope.physicians = []
-  $http.get('/provider/').success(function(response) {
-    $scope.physicians = response;
-  });
+function physicianController($scope, $http, Physician) {
 
+  $scope.physicians = Physician.all;
+  
   $scope.flipGraph = function(index){
     $("#f"+index).toggleClass('hide');
     $("#b"+index).toggleClass('hide');
