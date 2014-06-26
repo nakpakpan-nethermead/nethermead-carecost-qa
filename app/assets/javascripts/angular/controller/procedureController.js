@@ -87,7 +87,8 @@ myApp.service('Physician',function($http){
 
   var refresh = function(fetch) {
     
-    physicians = []
+    physicians.splice(0,physicians.length);
+
     toSend["selectedPro"] = [];
     toSend['selectedPro'].push(phyProcedure);
 
@@ -103,26 +104,18 @@ myApp.service('Physician',function($http){
     });
   }
 
-  var addProcedure = function(pId){
-    phyProcedure.push(pId);
-  }
-
-  var removeProcedure = function(pId){
-    phyProcedure.splice( $.inArray(pId, phyProcedure), 1 );
-  }
-
+ 
   return {
     refresh: refresh,
-    all: physicians,
-    addProcedure: addProcedure,
-    removeProcedure: removeProcedure
+    all: physicians
   };
 })
 
-function conditionController($scope, $http, Procedure) {
+function conditionController($scope, $http, Procedure, Physician) {
   $scope.add = function() {
     Procedure.add($scope.newProcedure);
     $("#medicalCondition").val('');
+    Physician.refresh();
   }
 }
 
@@ -145,14 +138,14 @@ function procedureController($scope, $http, Procedure, City, Physician) {
     Procedure.filter($scope.cities);
   }
 
-  $scope.updatePhysician = function($event, procedureId){
-    if($($event.target).prop('checked'))
-      Physician.addProcedure(procedureId);
-    else
-      Physician.removeProcedure(procedureId);
+  // $scope.updatePhysician = function($event, procedureId){
+  //   if($($event.target).prop('checked'))
+  //     Physician.addProcedure(procedureId);
+  //   else
+  //     Physician.removeProcedure(procedureId);
 
-    Physician.refresh();
-  }
+  //   Physician.refresh();
+  // }
 
 }
 
@@ -172,9 +165,13 @@ function cityController($scope, $http, Procedure, City) {
 }
 
 
-function physicianController($scope, $http, Physician) {
+function physicianController($scope, $http, City, Physician, Procedure) {
 
-  $scope.physicians = Physician.all;
+  // Physician.refresh();
+  // $scope.physician = Physician;
+  // $scope.physicians = $scope.physician.all
+  $scope.physicians = Physician.all
+  $scope.procedures = Procedure.all
   
   $scope.flipGraph = function(index){
     $("#f"+index).toggleClass('hide');

@@ -148,7 +148,6 @@
         </tr>
         <tr ng-repeat="procedure in procedures track by $index">
           <td class="labs">
-            <input type="checkbox" ng-click="updatePhysician($event, procedure.id)" class="style-check" id="{{procedure.id}}" /> 
             <label for="{{procedure.id}}">{{ procedure.name }}</label>
           </td>
           <td>
@@ -275,12 +274,22 @@
   </div>
 
   <div class="physician-selection" ng-controller="physicianController">
-    <div class="selection-items">
+    <div ng-hide="physicians.length" class="noPhysician">
+      Please add some procedure.
+    </div>
+    <div class="selection-items" ng-show="physicians.length">
       <ul>
         <li>Quality of Care &nbsp;<i class="fa fa-caret-down"></i></li>
         <li>Location ( <span>10010</span> ) &nbsp;<i class="fa fa-caret-down"></i></li>
         <li>Cost &nbsp;<i class="fa fa-caret-down"></i></li>
         <li>Physician Name &nbsp;<i class="fa fa-caret-down"></i></li>
+        <li> 
+          <select name="" id="">
+            <option ng-repeat="procedure in procedures" value="{{procedure.id}}">
+              {{procedure.name}}
+            </option>
+          </select>
+        </li>
       </ul>
     </div>
     <div class="physician-list">
