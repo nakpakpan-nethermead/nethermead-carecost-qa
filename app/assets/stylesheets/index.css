@@ -4,8 +4,8 @@
 	height: auto !important;
 }
 .navbar-nav>li>a {
-	padding-top: 45px;
-	padding-bottom: 15px;
+	padding-top: 40px;
+	padding-bottom: 5px;
 }
 .navbar-brand{
 	font-size: 24px;
@@ -502,4 +502,9 @@ main{
 
 	#conditionSetting input {
 		margin-left: 10px;
+	}
+
+	#logOut {
+		margin: 0px 0px 0px 100px;
+		padding: 0px;
 	}

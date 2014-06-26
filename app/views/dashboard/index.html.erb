@@ -13,7 +13,13 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="user-email"><a href="#">demo@demo.com</a></li>
+          <li class="user-email">
+            <% if current_user %>
+            <a href="#"><%= current_user.email %> </a>
+            <a id="logOut" data-method="delete" href="/users/sign_out" rel="nofollow">Logout
+            </a>
+            <% end %>
+          </li>
           <li class="user-pic"><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
         </ul>
       </div>

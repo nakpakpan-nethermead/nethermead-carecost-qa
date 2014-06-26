@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140623163210) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "conditions", force: true do |t|
     t.text     "consumer_name"
     t.text     "clinical_name"
@@ -67,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140623163210) do
     t.string   "service_claim_line_number"
     t.integer  "provider_id"
     t.integer  "condition_procedure_id"
-    t.integer  "condition_procedure_type_id"
+    t.string   "condition_procedure_type_id"
     t.integer  "condition_icd_diagnosis_1_id"
     t.integer  "condition_icd_diagnosis_2_id"
     t.integer  "condition_icd_diagnosis_3_id"
@@ -82,23 +79,25 @@ ActiveRecord::Schema.define(version: 20140623163210) do
     t.integer  "condition_icd_procedure_6_id"
     t.integer  "service_charge"
     t.integer  "service_quantity"
-    t.text     "service_quantity_units"
-    t.text     "service_anesthesia_time"
-    t.text     "service_modifier_1"
-    t.text     "service_modifier_2"
-    t.text     "service_state"
-    t.text     "service_city"
+    t.string   "service_quantity_units"
+    t.string   "service_anesthesia_time"
+    t.integer  "service_modifier_1"
+    t.integer  "service_modifier_2"
+    t.string   "service_state"
+    t.string   "service_city"
     t.string   "service_zip_code"
     t.text     "service_specialty"
     t.text     "service_network_type"
-    t.string   "service_year_from"
-    t.string   "service_year_to"
-    t.text     "service_place"
-    t.text     "service_type"
-    t.text     "service_plan_type"
-    t.string   "patient_id"
+    t.integer  "service_year_from"
+    t.integer  "service_year_to"
+    t.string   "service_place"
+    t.string   "service_type"
+    t.string   "service_plan_type"
+    t.integer  "patient_id"
     t.string   "patient_year_of_birth"
     t.string   "patient_gender"
+    t.text     "plan_name"
+    t.text     "network_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140623163210) do
     t.text     "npi_surrogate"
     t.text     "first_name"
     t.text     "org_last_name"
-    t.text     "designations"
+    t.text     "designations",          limit: 255
     t.string   "img_url",               limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -128,5 +127,23 @@ ActiveRecord::Schema.define(version: 20140623163210) do
   end
 
   add_index "providers", ["id"], name: "index_providers_on_id", unique: true, using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  
   
   get "/dashboard/get_suggestions" => "dashboard#get_suggestions"
   get "/procedure/price/:id" => "procedure#price"
@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :procedure
   resources :provider
+  root 'dashboard#index'
+  devise_for :users
+
 end
