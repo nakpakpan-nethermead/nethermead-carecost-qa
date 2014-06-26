@@ -1,4 +1,4 @@
-﻿INSERT INTO diagnosis(id, short_name, full_name, codeset, code, condition_id) VALUES (711,'Abnormal Reaction Cardiac Cath','Cardiac Catheterization As The Cause Of Abnormal Reaction Of Patient Or Of Later Complication Without Misadventure At Time Of Procedure','ICD 9 CM','E879.',844);
+INSERT INTO diagnosis(id, short_name, full_name, codeset, code, condition_id) VALUES (711,'Abnormal Reaction Cardiac Cath','Cardiac Catheterization As The Cause Of Abnormal Reaction Of Patient Or Of Later Complication Without Misadventure At Time Of Procedure','ICD 9 CM','E879.',844);
 INSERT INTO diagnosis(id, short_name, full_name, codeset, code, condition_id) VALUES (1277,'Abscess Mediastinum','Abscess Of Mediastinum','ICD 9 CM','513.1',1427);
 INSERT INTO diagnosis(id, short_name, full_name, codeset, code, condition_id) VALUES (1336,'Abscess Of Lung And Mediastinum','Abscess Of Lung And Mediastinum','ICD 10 CM','J85',1486);
 INSERT INTO diagnosis(id, short_name, full_name, codeset, code, condition_id) VALUES (1337,'Abscess Of Lung And Mediastinum','Abscess Of Lung And Mediastinum','ICD 9 CM','513  ',1487);

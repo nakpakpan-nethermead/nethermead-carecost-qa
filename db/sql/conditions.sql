@@ -1,4 +1,4 @@
-﻿INSERT INTO conditions(id, consumer_name, clinical_name, condition_type, codeset, code) VALUES (202523,'Ultrasonic guidance for administration of radiation therapy','Ultrasonic guidance','procedure','CPT4','76950');
+INSERT INTO conditions(id, consumer_name, clinical_name, condition_type, codeset, code) VALUES (202523,'Ultrasonic guidance for administration of radiation therapy','Ultrasonic guidance','procedure','CPT4','76950');
 INSERT INTO conditions(id, consumer_name, clinical_name, condition_type, codeset, code) VALUES (202524,'Ultrasonic guidance for administration of radiation therapy','Ultrasonic guidance','procedure','CPT4','76965');
 INSERT INTO conditions(id, consumer_name, clinical_name, condition_type, codeset, code) VALUES (202660,'Ultrasonography Of Mediastinum','Ultrasonography Of Mediastinum','procedure','ICD 10 PCS','BB4CZZZ');
 INSERT INTO conditions(id, consumer_name, clinical_name, condition_type, codeset, code) VALUES (202672,'Ultrasonography Of Pediatric Heart','Ultrasonography Of Pediatric Heart','procedure','ICD 10 PCS','B24DZZZ');

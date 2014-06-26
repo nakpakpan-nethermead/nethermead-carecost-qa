@@ -1,4 +1,4 @@
-﻿INSERT INTO procedures(id, short_name, full_name, codeset, code, condition_id) VALUES (37,'Abdominal aspiration of fluid surrounding fetus for diagnosis','Diagnostic amniocentesis','CPT4','59000',474);
+INSERT INTO procedures(id, short_name, full_name, codeset, code, condition_id) VALUES (37,'Abdominal aspiration of fluid surrounding fetus for diagnosis','Diagnostic amniocentesis','CPT4','59000',474);
 INSERT INTO procedures(id, short_name, full_name, codeset, code, condition_id) VALUES (161,'Acellular Pericardial Tissue Matrix Of Non-Human Origin (Veritas), Per Square Centimeter','Acellular pericardial tissue matrix of non-human origin (Veritas), per square centimeter','HCPCS','C9354',2097);
 INSERT INTO procedures(id, short_name, full_name, codeset, code, condition_id) VALUES (164,'Acetate Concentrate Solution, For Hemodialysis, Per Gallon','Acetate concentrate solution, for hemodialysis, per gallon','HCPCS','A4708',2100);
 INSERT INTO procedures(id, short_name, full_name, codeset, code, condition_id) VALUES (169,'Acid Concentrate, Solution, For Hemodialysis, Per Gallon','Acid concentrate, solution, for hemodialysis, per gallon','HCPCS','A4709',2121);
