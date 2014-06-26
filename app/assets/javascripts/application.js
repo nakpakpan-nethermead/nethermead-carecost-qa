@@ -18,6 +18,7 @@
 //= require angular
 //= require dashboard
 //= require bootstrap.min
+//= require bootstrap-select.min
 
 $("document").ready(function(){
   $("[data-toggle=popover]").each(function () {

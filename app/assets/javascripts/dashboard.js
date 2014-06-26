@@ -82,4 +82,9 @@ $(document).ready(function(){
       $(".physician-details").height(maxHeight);
     });
   },300);
+
+  $('.selectpicker').selectpicker({
+    'selectedText': 'cat'
+  });
+  
 });

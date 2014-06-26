@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 # Heroku gem for deployment
 gem 'heroku', '3.7.3'
-gem 'rails4-autocomplete'
 
 
 # Authentication via Devise, https://github.com/plataformatec/devise
@@ -47,7 +46,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'pry'
 gem 'underscore-rails'
 gem 'angularjs-rails'
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

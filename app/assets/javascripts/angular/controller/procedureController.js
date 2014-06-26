@@ -114,6 +114,11 @@ myApp.service('Physician',function($http){
 function conditionController($scope, $http, Procedure, Physician) {
   $scope.add = function() {
     Procedure.add($scope.newProcedure);
+    
+    setTimeout(function() {
+      $('.selectpicker').selectpicker('refresh');
+    }, 100);
+
     $("#medicalCondition").val('');
     Physician.refresh();
   }
@@ -176,5 +181,9 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   $scope.flipGraph = function(index){
     $("#f"+index).toggleClass('hide');
     $("#b"+index).toggleClass('hide');
+  }
+
+  $scope.updatePhysician = function(){
+    alert('asds');
   }
 }
