@@ -279,10 +279,10 @@
 
 
   <div class="physician-selection" ng-controller="physicianController">
-    <div ng-hide="physicians.length" class="noPhysician">
+    <div ng-hide="noPhysician()" class="noPhysician">
       Please add some procedure.
     </div>
-    <div class="selection-items" ng-show="physicians.length">
+    <div class="selection-items" ng-show="noPhysician()">
       <ul>
         <li>Quality of Care &nbsp;<i class="fa fa-caret-down"></i></li>
         <li>Location ( <span>10010</span> ) &nbsp;<i class="fa fa-caret-down"></i></li>
@@ -297,8 +297,11 @@
         </li>
       </ul>
     </div>
-    <div class="physician-list">
-      <div class="physician-available">
+    <div class="physician-list" ng-show="noPhysician()">
+      <div ng-hide="physicians.length" class="noPhysician">
+        Now Physicians for currently chosed Procedure.
+      </div>
+      <div class="physician-available"  ng-show="physicians.length">
         <div class="row">
           <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians track by $index">
             <div class="physician-details" id="f{{$index}}">

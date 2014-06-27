@@ -82,15 +82,13 @@ myApp.service('City',function($http){
 
 myApp.service('Physician',function($http){
   var physicians = [];
-  var phyProcedure = [];
   var toSend = {};
 
   var refresh = function(fetch) {
     
     physicians.splice(0,physicians.length);
 
-    toSend["selectedPro"] = [];
-    toSend['selectedPro'].push(phyProcedure);
+    toSend['selectedPro'] = fetch;
 
     $http({
       url: '/provider/',
@@ -118,6 +116,9 @@ function conditionController($scope, $http, Procedure,City, Physician) {
     
     setTimeout(function() {
       $('.selectpicker').selectpicker('refresh');
+      if (Procedure.all.length == 1)
+        $('.selectpicker').selectpicker('val', Procedure.all[0])
+
       Procedure.filter($scope.cities);
     }, 100);
 
@@ -188,6 +189,13 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.updatePhysician = function(){
-    alert($scope.myphyPro);
+    Physician.refresh($scope.myphyPro);
+  }
+
+  $scope.noPhysician = function(){
+    if($scope.physicians.length == 0 && $scope.procedures.length == 0)
+      return 0;
+    else
+      return 1;
   }
 }
