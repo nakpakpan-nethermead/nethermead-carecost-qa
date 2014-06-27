@@ -626,7 +626,8 @@ button.ui-button::-moz-focus-inner {
 	font-size: .7em;
 	display: block;
 	border: 0;
-	background-position: 0 0;
+	background-position: 0 0; 
+        background: #C0C0C0;
 }
 
 /* For IE8 - See #6727 */
@@ -1142,6 +1143,7 @@ body .ui-tooltip {
 .ui-corner-left,
 .ui-corner-tl {
 	border-top-left-radius: 4px;
+        background: #000000;
 }
 .ui-corner-all,
 .ui-corner-top,
