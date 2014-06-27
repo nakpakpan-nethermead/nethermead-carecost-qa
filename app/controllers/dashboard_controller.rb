@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
     if(searchProcedure == 'true')
       result = Condition.joins(
                "INNER JOIN procedures on conditions.code = procedures.code 
-                where conditions.consumer_name LIKE '%#{params[:term]}%' AND conditions.condition_type='procedure' order by conditions.id")
+                where conditions.consumer_name ILIKE '%#{params[:term]}%' AND conditions.condition_type='procedure' order by conditions.id")
                 .select("conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name")
       result.each do |c|
         element = Hash.new
@@ -33,7 +33,7 @@ class DashboardController < ApplicationController
     if(searchDiagnosis == 'true')
       result = Condition.joins(
                "INNER JOIN diagnosis on conditions.code = diagnosis.code 
-                where conditions.consumer_name LIKE '%#{params[:term]}%' AND conditions.condition_type='diagnosis' order by conditions.id")
+                where conditions.consumer_name ILIKE '%#{params[:term]}%' AND conditions.condition_type='diagnosis' order by conditions.id")
                 .select("conditions.id,conditions.consumer_name, diagnosis.id AS d_id, diagnosis.short_name")
 
       result.each do |d|
