@@ -83,8 +83,8 @@ $(document).ready(function(){
     });
   },300);
 
-  $('.selectpicker').selectpicker({
-    'selectedText': 'cat'
-  });
+  // $('.selectpicker').selectpicker({
+  //   'selectedText': 'cat'
+  // });
   
 });

@@ -120,7 +120,9 @@ function conditionController($scope, $http, Procedure, Physician) {
     }, 100);
 
     $("#medicalCondition").val('');
-    Physician.refresh();
+    if (Physician.all.length == 0) {
+      Physician.refresh();
+    }
   }
 }
 
@@ -184,6 +186,6 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.updatePhysician = function(){
-    alert('asds');
+    alert($scope.myphyPro);
   }
 }

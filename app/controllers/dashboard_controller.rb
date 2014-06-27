@@ -1,8 +1,4 @@
 class DashboardController < ApplicationController
-	def index
-           session[:category]='-----'
-         end
-
 	def create
 		
 	end

@@ -151,7 +151,7 @@
             <label for="{{procedure.id}}">{{ procedure.name }}</label>
           </td>
           <td>
-            <select ng-model="procedures.current_network" ng-change="filter($index)" >
+            <select ng-model="procedure.current_network" ng-change="filter($index)" >
               <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
             </select>
           </td>
@@ -288,7 +288,7 @@
         <li>Cost &nbsp;<i class="fa fa-caret-down"></i></li>
         <li>Physician Name &nbsp;<i class="fa fa-caret-down"></i></li>
         <li> 
-          <select name="" id="" class="selectpicker" ng-change="updatePhysician()">
+          <select name="physicianProcedure" class="selectpicker"  ng-model="myphyPro" ng-change="updatePhysician()">
             <option ng-repeat="procedure in procedures" value="{{procedure.id}}">
               {{procedure.name}}
             </option>
@@ -301,7 +301,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians track by $index">
             <div class="physician-details" id="f{{$index}}">
-              <div class="row" >
+              <div class="row">
                 <div class="col-lg-4 details-col">
                   <div class="profile-pic">
                     <img src="/assets/{{physician.img_url}}">
