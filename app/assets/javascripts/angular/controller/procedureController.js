@@ -120,7 +120,7 @@ function conditionController($scope, $http, Procedure,City, Physician) {
         $('.selectpicker').selectpicker('val', Procedure.all[0])
 
       Procedure.filter($scope.cities);
-    }, 100);
+    }, 500);
 
     $("#medicalCondition").val('');
     
