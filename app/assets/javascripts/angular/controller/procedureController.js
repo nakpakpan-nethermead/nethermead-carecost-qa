@@ -111,18 +111,20 @@ myApp.service('Physician',function($http){
   };
 })
 
-function conditionController($scope, $http, Procedure, Physician) {
+function conditionController($scope, $http, Procedure,City, Physician) {
+  $scope.cities = City.all;
   $scope.add = function() {
     Procedure.add($scope.newProcedure);
     
     setTimeout(function() {
       $('.selectpicker').selectpicker('refresh');
+      Procedure.filter($scope.cities);
     }, 100);
 
     $("#medicalCondition").val('');
-    if (Physician.all.length == 0) {
+    
+    if (Physician.all.length == 0) 
       Physician.refresh();
-    }
   }
 }
 
@@ -165,7 +167,7 @@ function cityController($scope, $http, Procedure, City) {
         cityExists = true;
     });
     if(!cityExists)
-      City.add($scope.newLocation,$scope.newLocationType,$scope.autoLocation);
+      City.add($scope.newLocation,$scope.newLocationType,$scope.newLocationCategory);
     $scope.autoLocation = ''
     Procedure.filter($scope.cities);
   }
