@@ -20,11 +20,15 @@ myApp.service('Procedure',function($http){
     }
   }
 
-  var filter = function(cities) {
+  var filter = function(cities,index) {
     
     var toSend = {};
     toSend["procedures"] = [];
-    toSend["procedures"].push(procedures);
+    if(index == -1)
+      toSend["procedures"].push(procedures);
+    else
+      toSend["procedures"].push(procedures[index]);
+
     toSend["cities"] = [];
     toSend["cities"].push(cities);
     // toSend['current_facility'] = procedures[index].current_facility;
@@ -37,9 +41,12 @@ myApp.service('Procedure',function($http){
       method: 'GET',
       params: toSend
     }).success(function (result) {
+      console.log(result);
       for(i=0;i<procedures.length;i++) {
-        if(procedures[i].id == result[i].id){
-          procedures[i] = result[i];
+        for(j=0;j<result.length;j++) {
+          if(procedures[i].id == result[j].id){
+            procedures[i] = result[j];
+          }
         }
       }
     });
@@ -119,8 +126,8 @@ function conditionController($scope, $http, Procedure,City, Physician) {
       if (Procedure.all.length == 1)
         $('.selectpicker').selectpicker('val', Procedure.all[0])
 
-      Procedure.filter($scope.cities);
-    }, 100);
+      Procedure.filter($scope.cities,-1);
+    }, 500);
 
     $("#medicalCondition").val('');
     
@@ -145,7 +152,7 @@ function procedureController($scope, $http, Procedure, City, Physician) {
   }
 
   $scope.filter = function(index){
-    Procedure.filter($scope.cities);
+    Procedure.filter($scope.cities,index);
   }
 
   // $scope.updatePhysician = function($event, procedureId){
@@ -170,7 +177,7 @@ function cityController($scope, $http, Procedure, City) {
     if(!cityExists)
       City.add($scope.newLocation,$scope.newLocationType,$scope.newLocationCategory);
     $scope.autoLocation = ''
-    Procedure.filter($scope.cities);
+    Procedure.filter($scope.cities,-1);
   }
 }
 

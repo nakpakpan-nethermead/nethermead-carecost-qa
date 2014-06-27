@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
     end
 
 
-    result = Procedure.where("short_name LIKE '%#{params[:term]}%'")
+    result = Procedure.where("short_name ILIKE '%#{params[:term]}%'")
     result.each do |p|
       element = Hash.new
       if p.full_name != ''

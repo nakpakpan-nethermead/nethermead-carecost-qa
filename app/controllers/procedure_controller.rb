@@ -7,9 +7,14 @@ class ProcedureController < ApplicationController
       procedures = JSON.parse(params['procedures'])
       cities = JSON.parse(params['cities'])
       dataBack = []
-
+      
+      #If HASH , TODO : Proper Check
+      if procedures[0].nil?
+        p = procedures
+        procedures = []
+        procedures << p
+      end
       procedures.each do |procedure|
-
         sendBack = Hash.new
         sendBack["id"] = procedure["id"]
         sendBack["name"] = procedure["name"]
