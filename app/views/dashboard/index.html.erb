@@ -336,7 +336,14 @@
                 </div>
               </div>
               <div class="physician-map">
-                <img src="/assets/map.png">
+                <gm-map 
+                gm-map-id="'myMap'" 
+                gm-center="physician.locate"
+                gm-zoom="zoom" 
+                gm-bounds="bounds" 
+                gm-map-type-id="mapTypeId" 
+                style="width:368px;height:300px;">
+                </gm-map>
               </div>
             </div> <!-- physician details -->
             <div class="physician-details performance-info hide" id="b{{$index}}">
@@ -373,3 +380,4 @@
   <!-- Recommended Physicians -->
 </main>
 
+<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>

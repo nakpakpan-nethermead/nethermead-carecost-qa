@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',[]);
+var myApp = angular.module('myApp',['AngularGM']);
 
 myApp.service('Procedure',function($http){
   var procedures = [];
@@ -103,9 +103,20 @@ myApp.service('Physician',function($http){
       params: toSend
     }).success(function (response) {
       $.each(response, function(index, value){
+
+        // var geocoder = new google.maps.Geocoder();
+        // // { 'address': value.provider_address }, 
+        // geocoder.geocode(
+        //   { 'address': "Perundurai , Erode, India" }, 
+        //   function (results, status) {
+        //     if (status == google.maps.GeocoderStatus.OK) {
+        //       var loc = results[0].geometry.location;
+        //       value.locate = { 'lat': loc.lat(), 'lng': loc.lng() };
+        //       physicians.push(value);
+        //     }
+        //   });
         physicians.push(value);
       });
-      console.log(physicians);
     });
   }
 

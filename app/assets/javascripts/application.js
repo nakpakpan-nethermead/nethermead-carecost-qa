@@ -16,6 +16,7 @@
 //= require jquery.ui.slider
 //= require underscore
 //= require angular
+//= require angular/directives/angular-gm.min
 //= require dashboard
 //= require bootstrap.min
 //= require bootstrap-select.min
