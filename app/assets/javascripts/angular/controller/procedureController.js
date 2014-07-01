@@ -206,4 +206,18 @@ function physicianController($scope, $http, City, Physician, Procedure) {
     else
       return 1;
   }
+
+  $scope.sortPhysic = function(sortOn){
+    if ($scope.column == '') {
+      $scope.column = 'first_name'
+      $scope.descending = false;
+    }
+
+    if ($scope.column == sortOn) {
+        $scope.descending = !$scope.descending;
+    } else {
+        $scope.column = sortOn;
+        $scope.descending = false;
+    }
+  }
 }
