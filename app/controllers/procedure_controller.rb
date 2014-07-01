@@ -7,9 +7,14 @@ class ProcedureController < ApplicationController
       procedures = JSON.parse(params['procedures'])
       cities = JSON.parse(params['cities'])
       dataBack = []
-
+      
+      #If HASH , TODO : Proper Check
+      if procedures[0].nil?
+        p = procedures
+        procedures = []
+        procedures << p
+      end
       procedures.each do |procedure|
-
         sendBack = Hash.new
         sendBack["id"] = procedure["id"]
         sendBack["name"] = procedure["name"]
@@ -20,7 +25,18 @@ class ProcedureController < ApplicationController
       
 
         sendBack["charge"] = []
-        sendBack["charge"] << procedure["charge"][0]
+
+        charges = ProviderCharge
+            .where(:condition_procedure_id => procedure["id"], 
+                   :service_network_type => procedure["current_network"] , 
+                   :service_place => procedure["current_facility"])
+            .order(:service_charge)
+
+        if (charges[0])
+          sendBack["charge"] << charges[0].service_charge
+        else
+          sendBack["charge"] << 0
+        end
 
         cities.each do |city|
           charges = ProviderCharge
@@ -92,7 +108,7 @@ class ProcedureController < ApplicationController
 
     condition_array = Array.new
 
-    pincodes = ProviderCharge.where("service_zip_code LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
+    pincodes = ProviderCharge.where("service_zip_code ILIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
     pincodes.each do |c|
       element = Hash.new
       element[:category] = "ZipCode"
@@ -102,7 +118,7 @@ class ProcedureController < ApplicationController
       condition_array << element
     end
 
-    cities = ProviderCharge.where("service_city LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
+    cities = ProviderCharge.where("service_city ILIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
     cities.each do |c|
       element = Hash.new
       element[:category] = "City"
@@ -112,7 +128,7 @@ class ProcedureController < ApplicationController
       condition_array << element
     end
 
-    states = ProviderCharge.where("service_state LIKE '%#{params[:term]}%'").limit(10).select(:service_state)
+    states = ProviderCharge.where("service_state ILIKE '%#{params[:term]}%'").limit(10).select(:service_state)
     states.each do |c|
       element = Hash.new
       element[:category] = "State"

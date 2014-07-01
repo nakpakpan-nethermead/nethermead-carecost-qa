@@ -58,8 +58,12 @@ $(document).ready(function(){
       select: function( event, ui ) {
         $("#newLocation").val(ui.item.id);
         $("#newLocationType").val(ui.item.originalCat);
+        if (ui.item.category == "ZipCode")
+          ui.item.category = 'City'
+        $("#newLocationCategory").val(ui.item.category);
         $("#newLocation").trigger('input');
         $("#newLocationType").trigger('input');
+        $("#newLocationCategory").trigger('input');
       }
     });
 
@@ -83,8 +87,8 @@ $(document).ready(function(){
     });
   },300);
 
-  $('.selectpicker').selectpicker({
-    'selectedText': 'cat'
-  });
+  // $('.selectpicker').selectpicker({
+  //   'selectedText': 'cat'
+  // });
   
 });

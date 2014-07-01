@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',[]);
+var myApp = angular.module('myApp',['AngularGM']);
 
 myApp.service('Procedure',function($http){
   var procedures = [];
@@ -20,11 +20,15 @@ myApp.service('Procedure',function($http){
     }
   }
 
-  var filter = function(cities) {
+  var filter = function(cities,index) {
     
     var toSend = {};
     toSend["procedures"] = [];
-    toSend["procedures"].push(procedures);
+    if(index == -1)
+      toSend["procedures"].push(procedures);
+    else
+      toSend["procedures"].push(procedures[index]);
+
     toSend["cities"] = [];
     toSend["cities"].push(cities);
     // toSend['current_facility'] = procedures[index].current_facility;
@@ -37,9 +41,12 @@ myApp.service('Procedure',function($http){
       method: 'GET',
       params: toSend
     }).success(function (result) {
+      console.log(result);
       for(i=0;i<procedures.length;i++) {
-        if(procedures[i].id == result[i].id){
-          procedures[i] = result[i];
+        for(j=0;j<result.length;j++) {
+          if(procedures[i].id == result[j].id){
+            procedures[i] = result[j];
+          }
         }
       }
     });
@@ -82,15 +89,13 @@ myApp.service('City',function($http){
 
 myApp.service('Physician',function($http){
   var physicians = [];
-  var phyProcedure = [];
   var toSend = {};
 
   var refresh = function(fetch) {
     
     physicians.splice(0,physicians.length);
 
-    toSend["selectedPro"] = [];
-    toSend['selectedPro'].push(phyProcedure);
+    toSend['selectedPro'] = fetch;
 
     $http({
       url: '/provider/',
@@ -98,9 +103,20 @@ myApp.service('Physician',function($http){
       params: toSend
     }).success(function (response) {
       $.each(response, function(index, value){
+
+        // var geocoder = new google.maps.Geocoder();
+        // // { 'address': value.provider_address }, 
+        // geocoder.geocode(
+        //   { 'address': "Perundurai , Erode, India" }, 
+        //   function (results, status) {
+        //     if (status == google.maps.GeocoderStatus.OK) {
+        //       var loc = results[0].geometry.location;
+        //       value.locate = { 'lat': loc.lat(), 'lng': loc.lng() };
+        //       physicians.push(value);
+        //     }
+        //   });
         physicians.push(value);
       });
-      console.log(physicians);
     });
   }
 
@@ -111,16 +127,24 @@ myApp.service('Physician',function($http){
   };
 })
 
-function conditionController($scope, $http, Procedure, Physician) {
+function conditionController($scope, $http, Procedure,City, Physician) {
+  $scope.cities = City.all;
   $scope.add = function() {
     Procedure.add($scope.newProcedure);
     
     setTimeout(function() {
       $('.selectpicker').selectpicker('refresh');
-    }, 100);
+      if (Procedure.all.length == 1)
+        $('.selectpicker').selectpicker('val', Procedure.all[0])
+
+      Procedure.filter($scope.cities,-1);
+
+    }, 500);
 
     $("#medicalCondition").val('');
-    Physician.refresh();
+    
+    if (Physician.all.length == 0) 
+      Physician.refresh();
   }
 }
 
@@ -140,7 +164,7 @@ function procedureController($scope, $http, Procedure, City, Physician) {
   }
 
   $scope.filter = function(index){
-    Procedure.filter($scope.cities);
+    Procedure.filter($scope.cities,index);
   }
 
   // $scope.updatePhysician = function($event, procedureId){
@@ -163,9 +187,9 @@ function cityController($scope, $http, Procedure, City) {
         cityExists = true;
     });
     if(!cityExists)
-      City.add($scope.newLocation,$scope.newLocationType,$scope.autoLocation);
+      City.add($scope.newLocation,$scope.newLocationType,$scope.newLocationCategory);
     $scope.autoLocation = ''
-    Procedure.filter($scope.cities);
+    Procedure.filter($scope.cities,-1);
   }
 }
 
@@ -184,6 +208,27 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.updatePhysician = function(){
-    alert('asds');
+    Physician.refresh($scope.myphyPro);
+  }
+
+  $scope.noPhysician = function(){
+    if($scope.physicians.length == 0 && $scope.procedures.length == 0)
+      return 0;
+    else
+      return 1;
+  }
+
+  $scope.sortPhysic = function(sortOn){
+    if ($scope.column == '') {
+      $scope.column = 'first_name'
+      $scope.descending = false;
+    }
+
+    if ($scope.column == sortOn) {
+        $scope.descending = !$scope.descending;
+    } else {
+        $scope.column = sortOn;
+        $scope.descending = false;
+    }
   }
 }

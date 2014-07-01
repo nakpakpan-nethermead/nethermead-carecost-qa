@@ -626,7 +626,7 @@ button.ui-button::-moz-focus-inner {
 	font-size: .7em;
 	display: block;
 	border: 0;
-	background-position: 0 0;
+	background-position: 0 0; 
 }
 
 /* For IE8 - See #6727 */

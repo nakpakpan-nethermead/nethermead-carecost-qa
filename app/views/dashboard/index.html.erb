@@ -47,8 +47,8 @@
       MY MEDICAL CONDITIONS
     </div>
     <div class="menu-icon-2" id="conditionSetting">
-      <input type="checkbox" name="searchDiagnosis" id="searchDiagnosis"> Diagnosis
-      <input type="checkbox" name="searchProcedure" id="searchProcedure"> Procedure
+      <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis"> Diagnosis
+      <input type="checkbox" checked name="searchProcedure" id="searchProcedure"> Procedure
     </div>
   </div>
   <div class="search-bar" ng-controller="conditionController">
@@ -133,6 +133,7 @@
       <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
       <input ng-show="0" id="newLocation" ng-model="newLocation">
       <input ng-show="0" id="newLocationType" ng-model="newLocationType">
+      <input ng-show="0" id="newLocationCategory" ng-model="newLocationCategory">
       <input type="submit" value="+" ng-click="add()">
     </div>
   </div>
@@ -151,7 +152,7 @@
             <label for="{{procedure.id}}">{{ procedure.name }}</label>
           </td>
           <td>
-            <select ng-model="procedures.current_network" ng-change="filter($index)" >
+            <select ng-model="procedure.current_network" ng-change="filter($index)" >
               <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
             </select>
           </td>
@@ -167,7 +168,7 @@
           <tr>
             <th class="avg-cost-heading">Average Cost</th>
             <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
-               {{city.data}},{{city.dataDisType}}
+               {{city.dataDisType}} : {{city.data}}
               <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
             </th>
           </tr>
@@ -278,40 +279,33 @@
 
 
   <div class="physician-selection" ng-controller="physicianController">
-    <div ng-hide="physicians.length" class="noPhysician">
+    <div ng-hide="noPhysician()" class="noPhysician">
       Please add some procedure.
     </div>
-    <div class="selection-items" ng-show="physicians.length">
+    <div class="selection-items" ng-show="noPhysician()">
       <ul>
-        <li>Quality of Care &nbsp;<i class="fa fa-caret-down"></i></li>
-        <li>Location ( <span>10010</span> ) &nbsp;<i class="fa fa-caret-down"></i></li>
-        <li>Cost &nbsp;<i class="fa fa-caret-down"></i></li>
-        <li>Physician Name &nbsp;<i class="fa fa-caret-down"></i></li>
+        <li>Quality of Care &nbsp;<i class="fa fa-caret-down" ng-click="sortPhysic('')"></i></li>
+        <li>Location ( <span>10010</span> ) &nbsp;<i ng-click="sortPhysic('')" class="fa fa-caret-down"></i></li>
+        <li>Cost &nbsp;<i class="fa fa-caret-down" ng-click="sortPhysic('')"></i></li>
+        <li>Physician Name &nbsp;<i ng-click="sortPhysic('first_name')" class="fa fa-caret-down"></i></li>
         <li> 
-          <select name="" id="" class="selectpicker" data-live-search="true" ng-change="updatePhysician()">
+          <select name="physicianProcedure" class="selectpicker"  ng-model="myphyPro" ng-change="updatePhysician()">
             <option ng-repeat="procedure in procedures" value="{{procedure.id}}">
               {{procedure.name}}
             </option>
           </select>
         </li>
-        <li class="dropdown">
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Messages <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-              <li><a href="#">Inbox</a></li>
-              <li><a href="#">Drafts</a></li>
-              <li><a href="#">Sent Items</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Trash</a></li>
-          </ul>
-        </li>
       </ul>
     </div>
-    <div class="physician-list">
-      <div class="physician-available">
+    <div class="physician-list" ng-show="noPhysician()">
+      <div ng-hide="physicians.length" class="noPhysician">
+        Now Physicians for currently chosed Procedure.
+      </div>
+      <div class="physician-available"  ng-show="physicians.length">
         <div class="row">
-          <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians track by $index">
+          <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians | orderBy:column:descending track by $index ">
             <div class="physician-details" id="f{{$index}}">
-              <div class="row" >
+              <div class="row">
                 <div class="col-lg-4 details-col">
                   <div class="profile-pic">
                     <img src="/assets/{{physician.img_url}}">
@@ -342,7 +336,14 @@
                 </div>
               </div>
               <div class="physician-map">
-                <img src="/assets/map.png">
+                <gm-map 
+                gm-map-id="'myMap'" 
+                gm-center="physician.locate"
+                gm-zoom="zoom" 
+                gm-bounds="bounds" 
+                gm-map-type-id="mapTypeId" 
+                style="width:368px;height:300px;">
+                </gm-map>
               </div>
             </div> <!-- physician details -->
             <div class="physician-details performance-info hide" id="b{{$index}}">
@@ -379,3 +380,4 @@
   <!-- Recommended Physicians -->
 </main>
 
+<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>

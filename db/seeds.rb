@@ -1,9 +1,9 @@
-def insertDatafor(file,connection)
+def insertDatafor(file)
   fileName = "db/sql/#{file}.sql"
   sql = File.read(fileName)
   statements = sql.split(/;$/)
   statements.pop
-
+  connection = ActiveRecord::Base.connection
   ActiveRecord::Base.transaction do
     statements.each do |statement|
       connection.execute(statement)
@@ -12,14 +12,14 @@ def insertDatafor(file,connection)
 end
 
 unless Rails.env.production?
-  connection = ActiveRecord::Base.connection
-  connection.tables.each do |table|
-    connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
-  end
+  
+  # connection.tables.each do |table|
+  #   connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
+  # end
 
-  insertDatafor('providers',connection);
-  insertDatafor('conditions',connection);
-  insertDatafor('diagnosis',connection);
-  insertDatafor('procedures',connection);
-  insertDatafor('provider_charges',connection);
+  # insertDatafor('conditions',connection)
+  # insertDatafor('providers',connection)
+  # insertDatafor('diagnosis')
+  # insertDatafor('procedures',connection)
+  # insertDatafor('provider_charges',connection)
 end
