@@ -284,13 +284,23 @@
     </div>
     <div class="selection-items" ng-show="noPhysician()">
       <ul>
-        <li>Quality of Care &nbsp;<i class="fa fa-caret-down" ng-click="sortPhysic('')"></i></li>
-        <li>Location ( <span>10010</span> ) &nbsp;<i ng-click="sortPhysic('')" class="fa fa-caret-down"></i></li>
-        <li>Cost &nbsp;<i class="fa fa-caret-down" ng-click="sortPhysic('')"></i></li>
-        <li>Physician Name &nbsp;<i ng-click="sortPhysic('first_name')" class="fa fa-caret-down"></i></li>
+        <li ng-click="sortPhysic('')">
+          Quality of Care &nbsp;
+          <i class="fa fa-caret-down"></i>
+        </li>
+        <li ng-click="sortPhysic('')">
+          Location ( <span>10010</span> ) &nbsp;
+          <i class="fa fa-caret-down"></i>
+        </li>
+        <li ng-click="sortPhysic('')">
+          Cost &nbsp;<i class="fa fa-caret-down"></i>
+        </li>
+        <li ng-click="sortPhysic('first_name')">
+          Physician Name &nbsp;<i class="fa fa-caret-down"></i>
+        </li>
         <li> 
-          <select name="physicianProcedure" class="selectpicker"  ng-model="myphyPro" ng-change="updatePhysician()">
-            <option ng-repeat="procedure in procedures" value="{{procedure.id}}">
+          <select name="physicianProcedure" class="selectpicker"  ng-model="myphyPro" ng-change="updatePhysician()" ng-options="item.ID as item.Title for procedure in procedures">
+            <option value="{{procedure.id}}">
               {{procedure.name}}
             </option>
           </select>
@@ -335,7 +345,7 @@
                   </div>
                 </div>
               </div>
-              <div class="physician-map">
+             <!--  <div class="physician-map">
                 <gm-map 
                 gm-map-id="'myMap'" 
                 gm-center="physician.locate"
@@ -344,7 +354,7 @@
                 gm-map-type-id="mapTypeId" 
                 style="width:368px;height:300px;">
                 </gm-map>
-              </div>
+              </div> -->
             </div> <!-- physician details -->
             <div class="physician-details performance-info hide" id="b{{$index}}">
               <div class="row">
