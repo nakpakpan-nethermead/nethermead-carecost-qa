@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623163210) do
+ActiveRecord::Schema.define(version: 20140628110836) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "conditions", force: true do |t|
     t.text     "consumer_name"
@@ -79,25 +82,23 @@ ActiveRecord::Schema.define(version: 20140623163210) do
     t.integer  "condition_icd_procedure_6_id"
     t.integer  "service_charge"
     t.integer  "service_quantity"
-    t.string   "service_quantity_units"
-    t.string   "service_anesthesia_time"
-    t.integer  "service_modifier_1"
-    t.integer  "service_modifier_2"
-    t.string   "service_state"
-    t.string   "service_city"
+    t.text     "service_quantity_units"
+    t.text     "service_anesthesia_time"
+    t.text     "service_modifier_1"
+    t.text     "service_modifier_2"
+    t.text     "service_state"
+    t.text     "service_city"
     t.string   "service_zip_code"
     t.text     "service_specialty"
     t.text     "service_network_type"
-    t.integer  "service_year_from"
-    t.integer  "service_year_to"
-    t.string   "service_place"
-    t.string   "service_type"
-    t.string   "service_plan_type"
-    t.integer  "patient_id"
+    t.string   "service_year_from"
+    t.string   "service_year_to"
+    t.text     "service_place"
+    t.text     "service_type"
+    t.text     "service_plan_type"
+    t.string   "patient_id"
     t.string   "patient_year_of_birth"
     t.string   "patient_gender"
-    t.text     "plan_name"
-    t.text     "network_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,7 +110,7 @@ ActiveRecord::Schema.define(version: 20140623163210) do
     t.text     "npi_surrogate"
     t.text     "first_name"
     t.text     "org_last_name"
-    t.text     "designations",          limit: 255
+    t.text     "designations"
     t.string   "img_url",               limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
