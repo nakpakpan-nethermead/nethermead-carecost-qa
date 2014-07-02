@@ -135,22 +135,33 @@ myApp.service('Physician',function($http){
 function conditionController($scope, $http, Procedure,City, Physician) {
   $scope.cities = City.all;
   $scope.add = function() {
-
-    Procedure.add($scope.newProcedure);
+    console.log($scope.newProcedure);
     
-    setTimeout(function() {
-
-      Procedure.filter($scope.cities,-1);
+    if($scope.newProcedure !== undefined){
+    
+      $("#procedure-btn").html("Added succesfully!")
       
-      if (Procedure.all.length == 1)
-        Physician.myphyPro = Procedure.all[0]
+      setTimeout(function() {
+        $("#procedure-btn").html("Add procedure")
+      },4000);
+    
 
-      if (Physician.all.length == 0) 
-        Physician.refresh($scope.newProcedure)
+      Procedure.add($scope.newProcedure);
+    
+      setTimeout(function() {
 
-    }, 500);
+        Procedure.filter($scope.cities,-1);
+        
+        if (Procedure.all.length == 1)
+          Physician.myphyPro = Procedure.all[0]
 
-    $("#medicalCondition").tokenInput("clear");
+        if (Physician.all.length == 0) 
+          Physician.refresh($scope.newProcedure)
+
+      }, 500);
+
+      $("#medicalCondition").tokenInput("clear");
+    }
   }
 }
 
