@@ -47,13 +47,12 @@
       MY MEDICAL CONDITIONS
     </div>
     <div class="menu-icon-2" id="conditionSetting">
-      <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis"> Diagnosis
-      <input type="checkbox" checked name="searchProcedure" id="searchProcedure"> Procedure
+      <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis" class="conditionSearchIn"> Diagnosis
+      <input type="checkbox" checked name="searchProcedure" id="searchProcedure" class="conditionSearchIn"> Procedure
     </div>
   </div>
   <div class="search-bar" ng-controller="conditionController">
-    <input id="medicalCondition" class="selectpicker" multiple placeholder="Type your Condition" />
-    <input ng-show="0" id="procedureId" ng-model="newProcedure">
+    <input id="medicalCondition" ng-model="newProcedure" placeholder="Type your Condition" />
     <button class="btn btn-success" id="procedure-btn" ng-click="add()">Add Procedure</button>
   </div> <!-- My medical conditions -->
 

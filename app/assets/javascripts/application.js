@@ -13,11 +13,13 @@
 //= require jquery.min
 //= require jquery_ujs
 //= require jquery.ui.slider
+//= require jquery.ui.autocomplete
 //= require underscore
 //= require angular
 //= require angular/directives/angular-gm.min
 //= require dashboard
 //= require bootstrap.min
+//= require jquery.tokeninput
 
 
 $("document").ready(function(){
