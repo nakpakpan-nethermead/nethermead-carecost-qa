@@ -10,16 +10,15 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// require jquery
+//= require jquery.min
 //= require jquery_ujs
-//= require jquery.ui.autocomplete
 //= require jquery.ui.slider
 //= require underscore
 //= require angular
 //= require angular/directives/angular-gm.min
 //= require dashboard
 //= require bootstrap.min
-//= require bootstrap-select.min
+
 
 $("document").ready(function(){
   $("[data-toggle=popover]").each(function () {

@@ -28,53 +28,65 @@ $(document).ready(function(){
     $(this).next().slider("value", parseInt(value));
   });
 
-  $.widget( "custom.catcomplete", $.ui.autocomplete, {
-    _renderMenu: function( ul, items ) {
-      var that = this,
-        currentCategory = "";
-      $.each( items, function( index, item ) {
-        if ( item.category != currentCategory ) {
-          ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-          currentCategory = item.category;
-        }
-        that._renderItemData( ul, item );
-      });
-    }
-  });
+  // $.widget( "custom.catcomplete", $.ui.autocomplete, {
+  //   _renderMenu: function( ul, items ) {
+  //     var that = this,
+  //       currentCategory = "";
+  //     $.each( items, function( index, item ) {
+  //       if ( item.category != currentCategory ) {
+  //         ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+  //         currentCategory = item.category;
+  //       }
+  //       that._renderItemData( ul, item );
+  //     });
+  //   }
+  // });
 
-  $( "#medicalCondition" ).catcomplete({
-      source: function( request, response ) {
-        $.getJSON( "/dashboard/get_suggestions", {
-          term: request.term,
-          diagnosis: $("#searchDiagnosis").is(':checked'),
-          procedure: $("#searchProcedure").is(':checked')
-        }, response );
-      },
-      minLength: 3,
-      select: function( event, ui ) {
-        $("#procedureId").val(ui.item.id);
-        $("#procedureId").trigger('input');
-      }
-    });
+    // $('#medicalCondition').autocomplete({
+    //     source: function( request, response ) {
+    //     $.getJSON( "/dashboard/get_suggestions", {
+    //       term: request.term,
+    //       diagnosis: $("#searchDiagnosis").is(':checked'),
+    //       procedure: $("#searchProcedure").is(':checked')
+    //     }, response );
+    //   },
+    //   multiselect: true
+    // });
 
-  $( "#cityComplete" ).catcomplete({
-      source: function( request, response ) {
-        $.getJSON( "/procedure/get_city_suggestions", {
-          term: request.term
-        }, response );
-      },
-      minLength: 2,
-      select: function( event, ui ) {
-        $("#newLocation").val(ui.item.id);
-        $("#newLocationType").val(ui.item.originalCat);
-        if (ui.item.category == "ZipCode")
-          ui.item.category = 'City'
-        $("#newLocationCategory").val(ui.item.category);
-        $("#newLocation").trigger('input');
-        $("#newLocationType").trigger('input');
-        $("#newLocationCategory").trigger('input');
-      }
-    });
+  // $( "#medicalCondition" ).catcomplete({
+  //     source: function( request, response ) {
+  //       $.getJSON( "/dashboard/get_suggestions", {
+  //         term: request.term,
+  //         diagnosis: $("#searchDiagnosis").is(':checked'),
+  //         procedure: $("#searchProcedure").is(':checked')
+  //       }, response );
+  //     },
+  //     multiselect: true,
+  //     minLength: 3,
+  //     select: function( event, ui ) {
+  //       // $("#procedureId").val(ui.item.id);
+  //       // $("#procedureId").trigger('input');
+  //     }
+  //   });
+
+  // $( "#cityComplete" ).catcomplete({
+  //     source: function( request, response ) {
+  //       $.getJSON( "/procedure/get_city_suggestions", {
+  //         term: request.term
+  //       }, response );
+  //     },
+  //     minLength: 2,
+  //     select: function( event, ui ) {
+  //       $("#newLocation").val(ui.item.id);
+  //       $("#newLocationType").val(ui.item.originalCat);
+  //       if (ui.item.category == "ZipCode")
+  //         ui.item.category = 'City'
+  //       $("#newLocationCategory").val(ui.item.category);
+  //       $("#newLocation").trigger('input');
+  //       $("#newLocationType").trigger('input');
+  //       $("#newLocationCategory").trigger('input');
+  //     }
+  //   });
 
   $(".procedureView").click(function(){
     $(".procedureLayout").hide();
