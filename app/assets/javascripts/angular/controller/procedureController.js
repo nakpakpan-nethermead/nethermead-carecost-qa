@@ -134,17 +134,13 @@ function conditionController($scope, $http, Procedure,City, Physician) {
     Procedure.add($scope.newProcedure);
     
     setTimeout(function() {
-      $('.selectpicker').selectpicker('refresh');
-
       Procedure.filter($scope.cities,-1);
       
       if (Procedure.all.length == 1)
-        $('.selectpicker').selectpicker('val', Procedure.all[0])
+        Physician.myphyPro = Procedure.all[0]
 
       if (Physician.all.length == 0) 
-        Physician.refresh($scope.newProcedure).then(function(){
-          alert('Physician Refresh done');
-        });
+        Physician.refresh($scope.newProcedure)
 
     }, 500);
 

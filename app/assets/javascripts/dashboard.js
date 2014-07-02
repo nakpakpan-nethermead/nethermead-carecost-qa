@@ -14,9 +14,18 @@ $(document).ready(function(){
         } else {
           value = $(event.target).attr("prefix")+ui.value;
         }
-        $(event.target).prev().html(value);
+        $(event.target).prev().val(value);
       }
     });
+  });
+
+  $(".amount").keyup(function(){
+    if($(this).attr('prefix') == '%')
+      var value = this.value.substring(0,this.value.length-1);
+    else
+      var value = this.value.substring(1);
+    console.log(value);
+    $(this).next().slider("value", parseInt(value));
   });
 
   $.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -87,8 +96,4 @@ $(document).ready(function(){
     });
   },300);
 
-  // $('.selectpicker').selectpicker({
-  //   'selectedText': 'cat'
-  // });
-  
 });

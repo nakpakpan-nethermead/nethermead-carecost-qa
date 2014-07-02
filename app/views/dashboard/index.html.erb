@@ -52,7 +52,7 @@
     </div>
   </div>
   <div class="search-bar" ng-controller="conditionController">
-    <input id="medicalCondition" placeholder="Type your Condition" />
+    <input id="medicalCondition" class="selectpicker" multiple placeholder="Type your Condition" />
     <input ng-show="0" id="procedureId" ng-model="newProcedure">
     <button class="btn btn-success" id="procedure-btn" ng-click="add()">Add Procedure</button>
   </div> <!-- My medical conditions -->
@@ -73,9 +73,7 @@
           <div class="title">
             Total Deductible
           </div>
-          <div class="amount">
-            $0
-          </div>
+          <input class="amount" value="$0">
           <div class="slider-range" max="10000" prefix="$">
           </div>
         </div>
@@ -85,9 +83,7 @@
           <div class="title">
             Deductible Paid-To-Date
           </div>
-          <div class="amount">
-            $0
-          </div>
+          <input class="amount" value="$0">
           <div class="slider-range" max="10000" prefix="$">
           </div>
         </div>
@@ -97,9 +93,7 @@
           <div class="title">
             Copay
           </div>
-          <div class="amount">
-            $0
-          </div>
+          <input class="amount" value="$0">
           <div class="slider-range" max="100" prefix="$">
           </div>
         </div>
@@ -109,9 +103,7 @@
           <div class="title">
             Coinsurance
           </div>
-          <div class="amount">
-            0%
-          </div>
+          <input class="amount" value="0%" prefix="%">
           <div class="slider-range" max="100" prefix="%">
           </div>
         </div>
@@ -274,10 +266,6 @@
     </div>
   </div>
 
-
-
-
-
   <div class="physician-selection" ng-controller="physicianController">
     <div ng-hide="noPhysician()" class="noPhysician">
       Please add some procedure.
@@ -299,17 +287,14 @@
           Physician Name &nbsp;<i class="fa fa-caret-down"></i>
         </li>
         <li> 
-          <select name="physicianProcedure" class="selectpicker"  ng-model="myphyPro" ng-change="updatePhysician()" ng-options="item.ID as item.Title for procedure in procedures">
-            <option value="{{procedure.id}}">
-              {{procedure.name}}
-            </option>
+          <select ng-init="myphyPro = procedures[0]" ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure">
           </select>
         </li>
       </ul>
     </div>
     <div class="physician-list" ng-show="noPhysician()">
       <div ng-hide="physicians.length" class="noPhysician">
-        Now Physicians for currently chosed Procedure.
+        No Physicians for currently chosed Procedure.
       </div>
       <div class="physician-available"  ng-show="physicians.length">
         <div class="row">
