@@ -47,13 +47,12 @@
       MY MEDICAL CONDITIONS
     </div>
     <div class="menu-icon-2" id="conditionSetting">
-      <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis"> Diagnosis
-      <input type="checkbox" checked name="searchProcedure" id="searchProcedure"> Procedure
+      <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis" class="conditionSearchIn"> Diagnosis
+      <input type="checkbox" checked name="searchProcedure" id="searchProcedure" class="conditionSearchIn"> Procedure
     </div>
   </div>
   <div class="search-bar" ng-controller="conditionController">
-    <input id="medicalCondition" class="selectpicker" multiple placeholder="Type your Condition" />
-    <input ng-show="0" id="procedureId" ng-model="newProcedure">
+    <input id="medicalCondition" ng-model="newProcedure" placeholder="Type your Condition" />
     <button class="btn btn-success" id="procedure-btn" ng-click="add()">Add Procedure</button>
   </div> <!-- My medical conditions -->
 
@@ -120,7 +119,7 @@
       MY PROCEDURES
     </div>
     <div class="content-view" ng-controller="cityController">
-      <button class="btn btn-default procedureView" data-show="list-view">List view</button>
+      <button class="btn btn-default procedureView current" data-show="list-view">List view</button>
       <button class="btn btn-default procedureView" data-show="map-view">Map view</button>
       <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
       <input ng-show="0" id="newLocation" ng-model="newLocation">
@@ -257,7 +256,7 @@
       RECOMMENDED PHYSICIANS
     </div>
     <div class="content-view physicians">
-      <button class="btn btn-default"> In-Network
+      <button class="btn btn-default current"> In-Network
       </button>
       <button class="btn btn-default"> Out-Of-Network
       </button>
@@ -374,5 +373,3 @@
   </div> 
   <!-- Recommended Physicians -->
 </main>
-
-<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>

@@ -1,4 +1,5 @@
 var maxHeight=0;
+var currentCategory = 1;
 $(document).ready(function(){
 
   $( ".slider-range" ).each(function() {
@@ -42,20 +43,29 @@ $(document).ready(function(){
     }
   });
 
-  $( "#medicalCondition" ).catcomplete({
-      source: function( request, response ) {
-        $.getJSON( "/dashboard/get_suggestions", {
-          term: request.term,
-          diagnosis: $("#searchDiagnosis").is(':checked'),
-          procedure: $("#searchProcedure").is(':checked')
-        }, response );
-      },
-      minLength: 3,
-      select: function( event, ui ) {
-        $("#procedureId").val(ui.item.id);
-        $("#procedureId").trigger('input');
-      }
-    });
+// $( "#medicalCondition" ).catcomplete({
+//     source: function( request, response ) {
+//       $.getJSON( "/dashboard/get_suggestions", {
+//         term: extractLast( request.term ),
+//         diagnosis: $("#searchDiagnosis").is(':checked'),
+//         procedure: $("#searchProcedure").is(':checked')
+//       }, response );
+//     },
+//     minLength: 3,
+//     select: function( event, ui ) {
+//       var terms = split( this.value );
+//       // remove the current input
+//       terms.pop();
+//       // add the selected item
+//       terms.push( ui.item.value );
+//       // add placeholder to get the comma-and-space at the end
+//       terms.push( "" );
+//       this.value = terms.join( ", " );
+//       $("#procedureId").val(this.value);
+//       $("#procedureId").trigger('input');
+//      return false;
+//     }
+//   });
 
   $( "#cityComplete" ).catcomplete({
       source: function( request, response ) {
@@ -96,4 +106,47 @@ $(document).ready(function(){
     });
   },300);
 
+  var medicalConditionUrl = '/dashboard/get_suggestions?procedure=true&diagnosis=true';
+
+  $(".conditionSearchIn").change(function(){
+    medicalConditionUrl = "/dashboard/get_suggestions";
+    medicalConditionUrl += "?diagnosis="+$("#searchDiagnosis").is(':checked')
+    medicalConditionUrl += "&procedure="+$("#searchProcedure").is(':checked')
+    console.log(medicalConditionUrl);
+  });
+
+  $("#medicalCondition").tokenInput(medicalConditionUrl, {
+    theme: "facebook",
+    preventDuplicates: true,
+    resultsFormatter: function(item){ 
+      var rData = '';
+      if(currentCategory != item.category) {
+        rData = "<lh class='ui-menu-token-item-header'>"+item.category+"</lh>";
+        currentCategory = item.category
+      }
+      if(rData == '')
+        rData = "<li class='ui-menu-token-item'>"+item.name+"</li>";
+      else
+        rData += "<li class='ui-menu-token-item'>"+item.name+"</li>";
+      return rData;
+    },
+    onResult: function(results){
+      currentCategory = '';
+      console.log('On Result Called');
+      return results;
+    },
+    onKeyDown: function() {
+      currentCategory = '';
+    },
+    searchingText: "Fetching procedures",
+    hintText: "Type your mediacal conditions",
+  });
 });
+
+function split( val ) {
+  return val.split( /,\s*/ );
+}     
+  
+function extractLast( term ) {
+  return split( term ).pop();
+} 

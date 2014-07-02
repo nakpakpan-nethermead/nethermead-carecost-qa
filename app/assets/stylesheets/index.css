@@ -144,11 +144,12 @@ main{
 }
 .search-bar .btn-success{
 	background: #fd9288;
-	padding: 12px;
+	padding: 5px;
 	outline: none;
 	border: none;
-	font-size: 16px;
+	font-size: 14px;
 	display: inline-block;
+	font-weight: bold;
 }
 .status-box{
 	font-family: 'OpenSansRegular';
@@ -552,6 +553,19 @@ main{
 		margin: 5px 0px !important;
 		font-size: 13px !important;
 	}
+	.ui-menu-token-item {
+		padding-left: 20px !important;
+		margin: 5px 0px !important;
+		font-size: 13px !important;
+	}
+
+	.ui-menu-token-item-header {
+		font-weight: bold;
+		padding-left: 10px;
+		font-size: 15px;
+		margin-top: 10px;
+		display: inline-block;
+	}
 
 	.ui-state-focus {
 		background: #fec9c3 !important;
@@ -563,5 +577,10 @@ main{
 
 	.ui-slider-handle {
 		margin: 0px 0px !important;
+	}
+
+	ul.token-input-list-facebook {
+		float: left;
+		margin-right : 15px !important; 
 	}
 	

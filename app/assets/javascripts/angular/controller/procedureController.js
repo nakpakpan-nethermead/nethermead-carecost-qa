@@ -3,14 +3,18 @@ var myApp = angular.module('myApp',['AngularGM']);
 myApp.service('Procedure',function($http){
   var procedures = [];
 
-  var add = function(id) {
-    $http.get('/procedure/price/'+id).success(function(response) {
-      procedures.push(response);
+  var add = function(list) {
+    procedure = list.split(',');
+    $.each(procedure, function(index,value) {
+      if (procedure != '')
+        $http.get('/procedure/price/'+value).success(function(response) {
+          procedures.push(response);
+        });
     });
   }
 
   var destroy = function(index) {
-      procedures.splice(index,1);
+    procedures.splice(index,1);
   }
 
   var removeCityCost = function(index) {
@@ -131,9 +135,11 @@ myApp.service('Physician',function($http){
 function conditionController($scope, $http, Procedure,City, Physician) {
   $scope.cities = City.all;
   $scope.add = function() {
+
     Procedure.add($scope.newProcedure);
     
     setTimeout(function() {
+
       Procedure.filter($scope.cities,-1);
       
       if (Procedure.all.length == 1)
@@ -144,7 +150,7 @@ function conditionController($scope, $http, Procedure,City, Physician) {
 
     }, 500);
 
-    $("#medicalCondition").val('');
+    $("#medicalCondition").tokenInput("clear");
   }
 }
 
