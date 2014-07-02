@@ -119,7 +119,7 @@
       MY PROCEDURES
     </div>
     <div class="content-view" ng-controller="cityController">
-      <button class="btn btn-default procedureView" data-show="list-view">List view</button>
+      <button class="btn btn-default procedureView current" data-show="list-view">List view</button>
       <button class="btn btn-default procedureView" data-show="map-view">Map view</button>
       <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
       <input ng-show="0" id="newLocation" ng-model="newLocation">
@@ -256,7 +256,7 @@
       RECOMMENDED PHYSICIANS
     </div>
     <div class="content-view physicians">
-      <button class="btn btn-default"> In-Network
+      <button class="btn btn-default current"> In-Network
       </button>
       <button class="btn btn-default"> Out-Of-Network
       </button>
