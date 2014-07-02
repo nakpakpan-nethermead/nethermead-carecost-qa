@@ -15,7 +15,7 @@ myApp.service('Procedure',function($http){
 
   var removeCityCost = function(index) {
     for(i=0;i<procedures.length;i++) {
-      console.log(procedures[i].charge);
+      // console.log(procedures[i].charge);
       procedures[i].charge.splice(index,1);
     }
   }
@@ -41,7 +41,7 @@ myApp.service('Procedure',function($http){
       method: 'GET',
       params: toSend
     }).success(function (result) {
-      console.log(result);
+      // console.log(result);
       for(i=0;i<procedures.length;i++) {
         for(j=0;j<result.length;j++) {
           if(procedures[i].id == result[j].id){
@@ -91,7 +91,7 @@ myApp.service('Physician',function($http){
   var physicians = [];
   var toSend = {};
 
-  var refresh = function(fetch) {
+  var refresh = function(fetch, $q) {
     
     physicians.splice(0,physicians.length);
 
@@ -103,7 +103,8 @@ myApp.service('Physician',function($http){
       params: toSend
     }).success(function (response) {
       $.each(response, function(index, value){
-
+        physicians.push(value);
+        // console.log(physicians);
         // var geocoder = new google.maps.Geocoder();
         // // { 'address': value.provider_address }, 
         // geocoder.geocode(
@@ -115,7 +116,7 @@ myApp.service('Physician',function($http){
         //       physicians.push(value);
         //     }
         //   });
-        physicians.push(value);
+
       });
     });
   }
@@ -133,18 +134,17 @@ function conditionController($scope, $http, Procedure,City, Physician) {
     Procedure.add($scope.newProcedure);
     
     setTimeout(function() {
-      $('.selectpicker').selectpicker('refresh');
-      if (Procedure.all.length == 1)
-        $('.selectpicker').selectpicker('val', Procedure.all[0])
-
       Procedure.filter($scope.cities,-1);
+      
+      if (Procedure.all.length == 1)
+        Physician.myphyPro = Procedure.all[0]
+
+      if (Physician.all.length == 0) 
+        Physician.refresh($scope.newProcedure)
 
     }, 500);
 
     $("#medicalCondition").val('');
-    
-    if (Physician.all.length == 0) 
-      Physician.refresh();
   }
 }
 
