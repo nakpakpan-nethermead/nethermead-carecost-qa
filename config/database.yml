@@ -6,19 +6,19 @@
 #
 
 #Pratip
-# default: &default
-#   adapter: postgresql
-#   username: pratip
-#   password: root
-#   host: 127.0.0.1
+default: &default
+  adapter: postgresql
+  username: pratip
+  password: root
+  host: 127.0.0.1
 
 #Senthil
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  username: root
-  password: root
+#default: &default
+#  adapter: mysql2
+#  encoding: utf8
+#  pool: 5
+#  username: root
+#  password: root
 
 #Office PC
 # default: &default
