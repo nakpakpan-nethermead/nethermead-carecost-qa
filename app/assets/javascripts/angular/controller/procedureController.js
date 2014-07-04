@@ -169,7 +169,12 @@ function procedureController($scope, $http, Procedure, City, Physician) {
   $scope.procedures = Procedure.all;
   $scope.physicians = Physician.all;
   $scope.cities = City.all;
+  $scope.list = 0;
 
+  $scope.setListView = function(value){
+    $scope.list = value;
+    drawMap();
+  }
 
   $scope.destroy = function(index) {
     Procedure.destroy(index);

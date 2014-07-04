@@ -26,7 +26,7 @@
     </div>
     <div class="border">
     </div>
-    <div class="container">
+    <!-- <div class="container">
       <div class="navbar-collapse collapse sub-header">
         <ul class="nav navbar-nav">
           <li><a><input type="text" placeholder="Search"></a></li>
@@ -34,7 +34,7 @@
           <li class="subheader-folder" data-toggle="popover" data-contentId="searchPopContent"><a href="#"><i class="icon-box-add"></i></a></li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 </header>
 <main class="container">
@@ -47,6 +47,7 @@
       MY MEDICAL CONDITIONS
     </div>
     <div class="menu-icon-2" id="conditionSetting">
+      <i class="icon-box-add"></i>
       <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis" class="conditionSearchIn"> Diagnosis
       <input type="checkbox" checked name="searchProcedure" id="searchProcedure" class="conditionSearchIn"> Procedure
     </div>
@@ -72,8 +73,8 @@
           <div class="title">
             Total Deductible
           </div>
-          <input class="amount" value="$0">
-          <div class="slider-range" max="10000" prefix="$">
+          <input class="amount" value="$0" prefix="$">
+          <div class="slider-range" max="10000">
           </div>
         </div>
       </div>
@@ -82,8 +83,8 @@
           <div class="title">
             Deductible Paid-To-Date
           </div>
-          <input class="amount" value="$0">
-          <div class="slider-range" max="10000" prefix="$">
+          <input class="amount" value="$0" prefix="$">
+          <div class="slider-range" max="10000">
           </div>
         </div>
       </div>
@@ -92,8 +93,8 @@
           <div class="title">
             Copay
           </div>
-          <input class="amount" value="$0">
-          <div class="slider-range" max="100" prefix="$">
+          <input class="amount" value="$0" prefix="$">
+          <div class="slider-range" max="100">
           </div>
         </div>
       </div>
@@ -103,150 +104,151 @@
             Coinsurance
           </div>
           <input class="amount" value="0%" prefix="%">
-          <div class="slider-range" max="100" prefix="%">
+          <div class="slider-range" max="100">
           </div>
         </div>
       </div>
     </div>
   </div> <!-- Insurance status -->
 
-  <!-- My procedures -->
-  <div class="content-header" id="myProDiv">
-    <div class="menu-icon">
-      <img src="/assets/procedures.png">
+  <div ng-controller="procedureController">
+    <!-- My procedures -->
+    <div class="content-header" id="myProDiv">
+      <div class="menu-icon">
+        <img src="/assets/procedures.png">
+      </div>
+      <div class="content-title">
+        MY PROCEDURES
+      </div>
+      <div class="content-view" ng-controller="cityController">
+        <button class="btn btn-default procedureView current" data-show="list-view" ng-click="setListView(1)">List view</button>
+        <button class="btn btn-default procedureView" data-show="map-view" ng-click="setListView(0)">Map view</button>
+        <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
+        <input ng-show="0" id="newLocation" ng-model="newLocation">
+        <input ng-show="0" id="newLocationType" ng-model="newLocationType">
+        <input ng-show="0" id="newLocationCategory" ng-model="newLocationCategory">
+        <input id="cityAdd" type="submit" value="+" ng-click="add()">
+      </div>
     </div>
-    <div class="content-title">
-      MY PROCEDURES
-    </div>
-    <div class="content-view" ng-controller="cityController">
-      <button class="btn btn-default procedureView current" data-show="list-view">List view</button>
-      <button class="btn btn-default procedureView" data-show="map-view">Map view</button>
-      <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
-      <input ng-show="0" id="newLocation" ng-model="newLocation">
-      <input ng-show="0" id="newLocationType" ng-model="newLocationType">
-      <input ng-show="0" id="newLocationCategory" ng-model="newLocationCategory">
-      <input type="submit" value="+" ng-click="add()">
-    </div>
-  </div>
-  
-  <!-- list view -->
-  <div class="list-view procedureLayout"  ng-controller="procedureController">
-    <div class="table-responsive content-body">
-      <table class="table" id="procedureTable">
-        <tr>
-          <th>Name</th>
-          <th>Provider</th>
-          <th>Facility</th>
-        </tr>
-        <tr ng-repeat="procedure in procedures track by $index">
-          <td class="labs">
-            <label for="{{procedure.id}}">{{ procedure.name }}</label>
-          </td>
-          <td>
-            <select ng-model="procedure.current_network" ng-change="filter($index)" >
-              <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
-            </select>
-          </td>
-          <td>
-            <select ng-model="procedure.current_facility" ng-change="filter($index)">
-              <option ng-repeat="facility in procedure.all_facilities" value="{{facility}}">{{facility}}</option>
-            </select>
-          </td>
-        <tr>
-      </table>
-      <div class="overflowScroll table-responsive">
-        <table id="costTable">
+    
+    <!-- list view -->
+    <div class="list-view procedureLayout">
+      <div class="table-responsive content-body" ng-show="list">
+        <table class="table" id="procedureTable">
           <tr>
-            <th class="avg-cost-heading">Average Cost</th>
-            <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
-               {{city.dataDisType}} : {{city.data}}
-              <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
-            </th>
+            <th>Name</th>
+            <th>Provider</th>
+            <th>Facility</th>
           </tr>
           <tr ng-repeat="procedure in procedures track by $index">
-            {{ procedure }}
-            <td class="avg-cost" ng-repeat="c in procedure.charge track by $index">  ${{c}}
+            <td class="labs">
+              <label for="{{procedure.id}}">{{ procedure.name }}</label>
             </td>
-            <td><i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i></td>
-          </tr>
+            <td>
+              <select ng-model="procedure.current_network" ng-change="filter($index)" >
+                <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
+              </select>
+            </td>
+            <td>
+              <select ng-model="procedure.current_facility" ng-change="filter($index)">
+                <option ng-repeat="facility in procedure.all_facilities" value="{{facility}}">{{facility}}</option>
+              </select>
+            </td>
+          <tr>
         </table>
-      </div>
-    </div> <!-- my procedures -->
-  </div> <!-- list-view -->
-
-  <!-- map-view -->
-  <div class="map-view procedureLayout">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="map-display">
-          <img src="/assets/ny.png">
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="map-view-table table-responsive">
-          <table class="table">
-            <thead>
-              <th colspan="3"> My Procedures</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-                <td><select><option value="volvo">In-Network</option></select></td>
-                <td><select><option value="volvo">Office Visit</option></select></td>
-              </tr>
-              <tr>
-                <td class="labs"><input type="checkbox" class="style-check"  id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-                <td><select><option value="volvo">In-Network</option></select></td>
-                <td><select><option value="volvo">Office Visit</option></select></td>
-              </tr>
-            </tbody>
+        <div class="overflowScroll table-responsive">
+          <table id="costTable">
+            <tr>
+              <th class="avg-cost-heading">Average Cost</th>
+              <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
+                 {{city.dataDisType}} : {{city.data}}
+                <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
+              </th>
+            </tr>
+            <tr ng-repeat="procedure in procedures track by $index">
+              {{ procedure }}
+              <td class="avg-cost" ng-repeat="c in procedure.charge track by $index">  ${{c}}
+              </td>
+              <td><i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i></td>
+            </tr>
           </table>
-        </div> <!-- map-view-table -->
-        <div class="criteria-zipcode">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="criteria-cost">
-                <div class="criteria-heading">
-                  My Most Criteria
-                </div>
-                <div class="criteria-fields">
-                  <span>
-                    <input type="checkbox" class="style-check"  id="my-cost" /> <label for="my-cost">My Cost</label>
-                  </span>
-                  <span>
-                    <input type="checkbox" class="style-check"  id="avg-cost" /> <label for="avg-cost">Average Cost</label>
-                  </span>
-                </div>
-                <div class="criteria-slider">
-                  <div class="slider-heading">
-                    Cost
+        </div>
+      </div> <!-- my procedures -->
+    </div> <!-- list-view -->
+
+    <!-- map-view -->
+    <div class="map-view procedureLayout" ng-hide="list">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="map-display" id="mapContainer">
+            
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="map-view-table table-responsive">
+            <table class="table">
+              <thead>
+                <th colspan="3"> My Procedures</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
+                  <td><select><option value="volvo">In-Network</option></select></td>
+                  <td><select><option value="volvo">Office Visit</option></select></td>
+                </tr>
+                <tr>
+                  <td class="labs"><input type="checkbox" class="style-check"  id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
+                  <td><select><option value="volvo">In-Network</option></select></td>
+                  <td><select><option value="volvo">Office Visit</option></select></td>
+                </tr>
+              </tbody>
+            </table>
+          </div> <!-- map-view-table -->
+          <div class="criteria-zipcode">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="criteria-cost">
+                  <div class="criteria-heading">
+                    My Most Criteria
                   </div>
-                  <div class="slider-range-cost">
+                  <div class="criteria-fields">
+                    <span>
+                      <input type="checkbox" class="style-check"  id="my-cost" /> <label for="my-cost">My Cost</label>
+                    </span>
+                    <span>
+                      <input type="checkbox" class="style-check"  id="avg-cost" /> <label for="avg-cost">Average Cost</label>
+                    </span>
+                  </div>
+                  <div class="criteria-slider">
+                    <div class="slider-heading">
+                      Cost
+                    </div>
+                    <div class="slider-range-cost">
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="location">
-                <div class="location-heading">
-                  Location
-                </div>
-                <div class="zipcode">
-                  <input type="text" placeholder="ZIP">
-                </div>
-                <div class="zip-sug">
-                  <div><span class="zip">10010</span>&nbsp; <i class="fa fa-trash-o"></i></div>
-                  <div><span class="zip">11215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
-                  <div><span class="zip">10215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
+              <div class="col-lg-6">
+                <div class="location">
+                  <div class="location-heading">
+                    Location
+                  </div>
+                  <div class="zipcode">
+                    <input type="text" placeholder="ZIP">
+                  </div>
+                  <div class="zip-sug">
+                    <div><span class="zip">10010</span>&nbsp; <i class="fa fa-trash-o"></i></div>
+                    <div><span class="zip">11215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
+                    <div><span class="zip">10215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div> <!-- map-view -->
-
+    </div> <!-- map-view -->
+  </div>
   <!-- Recommended Physicians -->
   <div class="content-header">
     <div class="menu-icon">

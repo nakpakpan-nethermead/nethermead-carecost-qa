@@ -25,9 +25,11 @@ $(document).ready(function(){
       var value = this.value.substring(0,this.value.length-1);
     else
       var value = this.value.substring(1);
-    console.log(value);
+    
     $(this).next().slider("value", parseInt(value));
-  });
+    if($(this).val() == '')
+      $(this).val($(this).attr('prefix'));
+  });1
 
   $.widget( "custom.catcomplete", $.ui.autocomplete, {
     _renderMenu: function( ul, items ) {
@@ -141,6 +143,28 @@ $(document).ready(function(){
     searchingText: "Fetching procedures",
     hintText: "Type your mediacal conditions",
   });
+
+
+  var world = new Datamap({
+    element: document.getElementById('mapContainer'),
+    scope: 'usa',
+    projection: 'mercator',
+    fills: {
+        defaultFill: '#ABDDA4',
+        'DEM': 'blue'
+    },
+    geographyConfig: {
+        hideAntarctica: false
+    },
+    fills: {
+        defaultFill: '#f0af0a',
+        zipFound: 'rgba(0,244,244,0.9)',
+    },
+    data: {
+        'AZ': {fillKey: 'zipFound' },
+    }
+  });
+
 });
 
 function split( val ) {
@@ -150,3 +174,5 @@ function split( val ) {
 function extractLast( term ) {
   return split( term ).pop();
 } 
+
+
