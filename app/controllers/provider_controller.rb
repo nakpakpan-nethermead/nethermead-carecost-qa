@@ -12,7 +12,7 @@ class ProviderController < ApplicationController
        
       end
     end
-    binding.pry
+    #binding.pry
     render :json => provider
   end
 end
