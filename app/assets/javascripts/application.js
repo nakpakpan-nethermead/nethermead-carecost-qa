@@ -20,7 +20,9 @@
 //= require dashboard
 //= require bootstrap.min
 //= require jquery.tokeninput
-
+//= require d3
+//= require topojson
+//= require maps/datamaps.usa.min
 
 $("document").ready(function(){
   $("[data-toggle=popover]").each(function () {

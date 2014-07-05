@@ -60,3 +60,6 @@ gem 'angularjs-rails'
 
 #Enable all platform features in Heroku
  gem 'rails_12factor', group: :production
+
+ gem "d3-rails"
+ gem 'topojson-rails'

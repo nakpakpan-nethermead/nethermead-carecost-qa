@@ -29,7 +29,7 @@ default: &default
 #  password: root
 
 #Office PC
-# default: &default
+#default: &default
 #   adapter: postgresql
 #   username: dev1-nethermead
 #   password: Hacker1*
