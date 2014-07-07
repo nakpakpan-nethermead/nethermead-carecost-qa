@@ -78,6 +78,39 @@ main{
 .container{
 	padding: 0;
 }
+
+.share-email-content {
+	float: right;
+	color: #3d4751;
+	font-weight: bold;
+	margin-right: 15px;
+	margin-bottom: 5px;
+	font-size: 17px;	
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: none;	
+}
+a:focus {
+	text-decoration: none;	
+}
+.modal-header {
+	height: 60px;	
+}
+.modal-body {
+	height: 150px;	
+}
+
+.modal-footer {
+	height: 60px;
+	margin-top: 40px;	
+}
+.modal-dialog {
+	top: 38%;
+}
+textarea{
+	resize:none;
+}
 .content-header{
 	border-top: 4px #3d4753 solid;
 	position: relative;
@@ -610,3 +643,28 @@ main{
 	#mapContainer {
 		height: 350px;
 	}
+
+.navbar-fixed-bottom {
+		background-color: white;
+		border-style: none;	
+	}
+	
+	.navbar-text {
+		padding-right: 60px;	
+	}
+	
+	.footer-text1 {
+ 		color: black;		
+	}	
+	.footer-text2 {
+		color: #6aba9f;
+		font-weight: bold;
+		letter-spacing: 1px;
+	}
+	.footer-text3 {
+		color: #9a7d93;
+		font-weight: bold;	
+		letter-spacing: 1px;	
+	}
+
+

@@ -38,13 +38,18 @@
   </div>
 </header>
 <main class="container">
+<!-- Share via email -->
+  	<div class="share-email-content">
+  		<a href="#email-share" data-toggle="modal" class="share-email-content">SHARE VIA EMAIL <i class="fa fa-share-square-o fa-lg"></i></a>
+  	</div>
+  <!-- Share via email -->
   <!-- My Medical Conditions -->
   <div class="content-header">
     <div class="menu-icon">
       <img src="/assets/stethoscope.png">
     </div>
     <div class="content-title">
-      MY MEDICAL CONDITIONS
+      MY MEDICAL CONDITION
     </div>
     <div class="menu-icon-2" id="conditionSetting">
       <i class="icon-box-add"></i>
@@ -137,8 +142,8 @@
         <table class="table" id="procedureTable">
           <tr>
             <th>Name</th>
-            <th>Provider</th>
-            <th>Facility</th>
+            <th>Network</th>
+            <th>Place of service</th>
           </tr>
           <tr ng-repeat="procedure in procedures track by $index">
             <td class="labs">
@@ -159,7 +164,7 @@
         <div class="overflowScroll table-responsive">
           <table id="costTable">
             <tr>
-              <th class="avg-cost-heading">Average Cost</th>
+              <th class="avg-cost-heading">National Average</th>
               <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
                  {{city.dataDisType}} : {{city.data}}
                 <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
@@ -214,7 +219,7 @@
               <div class="col-lg-6">
                 <div class="criteria-cost">
                   <div class="criteria-heading">
-                    My Most Criteria
+                    My Cost Criteria
                   </div>
                   <div class="criteria-fields">
                     <span>
@@ -259,7 +264,7 @@
       <img src="/assets/physicians.png">
     </div>
     <div class="content-title">
-      RECOMMENDED PHYSICIANS
+      RECOMMENDED PROVIDERS
     </div>
     <div class="content-view physicians">
       <button class="btn btn-default current"> In-Network
@@ -301,7 +306,7 @@
     </div>
     <div class="physician-list" ng-show="noPhysician()">
       <div ng-hide="physicians.length" class="noPhysician">
-        No Physicians for currently chosed Procedure.
+        No Providers for currently chosen Procedure.
       </div>
       <div class="physician-available"  ng-show="physicians.length">
         <div class="row">
@@ -380,4 +385,39 @@
     </div> <!-- physician-list -->
   </div> 
   <!-- Recommended Physicians -->
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+       <div class="footer-container">
+           <p class="navbar-text pull-right"> <span class="footer-text1">POWERED BY:</span> <span class="footer-text2">NETHER</span><span class="footer-text3">MEAD</span></p>
+       </div>  
+  </div>
+  <!-- Share via email modal -->
+  <div class="modal fade" id="email-share" role="dialog">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <form class="form-horizontal">
+                   <div class="modal-header">
+                       <h4>E-mail Market Summary</h4>
+                   </div>
+                   <div class="modal-body">
+                       <div class="form-group">
+                           <div class="col-lg-10">
+                           	 <input type="email" class="form-control col-lg-2" id="contact-email" placeholder="E-mail Address">
+				               </div>
+                       </div> 
+							  <div class="form-group">
+                           <div class="col-lg-10">
+                                <textarea class="form-control col-lg-2" rows="4" placeholder="Enter message..."></textarea>
+				               </div>
+                       </div>
+                   </div>
+                   <div class="modal-footer">
+                   	  <a class="btn btn-default" data-dismiss="modal">Close</a>
+                       <button class="btn btn-success" type="submit">Submit</button>
+                   </div>
+                </form>
+            </div>
+          </div>
+        </div>
+ <!-- Share via email modal -->
 </main>
