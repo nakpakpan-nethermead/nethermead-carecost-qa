@@ -279,13 +279,15 @@
         </li>
         <li ng-click="sortPhysic('')">
           Location ( <span>10010</span> ) &nbsp;
+          <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
+        </li>
+        <li>
+          <span ng-click="sortPhysic('cost')">Cost &nbsp;</span>
           <i class="fa fa-caret-down"></i>
         </li>
-        <li ng-click="sortPhysic('cost')">
-          Cost &nbsp;<i class="fa fa-caret-down"></i>
-        </li>
-        <li ng-click="sortPhysic('first_name')">
-          Physician Name &nbsp;<i class="fa fa-caret-down"></i>
+        <li>
+          <span ng-click="sortPhysic('first_name')">Physician Name &nbsp;</span>
+          <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
         </li>
         <li> 
           <select ng-init="myphyPro = procedures[0]" ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure">
