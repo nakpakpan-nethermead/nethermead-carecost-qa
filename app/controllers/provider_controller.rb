@@ -5,7 +5,7 @@ class ProviderController < ApplicationController
     provider_charge.each do |charge|
       provider_ids << charge[0]
     end
-    provider = Provider.where("id IN (?)",provider_ids).select(:img_url,:first_name,:physician_since,:provider_address,:provider_type,:id, "`providers`.`id` as cost")
+    provider = Provider.where("id IN (?)",provider_ids).select(:img_url,:first_name,:physician_since,:provider_address,:provider_type,:id, "id as cost")
     index = 0
     provider.each do |prov|
       provider_charge.each do |charge|
