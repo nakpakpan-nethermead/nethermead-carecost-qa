@@ -171,10 +171,11 @@ main{
 .status-box .amount{
 	font-size: 52px;
 	color: #d74b3e;
-	border: 0px;
+	border: 1px #aaa solid;
 	background: none;
 	width: 180px;
 	text-align: center;
+	margin-bottom: 10px; 
 }
 .status-box .amount:focus {
 	 outline: 0;

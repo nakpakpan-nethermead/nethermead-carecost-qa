@@ -193,7 +193,7 @@
               <tbody>
                 <tr ng-repeat="procedure in procedures track by $index">
                   <td class="labs">
-                  <input type="checkbox" class="style-check" id="{{$index}}" /> 
+                  <input type="radio" name="procedure" class="style-check" id="{{$index}}" /> 
                   <label for="{{$in}}">{{procedure.name}}</label></td>
                   <td>
                     <select ng-model="procedure.current_network" ng-change="filter($index)" >
