@@ -191,15 +191,20 @@
                 <th colspan="3"> My Procedures</th>
               </thead>
               <tbody>
-                <tr>
-                  <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-                  <td><select><option value="volvo">In-Network</option></select></td>
-                  <td><select><option value="volvo">Office Visit</option></select></td>
-                </tr>
-                <tr>
-                  <td class="labs"><input type="checkbox" class="style-check"  id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-                  <td><select><option value="volvo">In-Network</option></select></td>
-                  <td><select><option value="volvo">Office Visit</option></select></td>
+                <tr ng-repeat="procedure in procedures track by $index">
+                  <td class="labs">
+                  <input type="radio" name="procedure" class="style-check" id="{{$index}}" /> 
+                  <label for="{{$in}}">{{procedure.name}}</label></td>
+                  <td>
+                    <select ng-model="procedure.current_network" ng-change="filter($index)" >
+                      <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select ng-model="procedure.current_facility" ng-change="filter($index)">
+                      <option ng-repeat="facility in procedure.all_facilities" value="{{facility}}">{{facility}}</option>
+                    </select>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -233,13 +238,12 @@
                   <div class="location-heading">
                     Location
                   </div>
-                  <div class="zipcode">
-                    <input type="text" placeholder="ZIP">
-                  </div>
                   <div class="zip-sug">
-                    <div><span class="zip">10010</span>&nbsp; <i class="fa fa-trash-o"></i></div>
-                    <div><span class="zip">11215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
-                    <div><span class="zip">10215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
+                    <div ng-repeat="city in cities track by $index">
+                      <span class="zip">{{city.dataDisType}} : {{city.data}}</span>&nbsp;
+                      <i class="fa fa-trash-o" ng-click="cityDestroy($index+1)"></i>
+                    </div>
+                  </th>
                   </div>
                 </div>
               </div>
