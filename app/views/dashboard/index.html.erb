@@ -281,7 +281,7 @@
           Location ( <span>10010</span> ) &nbsp;
           <i class="fa fa-caret-down"></i>
         </li>
-        <li ng-click="sortPhysic('')">
+        <li ng-click="sortPhysic('cost')">
           Cost &nbsp;<i class="fa fa-caret-down"></i>
         </li>
         <li ng-click="sortPhysic('first_name')">
@@ -316,7 +316,7 @@
                       <li><span class="profile-fields">Speciality :</span> {{physician.provider_type}} </li>
                       <li><span class="profile-fields">Years In Practice :</span> From {{physician.physician_since}} </li>
                       <li><span class="profile-fields">Location :</span> {{physician.provider_address}} </li>
-                      <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                      <li><span class="profile-fields">My Estimated Cost :</span> ${{physician.cost}} </li>
                       <li><span class="profile-fields">NCQA Rating :</span> 
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
