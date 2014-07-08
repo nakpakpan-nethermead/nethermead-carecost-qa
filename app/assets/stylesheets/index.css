@@ -651,6 +651,7 @@ textarea{
 	#conditionSetting i {
 		font-size: 20px;
 		color: #FB9386;
+		cursor: pointer;
 	}
 
 	#cityAdd {
@@ -697,4 +698,8 @@ textarea{
 		color: #9a7d93;
 		font-weight: bold;	
 		letter-spacing: 1px;	
+	}
+	.popover {
+		width: 260px;
+		height: 45px;	
 	}

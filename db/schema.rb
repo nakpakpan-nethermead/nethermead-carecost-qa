@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628110836) do
+ActiveRecord::Schema.define(version: 20140708112000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,13 +53,21 @@ ActiveRecord::Schema.define(version: 20140628110836) do
   add_index "procedures", ["id"], name: "index_procedures_on_id", unique: true, using: :btree
 
   create_table "provider_attributes", force: true do |t|
-    t.string   "name"
-    t.string   "value"
-    t.string   "img"
-    t.string   "data_type"
+    t.string   "attribute_name"
+    t.string   "attribute_value",   limit: 50
+    t.string   "value_img"
+    t.string   "data_type",         limit: 50
+    t.string   "provider_id",       limit: 50
+    t.string   "context",           limit: 50
+    t.string   "display_type",      limit: 50
+    t.string   "display_format",    limit: 50
+    t.string   "series_point_type", limit: 50
+    t.string   "series_value",      limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "provider_attributes", ["id"], name: "index_provider_attributes_on_id", unique: true, using: :btree
 
   create_table "provider_charges", force: true do |t|
     t.string   "service_claim_number"
@@ -128,6 +136,17 @@ ActiveRecord::Schema.define(version: 20140628110836) do
   end
 
   add_index "providers", ["id"], name: "index_providers_on_id", unique: true, using: :btree
+
+  create_table "user_favorites", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "procedure_id"
+    t.integer  "provider_id"
+    t.date     "date_added"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_favorites", ["id"], name: "index_user_favorites_on_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

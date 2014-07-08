@@ -19,7 +19,7 @@ $(document).ready(function(){
       }
     });
   });
-
+	
   $(".amount").keyup(function(){
     if($(this).attr('prefix') == '%')
       var value = this.value.substring(0,this.value.length-1);
@@ -141,7 +141,7 @@ $(document).ready(function(){
       currentCategory = '';
     },
     searchingText: "Fetching procedures",
-    hintText: "Type your mediacal conditions",
+    hintText: "Type your medical conditions",
   });
 
 
