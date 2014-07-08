@@ -10,10 +10,10 @@ $(document).ready(function(){
       value: 0,
       slide: function( event, ui ) {
         var value;
-        if ($(event.target).attr("prefix") == "%") {
-          value = ui.value+$(event.target).attr("prefix");
+        if ($(event.target).prev().attr("prefix") == "%") {
+          value = ui.value + $(event.target).prev().attr("prefix");
         } else {
-          value = $(event.target).attr("prefix")+ui.value;
+          value = $(event.target).prev().attr("prefix") + ui.value;
         }
         $(event.target).prev().val(value);
       }

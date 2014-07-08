@@ -25,16 +25,34 @@
 //= require maps/datamaps.usa.min
 
 $("document").ready(function(){
+  var maxValue = 100,
+     $slider = $('<div>').slider({
+          range: "max",
+          max: maxValue,
+          min: maxValue / 5,
+          value: maxValue / 2
+      });
+
   $("[data-toggle=popover]").each(function () {
     var elem = $(this);
     elem.popover({
-      trigger: 'hover',
+      trigger: 'manual',
       html: 'true',
-      container: elem,
+      container: 'body',
       content: function() {
-        return $("#"+$(this).attr("data-contentId")).html();
+        // return $("#"+$(this).attr("data-contentId")).html();
       },
       placement: 'bottom'
+    }).click(function() {
+        var $this = $(this);
+        if ($this.toggleClass('active').hasClass('active')) {
+            $this.popover('show');
+            $('.popover-content')
+                .append($slider);
+        } else {
+            $slider.detach();
+            $this.popover('hide');
+        }
     });
   });
 });

@@ -110,6 +110,37 @@ a:focus {
 textarea{
 	resize:none;
 }
+.share-email-content {
+	float: right;
+	color: #3d4751;
+	font-weight: bold;
+	margin-right: 15px;
+	margin-bottom: 5px;
+	font-size: 17px;	
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: none;	
+}
+a:focus {
+	text-decoration: none;	
+}
+.modal-header {
+	height: 60px;	
+}
+.modal-body {
+	height: 150px;	
+}
+.modal-footer {
+	height: 60px;
+	margin-top: 40px;	
+}
+.modal-dialog {
+	top: 38%;
+}
+textarea{
+	resize:none;
+}
 .content-header{
 	border-top: 4px #3d4753 solid;
 	position: relative;
@@ -203,10 +234,11 @@ textarea{
 .status-box .amount{
 	font-size: 52px;
 	color: #d74b3e;
-	border: 0px;
+	border: 1px #aaa solid;
 	background: none;
 	width: 180px;
 	text-align: center;
+	margin-bottom: 10px; 
 }
 .status-box .amount:focus {
 	 outline: 0;
@@ -641,7 +673,7 @@ textarea{
 	#mapContainer {
 		height: 350px;
 	}
-	
+
 	.navbar-fixed-bottom {
 		background-color: white;
 		border-style: none;	
@@ -653,15 +685,16 @@ textarea{
 	
 	.footer-text1 {
  		color: black;		
-	}	
+	}
+		
 	.footer-text2 {
 		color: #6aba9f;
 		font-weight: bold;
 		letter-spacing: 1px;
 	}
+	
 	.footer-text3 {
 		color: #9a7d93;
 		font-weight: bold;	
 		letter-spacing: 1px;	
 	}
-

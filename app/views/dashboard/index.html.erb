@@ -38,12 +38,12 @@
   </div>
 </header>
 <main class="container">
-  <!-- Share via email -->
+<!-- Share via email -->
   	<div class="share-email-content">
   		<a href="#email-share" data-toggle="modal" class="share-email-content">SHARE VIA EMAIL <i class="fa fa-share-square-o fa-lg"></i></a>
   	</div>
-  <!-- Share via email -->
-  <!-- My Medical Conditions -->
+<!-- Share via email -->
+<!-- My Medical Conditions -->
   <div class="content-header">
     <div class="menu-icon">
       <img src="/assets/stethoscope.png">
@@ -196,15 +196,20 @@
                 <th colspan="3"> My Procedures</th>
               </thead>
               <tbody>
-                <tr>
-                  <td class="labs"><input type="checkbox" class="style-check" id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-                  <td><select><option value="volvo">In-Network</option></select></td>
-                  <td><select><option value="volvo">Office Visit</option></select></td>
-                </tr>
-                <tr>
-                  <td class="labs"><input type="checkbox" class="style-check"  id="Eyesight-testing" /> <label for="Eyesight-testing">Eyesight testing</label></td>
-                  <td><select><option value="volvo">In-Network</option></select></td>
-                  <td><select><option value="volvo">Office Visit</option></select></td>
+                <tr ng-repeat="procedure in procedures track by $index">
+                  <td class="labs">
+                  <input type="radio" name="procedure" class="style-check" id="{{$index}}" /> 
+                  <label for="{{$in}}">{{procedure.name}}</label></td>
+                  <td>
+                    <select ng-model="procedure.current_network" ng-change="filter($index)" >
+                      <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select ng-model="procedure.current_facility" ng-change="filter($index)">
+                      <option ng-repeat="facility in procedure.all_facilities" value="{{facility}}">{{facility}}</option>
+                    </select>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -238,13 +243,12 @@
                   <div class="location-heading">
                     Location
                   </div>
-                  <div class="zipcode">
-                    <input type="text" placeholder="ZIP">
-                  </div>
                   <div class="zip-sug">
-                    <div><span class="zip">10010</span>&nbsp; <i class="fa fa-trash-o"></i></div>
-                    <div><span class="zip">11215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
-                    <div><span class="zip">10215</span>&nbsp; <i class="fa fa-trash-o"></i></div>
+                    <div ng-repeat="city in cities track by $index">
+                      <span class="zip">{{city.dataDisType}} : {{city.data}}</span>&nbsp;
+                      <i class="fa fa-trash-o" ng-click="cityDestroy($index+1)"></i>
+                    </div>
+                  </th>
                   </div>
                 </div>
               </div>
@@ -284,13 +288,20 @@
         </li>
         <li ng-click="sortPhysic('')">
           Location ( <span>10010</span> ) &nbsp;
+          <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
+        </li>
+        <li>
+          <span ng-click="sortPhysic('cost')">Cost &nbsp;</span>
           <i class="fa fa-caret-down"></i>
         </li>
-        <li ng-click="sortPhysic('')">
-          Cost &nbsp;<i class="fa fa-caret-down"></i>
-        </li>
+<<<<<<< HEAD
         <li ng-click="sortPhysic('first_name')">
           Provider Name &nbsp;<i class="fa fa-caret-down"></i>
+=======
+        <li>
+          <span ng-click="sortPhysic('first_name')">Physician Name &nbsp;</span>
+          <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
+>>>>>>> 7c8bf39c89fe819a9d73f9f02aeae3a50a792141
         </li>
         <li> 
           <select ng-init="myphyPro = procedures[0]" ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure">
@@ -321,7 +332,7 @@
                       <li><span class="profile-fields">Speciality :</span> {{physician.provider_type}} </li>
                       <li><span class="profile-fields">Years In Practice :</span> From {{physician.physician_since}} </li>
                       <li><span class="profile-fields">Location :</span> {{physician.provider_address}} </li>
-                      <li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                      <li><span class="profile-fields">My Estimated Cost :</span> ${{physician.cost}} </li>
                       <li><span class="profile-fields">NCQA Rating :</span> 
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -379,17 +390,18 @@
     </div> <!-- physician-list -->
   </div> 
   <!-- Recommended Physicians -->
-  
-  <div class="navbar navbar-default navbar-fixed-bottom">
-       <div class="footer-container">
-           <p class="navbar-text pull-right"> <span class="footer-text1">POWERED BY:</span> <span class="footer-text2">NETHER</span><span class="footer-text3">MEAD</span></p>
-       </div>  
-  </div>
-  <!-- Share via email modal -->
-  <div class="modal fade" id="email-share" role="dialog">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <form class="form-horizontal">
+  <!-- Footer -->
+		<div class="navbar navbar-default navbar-fixed-bottom">
+       	<div class="footer-container">
+           	<p class="navbar-text pull-right"> <span class="footer-text1">POWERED BY:</span> <span class="footer-text2">NETHER</span><span class="footer-text3">MEAD</span></p>
+       	</div>  
+  		</div>
+  	<!--Footer -->
+   <!-- Share via email modal -->
+  		<div class="modal fade" id="email-share" role="dialog">
+      	<div class="modal-dialog">
+          	<div class="modal-content">
+              	<form class="form-horizontal">
                    <div class="modal-header">
                        <h4>E-mail Market Summary</h4>
                    </div>
@@ -413,5 +425,5 @@
             </div>
           </div>
         </div>
- <!-- Share via email modal -->
+ 	 <!-- Share via email modal -->
 </main>
