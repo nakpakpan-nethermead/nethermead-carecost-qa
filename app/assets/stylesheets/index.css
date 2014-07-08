@@ -78,7 +78,6 @@ main{
 .container{
 	padding: 0;
 }
-
 .share-email-content {
 	float: right;
 	color: #3d4751;
@@ -100,7 +99,6 @@ a:focus {
 .modal-body {
 	height: 150px;	
 }
-
 .modal-footer {
 	height: 60px;
 	margin-top: 40px;	
@@ -644,7 +642,7 @@ textarea{
 		height: 350px;
 	}
 
-.navbar-fixed-bottom {
+	.navbar-fixed-bottom {
 		background-color: white;
 		border-style: none;	
 	}
@@ -655,12 +653,14 @@ textarea{
 	
 	.footer-text1 {
  		color: black;		
-	}	
+	}
+		
 	.footer-text2 {
 		color: #6aba9f;
 		font-weight: bold;
 		letter-spacing: 1px;
 	}
+	
 	.footer-text3 {
 		color: #9a7d93;
 		font-weight: bold;	
