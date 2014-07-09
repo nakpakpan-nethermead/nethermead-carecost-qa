@@ -136,9 +136,10 @@ myApp.service('Physician',function($http){
     return high;
   }
 
-  var makeFav = function(id){
+  var makeFav = function(id,myphyPro){
     var toSend = {};
     toSend['provider_id'] = id;
+    toSend['procedure_id'] = myphyPro;
     $http({
       url: '/provider/makefav',
       method: 'GET',
@@ -254,7 +255,7 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.makeFav = function(id){
-    Physician.makeFav(id);
+    Physician.makeFav(id,$scope.myphyPro);
   }
 
   $scope.updatePhysician = function(){
