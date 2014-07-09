@@ -23,9 +23,6 @@ class ProcedureController < ApplicationController
         sendBack["all_networks"] = procedure["all_networks"]
         sendBack["all_facilities"] = procedure["all_facilities"]
       
-
-        sendBack["charge"] = []
-
         charges = ProviderCharge
             .where(:condition_procedure_id => procedure["id"], 
                    :service_network_type => procedure["current_network"] , 
@@ -33,10 +30,12 @@ class ProcedureController < ApplicationController
             .order(:service_charge)
 
         if (charges[0])
-          sendBack["charge"] << charges[0].service_charge
+          sendBack["avgCharge"] = charges[0].service_charge
         else
-          sendBack["charge"] << 0
+          sendBack["avgCharge"] = 0
         end
+        
+        sendBack["charge"] = []
 
         cities.each do |city|
           charges = ProviderCharge
