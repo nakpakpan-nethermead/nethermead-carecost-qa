@@ -194,7 +194,7 @@ function procedureController($scope, $http, Procedure, City, Physician) {
   $scope.procedures = Procedure.all;
   $scope.physicians = Physician.all;
   $scope.cities = City.all;
-  $scope.list = 0;
+  $scope.list = 1;
 
   $scope.setListView = function(value){
     $scope.list = value;
