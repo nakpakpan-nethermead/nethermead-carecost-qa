@@ -70,6 +70,8 @@
 }
 body{
 	background: #f7f7f7;
+	margin-bottom: 100% !important;
+
 }
 main{
 	margin-top: 3%;
