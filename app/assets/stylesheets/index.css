@@ -99,38 +99,6 @@ a:focus {
 .modal-body {
 	height: 150px;	
 }
-
-.modal-footer {
-	height: 60px;
-	margin-top: 40px;	
-}
-.modal-dialog {
-	top: 38%;
-}
-textarea{
-	resize:none;
-}
-.share-email-content {
-	float: right;
-	color: #3d4751;
-	font-weight: bold;
-	margin-right: 15px;
-	margin-bottom: 5px;
-	font-size: 17px;	
-	cursor: pointer;
-}
-a:hover {
-	text-decoration: none;	
-}
-a:focus {
-	text-decoration: none;	
-}
-.modal-header {
-	height: 60px;	
-}
-.modal-body {
-	height: 150px;	
-}
 .modal-footer {
 	height: 60px;
 	margin-top: 40px;	
