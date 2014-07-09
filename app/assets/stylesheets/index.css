@@ -119,22 +119,20 @@ textarea{
 
 #procedureTable {
 	float: left;
-	width: 50%;
+	width: 59%;
 }
 
 #costTable {
 	float: left;
-	width: 350px;
-
 }
 .zip-cost{
 	width: 50%;
 }
 .overflowScroll {
-	width: 50%;
+	width: 39%;
 	overflow-x: scroll;
-	float: right;
 	margin-top: 20px;
+	display: inline-block;
 }
 
 .menu-icon{
@@ -240,7 +238,7 @@ textarea{
 
 
 .content-body table{
-	margin-top: 3%;
+	margin-top: 2%;
 	font-size: 16px;
 }
 .content-body table tr th{
@@ -300,7 +298,7 @@ textarea{
 	font-size: 32px;
 	text-align: left;
 	font-family: 'OpenSansSemibold';
-	padding: 16px 0px;
+	padding: 17px 0px;
 	width: 175px;
 }
 .content-body table .avg-cost-heading, .content-body table .scroll-arrow{
@@ -671,7 +669,14 @@ textarea{
 		font-weight: bold;	
 		letter-spacing: 1px;	
 	}
+
 	.popover {
 		width: 260px;
 		height: 45px;	
-	}
+
+  .staticBin {
+  	display: inline-block;
+  }
+	.staticBin table tr td{
+		padding: 28px 0;
+}
