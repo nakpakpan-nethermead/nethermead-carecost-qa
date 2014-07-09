@@ -17,4 +17,8 @@ class ProviderController < ApplicationController
     end
     render :json => provider
   end
+
+  def makefav
+    binding.pry
+  end
 end

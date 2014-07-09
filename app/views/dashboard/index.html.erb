@@ -293,11 +293,11 @@
         </li>
         <li ng-click="sortPhysic('')">
           Location ( <span>10010</span> ) &nbsp;
-          <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
+          <i class="fa fa-caret-down"></i>
         </li>
         <li>
           <span ng-click="sortPhysic('cost')">Cost &nbsp;</span>
-          <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-down" data-toggle="popover" data-content="demo"></i>
         </li>
         <li>
           <span ng-click="sortPhysic('first_name')">Provider Name &nbsp;</span>
@@ -342,7 +342,7 @@
                     </ul>
                   </div>
                   <div class="profile-icons">
-                    <a href=""><i class="fa fa-heart"></i></a>
+                    <a href=""><i ng-click="makeFav(physician.id)" class="fa fa-heart"></i></a>
                     <a href="" ng-click="flipGraph($index)"><img src="/assets/growth.png"></a>
                   </div>
                 </div>

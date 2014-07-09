@@ -19,6 +19,7 @@ gem 'rails', '4.1.1'
 
 #temp
 #gem 'mysql2'
+#temp
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
