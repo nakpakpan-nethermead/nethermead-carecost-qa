@@ -304,7 +304,7 @@
           <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
         </li>
         <li> 
-          <select ng-init="myphyPro = procedures[0]" ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure">
+          <select ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure" id="physicianProcedure">
           </select>
         </li>
       </ul>
