@@ -132,7 +132,7 @@ textarea{
 	width: 50%;
 	overflow-x: scroll;
 	float: right;
-	margin-top: 15px;
+	margin-top: 20px;
 }
 
 .menu-icon{
@@ -238,7 +238,6 @@ textarea{
 
 .content-body table{
 	margin-top: 3%;
-	font-family: 'OpenSansRegular';
 	font-size: 16px;
 }
 .content-body table tr th{
@@ -257,7 +256,7 @@ textarea{
 	font-size: 16px;
 }
 .content-body table .labs{
-	color: #df8181;
+	color: #F12E28;
 	padding: 24px 15px;
 	padding-left: 0;
 	width: 30%;
@@ -296,16 +295,17 @@ textarea{
 }
 .content-body table .avg-cost, .content-body table .zip-cost{
 	font-size: 32px;
-	text-align: center;
+	text-align: left;
 	font-family: 'OpenSansSemibold';
-	padding: 8px;
+	padding: 16px 0px;
+	width: 175px;
 }
 .content-body table .avg-cost-heading, .content-body table .scroll-arrow{
-	text-align: center;
+	text-align: left;
 }
 .content-body table .zip-cost-heading{
 	color: #fe9487;
-	text-align: center;
+	text-align: left;
 }
 /*map-view*/
 .map-view{
@@ -556,18 +556,19 @@ textarea{
 
 	select {
 		display: inline-block;
-		height: 25px;
+		height: 30px;
 		padding: 4px 6px;
 		margin-bottom: 10px;
 		font-size: 14px;
 		line-height: 20px;
 		color: #555;
-		-webkit-border-radius: 4px;
-		-moz-border-radius: 4px;
-		border-radius: 4px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0px !important;
 		vertical-align: middle;
-		border: 1px solid #ccc; 
+		border: 1px solid #000; 
 		background-color: #fff;
+		width: 125px;
 	}
 
 	.ui-autocomplete-category {
