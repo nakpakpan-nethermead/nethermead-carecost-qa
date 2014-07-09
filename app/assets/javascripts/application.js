@@ -27,10 +27,13 @@
 $("document").ready(function(){
   var maxValue = 100,
      $slider = $('<div>').slider({
-          range: "max",
-          max: maxValue,
-          min: maxValue / 5,
-          value: maxValue / 2
+        range: "max",
+        max: maxValue,
+        min: maxValue / 5,
+        value: maxValue / 2,
+        slide: function( event, ui ) {
+          console.log(ui.value);
+        }
       });
 
   $("[data-toggle=popover]").each(function () {
@@ -48,6 +51,7 @@ $("document").ready(function(){
         if ($this.toggleClass('active').hasClass('active')) {
             $this.popover('show');
             $('.popover-content')
+                .empty()
                 .append($slider);
         } else {
             $slider.detach();

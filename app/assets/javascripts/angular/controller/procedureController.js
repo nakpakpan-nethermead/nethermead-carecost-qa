@@ -108,6 +108,7 @@ myApp.service('Physician',function($http){
     }).success(function (response) {
       $.each(response, function(index, value){
         physicians.push(value);
+      });
         // console.log(physicians);
         // var geocoder = new google.maps.Geocoder();
         // // { 'address': value.provider_address }, 
@@ -120,15 +121,38 @@ myApp.service('Physician',function($http){
         //       physicians.push(value);
         //     }
         //   });
-
-      });
     });
   }
 
+  var highPrice = function(){
+    var highPrice = false;
+    var high = 0;
+    angular.forEach(physicians, function(physician, key) {
+      if (physician.cost < high || highPrice === false) {
+        high = value;
+        highPrice = true;
+      }
+    });
+    return high;
+  }
+
+  var makeFav = function(id){
+    var toSend = {};
+    toSend['provider_id'] = id;
+    $http({
+      url: '/provider/makefav',
+      method: 'GET',
+      params: toSend
+    }).success(function (response) {
+      
+    });
+  }
  
   return {
+    makeFav: makeFav,
     refresh: refresh,
-    all: physicians
+    all: physicians,
+    highPrice: highPrice
   };
 })
 
@@ -229,6 +253,10 @@ function physicianController($scope, $http, City, Physician, Procedure) {
     $("#b"+index).toggleClass('hide');
   }
 
+  $scope.makeFav = function(id){
+    Physician.makeFav(id);
+  }
+
   $scope.updatePhysician = function(){
     Physician.refresh($scope.myphyPro);
   }
@@ -238,6 +266,10 @@ function physicianController($scope, $http, City, Physician, Procedure) {
       return 0;
     else
       return 1;
+  }
+
+  $scope.filterPrice = function(){
+    
   }
 
   $scope.sortPhysic = function(sortOn){
