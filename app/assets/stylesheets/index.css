@@ -391,13 +391,24 @@ textarea{
 	background-image: -ms-linear-gradient(right, #6B9E90 0%, #04B5A9 100%);
 	background-image: linear-gradient(to right, #6B9E90 0%, #04B5A9 100%);
 }
+
+.color-slider .slider-range{
+	background: #3d4753 !important;
+	border-radius: 4px #e5e4e2 !important;
+}
+
 .ui-slider-handle{
 	background: #fff !important;
-	border: 3px #6B9E90 solid !important;
-	border-color: #6B9E90 !important;
+	border: 3px #3d4753 solid !important;
+	border-color: #3d4753 !important;
 	border-radius: 10px;
 
 }
+
+.ui-widget-header {
+	border-radius: 0px !important;
+}
+
 .ui-slider-handle:focus{
 	outline: none;
 }
@@ -599,7 +610,7 @@ textarea{
 	}
 
 	.ui-state-focus {
-		background: #fec9c3 !important;
+		background: #0000 !important;
 		width: auto;
 		color: #000 !important;
 		border-radius: 0px !important;
