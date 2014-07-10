@@ -1,6 +1,5 @@
 class CreateProviders < ActiveRecord::Migration
-  def up
-    drop_table :providers if table_exists? :providers
+  def change
     create_table :providers do |t|
     	t.text :npi
     	t.text :npi_surrogate
