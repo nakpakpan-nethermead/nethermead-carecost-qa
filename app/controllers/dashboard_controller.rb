@@ -8,11 +8,6 @@ class DashboardController < ApplicationController
 
     searchProcedure = params['procedure']
     searchDiagnosis = params['diagnosis']
-    if(searchProcedure == 'false' && searchDiagnosis == 'false')
-      searchProcedure = 'true'
-      searchDiagnosis = 'true'
-    end
-
 
     if(searchProcedure == 'true')
       result = Condition.joins(

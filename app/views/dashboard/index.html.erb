@@ -126,7 +126,7 @@
         MY PROCEDURES
       </div>
       <div class="content-view" ng-controller="cityController">
-        <button class="btn btn-default procedureView current" data-show="list-view" ng-click="setListView(1)">List view</button>
+        <button id="showList" class="btn btn-default procedureView current" data-show="list-view" ng-click="setListView(1)">List view</button>
         <button class="btn btn-default procedureView" data-show="map-view" ng-click="setListView(0)">Map view</button>
         <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
         <input ng-show="0" id="newLocation" ng-model="newLocation">
@@ -404,8 +404,9 @@
        	</div>  
   		</div>
   	<!--Footer -->
+
    <!-- Share via email modal -->
-  		<div class="modal fade" id="email-share" role="dialog">
+  		<div class="modal fade" id="email-share" role="dialog" ng-controller="emailController">
       	<div class="modal-dialog">
           	<div class="modal-content">
               	<form class="form-horizontal">
@@ -426,7 +427,7 @@
                    </div>
                    <div class="modal-footer">
                    	  <a class="btn btn-default" data-dismiss="modal">Close</a>
-                       <button class="btn btn-success" type="submit">Submit</button>
+                       <button class="btn btn-success" type="submit" ng-click="onSubmit()">Submit</button>
                    </div>
                 </form>
             </div>

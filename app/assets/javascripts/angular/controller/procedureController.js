@@ -194,11 +194,11 @@ function procedureController($scope, $http, Procedure, City, Physician) {
   $scope.procedures = Procedure.all;
   $scope.physicians = Physician.all;
   $scope.cities = City.all;
-  $scope.list = 1;
+  $scope.list = 0;
 
   $scope.setListView = function(value){
     $scope.list = value;
-    drawMap();
+    // drawMap();
   }
 
   $scope.destroy = function(index) {
@@ -285,5 +285,12 @@ function physicianController($scope, $http, City, Physician, Procedure) {
         $scope.column = sortOn;
         $scope.descending = false;
     }
+  }
+}
+
+
+function emailController($scope){
+  onSubmit = function() {
+    alert("Submit triggered");
   }
 }
