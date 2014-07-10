@@ -391,13 +391,24 @@ textarea{
 	background-image: -ms-linear-gradient(right, #6B9E90 0%, #04B5A9 100%);
 	background-image: linear-gradient(to right, #6B9E90 0%, #04B5A9 100%);
 }
+
+.color-slider .slider-range{
+	background: #3d4753 !important;
+	border-radius: 4px #e5e4e2 !important;
+}
+
 .ui-slider-handle{
 	background: #fff !important;
-	border: 3px #6B9E90 solid !important;
-	border-color: #6B9E90 !important;
+	border: 3px #3d4753 solid !important;
+	border-color: #3d4753 !important;
 	border-radius: 10px;
 
 }
+
+.ui-widget-header {
+	border-radius: 0px !important;
+}
+
 .ui-slider-handle:focus{
 	outline: none;
 }
@@ -417,9 +428,6 @@ textarea{
 	cursor: pointer;
 }
 
-/*.content-body table .zip-cost-heading, .content-body table .scroll-arrow, .content-body table .arrow-col, .content-body table .zip-cost{
-	background: #F3F2F2;
-	}*/
 	.physicians {
 		margin-left: 11.6%;
 	}
@@ -602,7 +610,7 @@ textarea{
 	}
 
 	.ui-state-focus {
-		background: #fec9c3 !important;
+		background: #0000 !important;
 		width: auto;
 		color: #000 !important;
 		border-radius: 0px !important;
@@ -674,9 +682,9 @@ textarea{
 		width: 260px;
 		height: 45px;	
 
+	}
+
   .staticBin {
   	display: inline-block;
   }
-	.staticBin table tr td{
-		padding: 28px 0;
-}
+

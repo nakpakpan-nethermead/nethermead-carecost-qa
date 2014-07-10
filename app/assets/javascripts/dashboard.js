@@ -19,17 +19,22 @@ $(document).ready(function(){
       }
     });
   });
-	
-  $(".amount").keyup(function(){
-    if($(this).attr('prefix') == '%')
-      var value = this.value.substring(0,this.value.length-1);
-    else
-      var value = this.value.substring(1);
-    
-    $(this).next().slider("value", parseInt(value));
-    if($(this).val() == '')
-      $(this).val($(this).attr('prefix'));
-  });1
+
+
+  $(".amount").keypress(function(event){
+    if(event.keyCode > 47 && event.keyCode < 58) {
+      if($(this).attr('prefix') == '%')
+        var value = this.value.substring(0,this.value.length-1);
+      else
+        var value = this.value.substring(1);
+      
+      $(this).next().slider("value", parseInt(value));
+      if($(this).val() == '')
+        $(this).val($(this).attr('prefix'));
+    } else {
+      return false;
+    }
+  });
 
   $.widget( "custom.catcomplete", $.ui.autocomplete, {
     _renderMenu: function( ul, items ) {
@@ -164,6 +169,11 @@ $(document).ready(function(){
         'AZ': {fillKey: 'zipFound' },
     }
   });
+
+  setTimeout(function(){
+    $("#showList").trigger('click');
+  },100);
+
 
 });
 
