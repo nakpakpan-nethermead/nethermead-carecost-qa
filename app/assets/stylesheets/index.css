@@ -70,6 +70,8 @@
 }
 body{
 	background: #f7f7f7;
+	margin-bottom: 100% !important;
+
 }
 main{
 	margin-top: 3%;
@@ -195,6 +197,7 @@ textarea{
 .status-box .title{
 	font-family: 'OpenSansRegular';
 	font-weight: bolder;
+	font-size: 18px;
 	margin: 3% 0;
 }
 .status-box .amount{
@@ -382,7 +385,7 @@ textarea{
 		color-stop(0, #6B9E90),
 		color-stop(1, #04B5A9)
 		);
-	background-image: -o-linear-gradient(right, #6B9E90 0%, #04B5A9 100%);
+	background-image: -o-linear-gradient(right, #6B9E90 0%, #3e4854 100%);
 	background-image: -moz-linear-gradient(right, #6B9E90 0%, #04B5A9 100%);
 	background-image: -webkit-linear-gradient(right, #6B9E90 0%, #04B5A9 100%);
 	background-image: -ms-linear-gradient(right, #6B9E90 0%, #04B5A9 100%);
@@ -573,7 +576,7 @@ textarea{
 	}
 
 	.ui-widget-content {
-		background: white !important;
+		background: #fff !important;
 	}
 
 	.ui-menu .ui-menu-item {
@@ -615,6 +618,7 @@ textarea{
 	#conditionSetting i {
 		font-size: 20px;
 		color: #FB9386;
+		cursor: pointer;
 	}
 
 	#cityAdd {
@@ -663,9 +667,14 @@ textarea{
 		letter-spacing: 1px;	
 	}
 
+	.popover {
+		width: 260px;
+		height: 45px;	
+	}
   .staticBin {
   	display: inline-block;
   }
-	.staticBin table tr td{
+	.staticBin table tr td {
 		padding: 28px 0;
 	}
+

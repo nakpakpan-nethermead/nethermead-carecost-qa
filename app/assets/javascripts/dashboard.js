@@ -20,6 +20,7 @@ $(document).ready(function(){
     });
   });
 
+
   $(".amount").keypress(function(event){
     if(event.keyCode > 47 && event.keyCode < 58) {
       if($(this).attr('prefix') == '%')
@@ -145,7 +146,7 @@ $(document).ready(function(){
       currentCategory = '';
     },
     searchingText: "Fetching procedures",
-    hintText: "Type your mediacal conditions",
+    hintText: "Type your medical conditions",
   });
 
 

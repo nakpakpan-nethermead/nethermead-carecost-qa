@@ -43,7 +43,7 @@
   		<a href="#email-share" data-toggle="modal" class="share-email-content">SHARE VIA EMAIL <i class="fa fa-share-square-o fa-lg"></i></a>
   	</div>
 <!-- Share via email -->
-  <!-- My Medical Conditions -->
+<!-- My Medical Conditions -->
   <div class="content-header">
     <div class="menu-icon">
       <img src="/assets/stethoscope.png">
@@ -148,7 +148,12 @@
           </tr>
           <tr ng-repeat="procedure in procedures track by $index">
             <td class="labs">
-              <label for="{{procedure.id}}">{{ procedure.name }}</label>
+              <!--<label for="{{procedure.id}}" id="procedure-name" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{procedure.name}}">{{ procedure.name }}</label>-->
+              <!--<label for="{{procedure.id}}" id="procedure-name" tooltip="{{procedure.name}}" tooltip-append-to-body="true">{{ procedure.name }}</label>-->
+              <label for="{{procedure.id}}" id="procedure-name" title="{{procedure.name}}">{{ procedure.name }}</label>
+              <!--<script type="text/javascript" >
+						$('#procedure-name').popover();
+				  </script>-->
             </td>
             <td>
               <select ng-model="procedure.current_network" ng-change="filter($index)" >
@@ -307,8 +312,8 @@
           <i class="fa fa-caret-down" data-toggle="popover" data-content="demo"></i>
         </li>
         <li>
-          <span ng-click="sortPhysic('first_name')">Physician Name &nbsp;</span>
-          <i class="fa fa-caret-down"></i>
+          <span ng-click="sortPhysic('first_name')">Provider Name &nbsp;</span>
+          <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
         </li>
         <li> 
           <select ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure" id="physicianProcedure">
