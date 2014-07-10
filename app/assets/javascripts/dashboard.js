@@ -21,8 +21,7 @@ $(document).ready(function(){
   });
 
 
-  $(".amount").keypress(function(event){
-    if(event.keyCode > 47 && event.keyCode < 58) {
+  $(".amount").keyup(function(event){
       if($(this).attr('prefix') == '%')
         var value = this.value.substring(0,this.value.length-1);
       else
@@ -31,9 +30,13 @@ $(document).ready(function(){
       $(this).next().slider("value", parseInt(value));
       if($(this).val() == '')
         $(this).val($(this).attr('prefix'));
-    } else {
-      return false;
-    }
+  });
+
+  $(".amount").keypress(function(event){
+    if(event.keyCode > 47 && event.keyCode < 58)
+      return true;
+
+    return false;
   });
 
   $.widget( "custom.catcomplete", $.ui.autocomplete, {
