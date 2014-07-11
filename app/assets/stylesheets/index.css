@@ -408,6 +408,7 @@ textarea{
 
 .ui-widget-header {
 	border-radius: 0px !important;
+	background: #e5e4e2 !important;
 }
 
 .ui-slider-handle:focus{
