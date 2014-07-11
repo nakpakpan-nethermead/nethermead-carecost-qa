@@ -129,9 +129,9 @@ textarea{
 	width: 50%;
 }
 .overflowScroll {
-	width: 39%;
+	width: 40%;
 	overflow-x: scroll;
-	margin-top: 20px;
+	margin-top: 13px;
 	display: inline-block;
 }
 
@@ -690,3 +690,7 @@ textarea{
   	display: inline-block;
   }
 
+	.eraseBtn {
+		padding-top: 25px !important;
+		cursor: pointer;
+	}
