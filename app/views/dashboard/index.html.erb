@@ -1,42 +1,3 @@
-<header>
-  <div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-          <img src="/assets/logo.png"> <span>NALC</span> HEALTH BENEFIT PLAN
-        </a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="user-email">
-            <% if current_user %>
-            <a href="#"><%= current_user.email %> </a>
-            <a id="logOut" data-method="delete" href="/users/sign_out" rel="nofollow">Logout
-            </a>
-            <% end %>
-          </li>
-          <li class="user-pic"><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border">
-    </div>
-    <!-- <div class="container">
-      <div class="navbar-collapse collapse sub-header">
-        <ul class="nav navbar-nav">
-          <li><a><input type="text" placeholder="Search"></a></li>
-          <li class="subheader-folder"><a href="#"><img src="/assets/add-folder.png"></a></li>
-          <li class="subheader-folder" data-toggle="popover" data-contentId="searchPopContent"><a href="#"><i class="icon-box-add"></i></a></li>
-        </ul>
-      </div>
-    </div> -->
-  </div>
-</header>
 <main class="container">
 <!-- Share via email -->
   	<div class="share-email-content">
@@ -52,7 +13,10 @@
       MY MEDICAL CONDITION
     </div>
     <div class="menu-icon-2" id="conditionSetting">
-      <i class="icon-box-add"></i>
+      <!-- TEMPORARY FAVORITE PROVIDERS PAGE LINK BUTTON-->
+      <!--<%= button_to "Favorite", { :action=>"fav_list", :controller=>"procedure"} %>-->
+      <!-- TEMPORARY FAVORITE PROVIDERS PAGE LINK BUTTON-->
+      <i class="icon-box-add" ng-click=""></i> 
       <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis" class="conditionSearchIn"> Diagnosis
       <input type="checkbox" checked name="searchProcedure" id="searchProcedure" class="conditionSearchIn"> Procedure
     </div>
@@ -80,7 +44,7 @@
               Total Deductible
             </div>
             <input class="amount" ng-model="totalDeductible" value="$0" prefix="$">
-            <div class="slider-range" max="10000">
+            <div class="slider-range" max="10000" id="total-deduct">
             </div>
           </div>
         </div>
@@ -90,7 +54,7 @@
               Deductible Paid-To-Date
             </div>
             <input class="amount" ng-model="deductiblePaid" value="$0" prefix="$">
-            <div class="slider-range" max="10000">
+            <div class="slider-range" max="10000" id="deduct-ptd"> 
             </div>
           </div>
         </div>
@@ -100,7 +64,7 @@
               Copay
             </div>
             <input class="amount" ng-model="copay" value="$0" prefix="$">
-            <div class="slider-range" max="100">
+            <div class="slider-range" max="100" id="copay">
             </div>
           </div>
         </div>
@@ -110,7 +74,7 @@
               Coinsurance
             </div>
             <input class="amount" ng-model="coInsurance" value="0%" prefix="%">
-            <div class="slider-range" max="100">
+            <div class="slider-range" max="100" id="coinsur">
             </div>
           </div>
         </div>
@@ -404,15 +368,7 @@
     </div> <!-- physician-list -->
   </div> 
   <!-- Recommended Physicians -->
-  <!-- Footer -->
-		<div class="navbar navbar-default navbar-fixed-bottom">
-       	<div class="footer-container">
-           	<p class="navbar-text pull-right"> <span class="footer-text1">POWERED BY:</span> <span class="footer-text2">NETHER</span><span class="footer-text3">MEAD</span></p>
-       	</div>  
-  		</div>
-  	<!--Footer -->
-
-   <!-- Share via email modal -->
+  <!-- Share via email modal -->
   		<div class="modal fade" id="email-share" role="dialog">
       	<div class="modal-dialog">
           	<div class="modal-content">

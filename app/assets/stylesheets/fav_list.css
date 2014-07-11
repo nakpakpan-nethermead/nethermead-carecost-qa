@@ -1,0 +1,38 @@
+main {
+	margin-top: 7%;
+	margin-bottom: 10% !important;
+}
+.calender-table {
+	margin-top: 20px;
+	margin-left: 0px !important;
+	border: none;
+	font-size: medium;
+	color: #3e4852;
+}
+
+.condition-name {
+	margin-left: 0px !important;
+	font-size: 24px !important;
+	font-family: 'OpenSansSemibold' !important;
+	padding-top: 20px;
+}
+
+.condition-added-date {
+	color: #fb938a;
+	font-family: 'OpenSansRegular';
+	font-size: 23px;
+}
+
+.calender-button {
+	margin-left: 0px !important;
+	margin-top: 40px !important;
+}
+
+.prev-month {
+	float: left !important;
+}
+
+.next-month {
+	float: right !important;
+	margin-left: 860px;
+}

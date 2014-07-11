@@ -1,0 +1,282 @@
+<main class="container">
+	<!-- Favorite Providers -->
+    <div class="content-header">
+    	<div class="menu-icon">
+      		<img src="/assets/physicians.png">
+    	</div>
+    	<div class="content-title">
+      		FAVORITE PROVIDERS
+    	</div>
+        
+       <div class="table-responsive"><!--calender-->
+            <table class="table calender-table">
+              <thead>
+                <th>2014:</th>
+                <th>Jan</th>
+                <th>Feb</th>
+                <th>Mar</th>
+                <th>Apr</th>
+                <th>May</th>
+                <th>Jun</th>
+                <th>Jul</th>
+                <th>Aug</th>
+                <th>Sep</th>
+                <th>Oct</th>
+                <th>Nov</th>
+                <th>Dec</th>
+              </thead>
+            </table>
+       </div><!--calender-->
+       <div class="content-title condition-name"><!--condition name-->
+       	Eyesight Testing - <span class="condition-added-date">June 21, 2014</span>
+       </div><!--condition name-->
+       <div class="physician-selection"><!--ng-controller="physicianController"-->
+    		<div class="physician-list"><!-- ng-show="noPhysician()"-->
+      			<div class="physician-available"><!--  ng-show="physicians.length"-->
+      				<div class="row">
+          				<div class="col-lg-4 col-md-4 clo-xs-6"><!-- ng-repeat="physician in physicians | orderBy:column:descending track by $index "-->
+            				<div class="physician-details"><!-- id="f{{$index}}"-->
+              					<div class="row">
+                					<div class="col-lg-4 details-col">
+                  						<div class="profile-pic">
+                    						<img src="/assets/doctor.jpg">
+                  						</div>
+                  						<div class="physician-name">
+                    						Dr. ASBC
+                  						</div>
+                					</div>
+                					<div class="col-lg-8 details-col">
+                  						<div class="profile-content">
+                    						<ul>
+                      							<li><span class="profile-fields">Speciality :</span> home </li>
+                      							<li><span class="profile-fields">Years In Practice :</span> From 2002 </li>
+                      							<li><span class="profile-fields">Location :</span> Brooklyn </li>
+                      							<li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                      							<li><span class="profile-fields">NCQA Rating :</span> 
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                      							</li>
+                    						</ul>
+                  						</div>
+                  						<div class="profile-icons">
+                    						<a href=""><i class="fa fa-heart" title="Click to add the Provider as Favorite"></i></a>
+                    						<a href="" ng-click="flipGraph($index)"><!--ng-click="flipGraph($index)"--><img src="/assets/growth.png"></a>
+                  						</div>
+                					</div>
+              					</div>
+             					<!--<div class="physician-map">
+                						<gm-map 
+                						gm-map-id="'myMap'" 
+                						gm-center="physician.locate"
+                						gm-zoom="zoom" 
+                						gm-bounds="bounds" 
+                						gm-map-type-id="mapTypeId" 
+                						style="width:368px;height:300px;">
+                						</gm-map>
+              						</div> -->
+            				</div> <!-- physician details -->
+            				<div class="physician-details performance-info hide"><!--id="b{{$index}}"-->
+              					<div class="row">
+                					<div class="col-lg-10">
+                  						<div class="physician-name">
+                    						Dr. ASBC's Performance
+                  						</div>
+                  						<div class="profile-content">
+                    						<ul>
+                      							<li><span class="profile-fields">NALC Member Patients :</span> 2 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                    						</ul>
+                  						</div>
+                					</div>
+                					<div class="col-lg-2">
+                  						<div class="profile-icons">
+                    						<a href="" class="active"><i class="fa fa-heart"></i></a>
+                    						<a href=""><i class="icon-user"><!-- ng-click="flipGraph($index)"--></i></a>
+                  						</div>
+                					</div>
+              					</div>
+              					<div class="performance-graph">
+                					<img src="/assets/performance-graph.png">
+              					</div>
+            				</div> <!-- physician details -->
+          				</div>
+        			</div> <!-- row -->
+      			</div> <!-- physician available -->
+    		</div> <!-- physician-list -->
+  		</div><!-- Recommended Physicians -->
+
+  		<div class="content-title condition-name">
+       	Other Condition - <span class="condition-added-date">June 15, 2014</span>
+       </div>
+       <div class="physician-selection"><!--ng-controller="physicianController"-->
+    		<div class="physician-list"><!-- ng-show="noPhysician()"-->
+      			<div class="physician-available"><!--  ng-show="physicians.length"-->
+      				<div class="row">
+          				<div class="col-lg-4 col-md-4 clo-xs-6"><!-- ng-repeat="physician in physicians | orderBy:column:descending track by $index "-->
+            				<div class="physician-details"><!-- id="f{{$index}}"-->
+              					<div class="row">
+                					<div class="col-lg-4 details-col">
+                  						<div class="profile-pic">
+                    						<img src="/assets/doctor.jpg">
+                  						</div>
+                  						<div class="physician-name">
+                    						Dr. ASBC
+                  						</div>
+                					</div>
+                					<div class="col-lg-8 details-col">
+                  						<div class="profile-content">
+                    						<ul>
+                      							<li><span class="profile-fields">Speciality :</span> home </li>
+                      							<li><span class="profile-fields">Years In Practice :</span> From 2002 </li>
+                      							<li><span class="profile-fields">Location :</span> Brooklyn </li>
+                      							<li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                      							<li><span class="profile-fields">NCQA Rating :</span> 
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                      							</li>
+                    						</ul>
+                  						</div>
+                  						<div class="profile-icons">
+                    						<a href=""><i class="fa fa-heart" title="Click to add the Provider as Favorite"></i></a>
+                    						<a href=""><!--ng-click="flipGraph($index)"--><img src="/assets/growth.png"></a>
+                  						</div>
+                					</div>
+              					</div>
+             					<!--<div class="physician-map">
+                						<gm-map 
+                						gm-map-id="'myMap'" 
+                						gm-center="physician.locate"
+                						gm-zoom="zoom" 
+                						gm-bounds="bounds" 
+                						gm-map-type-id="mapTypeId" 
+                						style="width:368px;height:300px;">
+                						</gm-map>
+              						</div> -->
+            				</div> <!-- physician details -->
+            				<div class="physician-details performance-info hide"><!--id="b{{$index}}"-->
+              					<div class="row">
+                					<div class="col-lg-10">
+                  						<div class="physician-name">
+                    						Dr. ASBC's Performance
+                  						</div>
+                  						<div class="profile-content">
+                    						<ul>
+                      							<li><span class="profile-fields">NALC Member Patients :</span> 2 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                    						</ul>
+                  						</div>
+                					</div>
+                					<div class="col-lg-2">
+                  						<div class="profile-icons">
+                    						<a href="" class="active"><i class="fa fa-heart"></i></a>
+                    						<a href=""><i class="icon-user"><!-- ng-click="flipGraph($index)"--></i></a>
+                  						</div>
+                					</div>
+              					</div>
+              					<div class="performance-graph">
+                					<img src="/assets/performance-graph.png">
+              					</div>
+            				</div> <!-- physician details -->
+          				</div>
+        			</div> <!-- row -->
+      			</div> <!-- physician available -->
+    		</div> <!-- physician-list -->
+  		</div><!-- Recommended Physicians -->
+
+  		<div class="content-title condition-name">
+       	Other Condition - <span class="condition-added-date">June 6, 2014</span>
+       </div>
+       <div class="physician-selection"><!--ng-controller="physicianController"-->
+    		<div class="physician-list"><!-- ng-show="noPhysician()"-->
+      			<div class="physician-available"><!--  ng-show="physicians.length"-->
+      				<div class="row">
+          				<div class="col-lg-4 col-md-4 clo-xs-6"><!-- ng-repeat="physician in physicians | orderBy:column:descending track by $index "-->
+            				<div class="physician-details"><!-- id="f{{$index}}"-->
+              					<div class="row">
+                					<div class="col-lg-4 details-col">
+                  						<div class="profile-pic">
+                    						<img src="/assets/doctor.jpg">
+                  						</div>
+                  						<div class="physician-name">
+                    						Dr. ASBC
+                  						</div>
+                					</div>
+                					<div class="col-lg-8 details-col">
+                  						<div class="profile-content">
+                    						<ul>
+                      							<li><span class="profile-fields">Speciality :</span> home </li>
+                      							<li><span class="profile-fields">Years In Practice :</span> From 2002 </li>
+                      							<li><span class="profile-fields">Location :</span> Brooklyn </li>
+                      							<li><span class="profile-fields">My Estimated Cost :</span> $240 </li>
+                      							<li><span class="profile-fields">NCQA Rating :</span> 
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                        							<i class="fa fa-star"></i>
+                      							</li>
+                    						</ul>
+                  						</div>
+                  						<div class="profile-icons">
+                    						<a href=""><i class="fa fa-heart" title="Click to add the Provider as Favorite"></i></a>
+                    						<a href=""><!--ng-click="flipGraph($index)"--><img src="/assets/growth.png"></a>
+                  						</div>
+                					</div>
+              					</div>
+             					<!--<div class="physician-map">
+                						<gm-map 
+                						gm-map-id="'myMap'" 
+                						gm-center="physician.locate"
+                						gm-zoom="zoom" 
+                						gm-bounds="bounds" 
+                						gm-map-type-id="mapTypeId" 
+                						style="width:368px;height:300px;">
+                						</gm-map>
+              						</div> -->
+            				</div> <!-- physician details -->
+            				<div class="physician-details performance-info hide"><!--id="b{{$index}}"-->
+              					<div class="row">
+                					<div class="col-lg-10">
+                  						<div class="physician-name">
+                    						Dr. ASBC's Performance
+                  						</div>
+                  						<div class="profile-content">
+                    						<ul>
+                      							<li><span class="profile-fields">NALC Member Patients :</span> 2 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                      							<li><span class="profile-fields">Other Helpful Data Point :</span> 17 </li>
+                    						</ul>
+                  						</div>
+                					</div>
+                					<div class="col-lg-2">
+                  						<div class="profile-icons">
+                    						<a href="" class="active"><i class="fa fa-heart"></i></a>
+                    						<a href=""><i class="icon-user"><!-- ng-click="flipGraph($index)"--></i></a>
+                  						</div>
+                					</div>
+              					</div>
+              					<div class="performance-graph">
+                					<img src="/assets/performance-graph.png">
+              					</div>
+            				</div> <!-- physician details -->
+          				</div>
+        			</div> <!-- row -->
+      			</div> <!-- physician available -->
+    		</div> <!-- physician-list -->
+  		</div><!-- Recommended Physicians -->
+      
+  		<div class="content-view calender-button"><!--calender switch buttons-->
+          <button class="btn btn-default current prev-month">May 2014</button>
+          <button class="btn btn-default current next-month">July 2014</button>
+      </div><!--calender switch buttons-->
+
+  	</div><!-- Favorite Providers -->
+</main>
