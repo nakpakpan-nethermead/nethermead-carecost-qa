@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
-	def create
-		
-	end
+  def create
+    
+  end
 
   def get_suggestions
     condition_array = Array.new
@@ -33,7 +33,7 @@ if(searchDiagnosis == 'true')
       result.each do |c|
         element = Hash.new
         if c.consumer_name != ''
-          element[:category] = c.consumer_name
+          element[:category] = "Diagnosis: " +  c.consumer_name
           element[:name] = c.short_name
           element[:id] = c.p_id
           condition_array << element
@@ -60,17 +60,17 @@ if(searchDiagnosis == 'true')
     # end
 
     if(searchProcedure == 'true')
-      result = Procedure.where("short_name ILIKE '%#{params[:q]}%'")
-      result.each do |p|
-        element = Hash.new
+        result = Procedure.where("short_name ILIKE '%#{params[:q]}%'")
+        result.each do |p|
+          element = Hash.new
           if p.full_name != ''
-          element[:category] = "Procedures"
-          element[:name] = p.full_name
-          element[:id] = p.id
-          condition_array << element
+            element[:category] = "Procedures"
+            element[:name] = p.full_name
+            element[:id] = p.id
+            condition_array << element
+          end
         end
       end
-    end
 
     # result = Diagnosis.where("short_name LIKE '%#{params[:term]}%'")
     # result.each do |p|
@@ -86,5 +86,5 @@ if(searchDiagnosis == 'true')
     render :json => condition_array
   end
 
-	private
+  private
 end
