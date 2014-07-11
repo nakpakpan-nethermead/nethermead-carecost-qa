@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
     searchProcedure = params['procedure']
     searchDiagnosis = params['diagnosis']
 
-    if(searchProcedure == 'true')
+    if(searchDiagnosis == 'true')
       result = Condition.joins(
                "INNER JOIN procedures on conditions.code = procedures.code 
                 where conditions.consumer_name ILIKE '%#{params[:q]}%' AND conditions.condition_type='procedure' order by conditions.id")
@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
       end
     end
 
-if(searchDiagnosis == 'true')
+if(searchProcedure == 'true')
       result = Condition.joins(
                "INNER JOIN procedures on conditions.code = procedures.code 
                 where conditions.consumer_name ILIKE '%#{params[:q]}%' AND conditions.condition_type='diagnosis' order by conditions.id")
