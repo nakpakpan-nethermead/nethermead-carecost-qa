@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
       result.each do |c|
         element = Hash.new
         if c.consumer_name != ''
-          element[:category] = c.consumer_name
+          element[:category] = "Diagnosis: " +  c.consumer_name
           element[:name] = c.short_name
           element[:id] = c.p_id
           condition_array << element
@@ -33,7 +33,7 @@ if(searchProcedure == 'true')
       result.each do |c|
         element = Hash.new
         if c.consumer_name != ''
-          element[:category] = "Diagnosis: " + c.consumer_name
+          element[:category] = c.consumer_name
           element[:name] = c.short_name
           element[:id] = c.p_id
           condition_array << element
