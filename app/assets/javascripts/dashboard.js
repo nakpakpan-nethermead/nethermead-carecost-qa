@@ -20,6 +20,7 @@ $(document).ready(function(){
       },
       change: function( event, ui ) {
         angular.element('#insuranceController').scope().calculatePrice();
+        angular.element('#insuranceController').scope().$apply();
       }
     });
   });
