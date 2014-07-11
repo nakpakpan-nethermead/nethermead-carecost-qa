@@ -13,10 +13,7 @@
       MY MEDICAL CONDITION
     </div>
     <div class="menu-icon-2" id="conditionSetting">
-      <!-- TEMPORARY FAVORITE PROVIDERS PAGE LINK BUTTON-->
-      <!--<%= button_to "Favorite", { :action=>"fav_list", :controller=>"procedure"} %>-->
-      <!-- TEMPORARY FAVORITE PROVIDERS PAGE LINK BUTTON-->
-      <i class="icon-box-add" ng-click=""></i> 
+      <i class="icon-box-add"></i>
       <input type="checkbox" checked name="searchDiagnosis" id="searchDiagnosis" class="conditionSearchIn"> Diagnosis
       <input type="checkbox" checked name="searchProcedure" id="searchProcedure" class="conditionSearchIn"> Procedure
     </div>
@@ -44,7 +41,7 @@
               Total Deductible
             </div>
             <input class="amount" ng-model="totalDeductible" value="$0" prefix="$">
-            <div class="slider-range" max="10000" id="total-deduct">
+            <div class="slider-range" max="10000">
             </div>
           </div>
         </div>
@@ -54,7 +51,7 @@
               Deductible Paid-To-Date
             </div>
             <input class="amount" ng-model="deductiblePaid" value="$0" prefix="$">
-            <div class="slider-range" max="10000" id="deduct-ptd"> 
+            <div class="slider-range" max="10000">
             </div>
           </div>
         </div>
@@ -64,7 +61,7 @@
               Copay
             </div>
             <input class="amount" ng-model="copay" value="$0" prefix="$">
-            <div class="slider-range" max="100" id="copay">
+            <div class="slider-range" max="100">
             </div>
           </div>
         </div>
@@ -74,7 +71,7 @@
               Coinsurance
             </div>
             <input class="amount" ng-model="coInsurance" value="0%" prefix="%">
-            <div class="slider-range" max="100" id="coinsur">
+            <div class="slider-range" max="100">
             </div>
           </div>
         </div>
@@ -107,12 +104,16 @@
       <div class="content-body" ng-show="list">
         <table class="table" id="procedureTable">
           <tr>
+            <th>#</th>
             <th>Name</th>
             <th>Network</th>
             <th>Place of service</th>
             <th class="avg-cost-heading">National Avg</th>
           </tr>
           <tr ng-repeat="procedure in procedures track by $index">
+            <td class="eraseBtn">
+              <i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i>
+            </td>
             <td class="labs">
               <!--<label for="{{procedure.id}}" id="procedure-name" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{procedure.name}}">{{ procedure.name }}</label>-->
               <!--<label for="{{procedure.id}}" id="procedure-name" tooltip="{{procedure.name}}" tooltip-append-to-body="true">{{ procedure.name }}</label>-->
@@ -148,15 +149,6 @@
             <tr ng-repeat="procedure in procedures track by $index">
               <td class="avg-cost" ng-repeat="c in procedure.charge track by $index"> 
                 ${{c.val}}
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="staticBin">
-          <table>
-            <tr ng-repeat="procedure in procedures track by $index">
-              <td>
-                <i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i>
               </td>
             </tr>
           </table>
@@ -380,7 +372,15 @@
     </div> <!-- physician-list -->
   </div> 
   <!-- Recommended Physicians -->
-  <!-- Share via email modal -->
+  <!-- Footer -->
+		<div class="navbar navbar-default navbar-fixed-bottom">
+       	<div class="footer-container">
+           	<p class="navbar-text pull-right"> <span class="footer-text1">POWERED BY:</span> <span class="footer-text2">NETHER</span><span class="footer-text3">MEAD</span></p>
+       	</div>  
+  		</div>
+  	<!--Footer -->
+
+   <!-- Share via email modal -->
   		<div class="modal fade" id="email-share" role="dialog">
       	<div class="modal-dialog">
           	<div class="modal-content">

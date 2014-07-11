@@ -30,6 +30,7 @@ $(document).ready(function(){
       },
       change: function( event, ui ) {
         angular.element('#insuranceController').scope().calculatePrice();
+        angular.element('#insuranceController').scope().$apply();
       }
     });
   });
@@ -130,15 +131,7 @@ $(document).ready(function(){
     });
   },300);
 
-  var medicalConditionUrl = '/dashboard/get_suggestions?procedure=true&diagnosis=true';
-
-  $(".conditionSearchIn").change(function(){
-    medicalConditionUrl = "/dashboard/get_suggestions";
-    medicalConditionUrl += "?diagnosis="+$("#searchDiagnosis").is(':checked')
-    medicalConditionUrl += "&procedure="+$("#searchProcedure").is(':checked')
-    console.log(medicalConditionUrl);
-  });
-
+  console.log(medicalConditionUrl());
   $("#medicalCondition").tokenInput(medicalConditionUrl, {
     theme: "facebook",
     preventDuplicates: true,
@@ -202,4 +195,9 @@ function extractLast( term ) {
   return split( term ).pop();
 } 
 
-
+function medicalConditionUrl(){
+    var medicalConditionUrl = "/dashboard/get_suggestions";
+    medicalConditionUrl += "?diagnosis="+$("#searchDiagnosis").is(':checked')
+    medicalConditionUrl += "&procedure="+$("#searchProcedure").is(':checked')
+    return medicalConditionUrl;
+}
