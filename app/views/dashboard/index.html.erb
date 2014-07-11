@@ -22,8 +22,8 @@
     </div>
   </div>
   <div class="search-bar" ng-controller="conditionController">
-    <input id="medicalCondition" ng-model="newProcedure" placeholder="Type your Condition" />
-    <button class="btn btn-success" id="procedure-btn" ng-click="add()">Add Procedure</button>
+    <input id="medicalCondition" ng-model="newProcedure" placeholder="Add a procedure to get started" />
+    <button class="btn btn-success" id="procedure-btn" ng-click="add()">ADD PROCEDURE</button>
   </div> <!-- My medical conditions -->
 
   <!-- My Insurance status -->
@@ -261,7 +261,7 @@
 
   <div class="physician-selection" ng-controller="physicianController">
     <div ng-hide="noPhysician()" class="noPhysician">
-      Please add some procedure.
+      Add a procedure to get started
     </div>
     <div class="selection-items" ng-show="noPhysician()">
       <ul>
