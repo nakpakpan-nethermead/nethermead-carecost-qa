@@ -56,7 +56,34 @@ myApp.service('Procedure',function($http){
     });
   }
 
+  var calculatePrice = function(s){
+    
+    var totalDeductible = parseInt(s.totalDeductible.substring(1));
+    var deductiblePaid = parseInt(s.deductiblePaid.substring(1));
+    var coInsurance = parseInt(s.coInsurance.substring(0,s.coInsurance.length-1));
+    var copay = parseInt(s.copay.substring(1));
+
+    console.log(totalDeductible,deductiblePaid,coInsurance,copay);
+
+    var netDedutable = Math.abs(totalDeductible - deductiblePaid);
+    var netInsurance = 100 - coInsurance;
+
+    console.log(netDedutable,netInsurance);
+
+    for(i=0;i<procedures.length;i++) {
+      $.each(procedures[i].charge , function(key,val){
+        console.log(val.originalVal);
+        var newCharge = val.originalVal - netDedutable;
+        newCharge = (newCharge * netInsurance)/100;
+        newCharge =  newCharge + netDedutable + copay;
+        console.log(newCharge);
+        procedures[i].charge[key]["val"] = newCharge;
+      });
+    }
+  }
+
   return {
+    calculatePrice: calculatePrice,
     add: add,
     destroy: destroy,
     removeCityCost: removeCityCost,
@@ -289,8 +316,12 @@ function physicianController($scope, $http, City, Physician, Procedure) {
 }
 
 
-function emailController($scope){
-  onSubmit = function() {
-    alert("Submit triggered");
+function insuranceController($scope, Procedure){
+  $scope.totalDeductible = "$0"
+  $scope.deductiblePaid = "$0"
+  $scope.copay = "$0"
+  $scope.coInsurance = "0%"
+  $scope.calculatePrice = function(){
+    Procedure.calculatePrice($scope);
   }
 }
