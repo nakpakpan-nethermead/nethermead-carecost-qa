@@ -9,3 +9,5 @@ tmp/*
 *.css~
 
 app/assets/stylesheets/dashboard.css~
+
+config/database.yml
