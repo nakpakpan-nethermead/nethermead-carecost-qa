@@ -28,13 +28,16 @@ class ProviderController < ApplicationController
       user_fav[:date_added] = Time.now.strftime("%m/%d/%Y")
       user_fav[:status] = 1
       UserFavorite.create(user_fav)
+      resBack = 1
     else
       if (@userfav_check.status == 0)
         @userfav_check.update_attributes(:status => 1)
+        resBack = 1
       else
         @userfav_check.update_attributes(:status => 0)
+        resBack = 0
       end
     end
-    binding.pry
+    render :text => resBack
   end
 end
