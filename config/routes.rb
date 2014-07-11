@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/procedure/price/:id" => "procedure#price"
   get "/procedure/get_city_suggestions" => "procedure#get_city_suggestions"
   get "/provider/makefav" => "provider#makefav"
+  post "/procedure/fav_list" => "procedure#fav_list"
   resources :dashboard
   resources :procedure
   resources :provider

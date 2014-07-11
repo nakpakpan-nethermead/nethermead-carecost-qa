@@ -3,6 +3,8 @@ var currentCategory = 1;
 $(document).ready(function(){
 
   $( ".slider-range" ).each(function() {
+    
+    //alert(slvalue);
     $( this ).slider({
       range: "max",
       min: 0,
@@ -14,8 +16,16 @@ $(document).ready(function(){
           value = ui.value + $(event.target).prev().attr("prefix");
         } else {
           value = $(event.target).prev().attr("prefix") + ui.value;
+
         }
         $(event.target).prev().val(value);
+            //$('#total-deduct').attr('max', ui.value);
+            //$('#deduct-ptd').attr('max', ui.value);
+            //slvalue = value;
+            //alert($('#total-deduct').attr('max', ui.value));
+            //alert($('#deduct-ptd').attr('max', ui.value));
+            //alert($('#copay').attr('max'));
+            //alert($('#coinsur').attr('max'));
         $(event.target).prev().trigger('input');
       },
       change: function( event, ui ) {

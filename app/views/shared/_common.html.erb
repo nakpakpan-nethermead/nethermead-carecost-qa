@@ -1,0 +1,48 @@
+<header>
+  <div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img src="/assets/logo.png"> <span>NALC</span> HEALTH BENEFIT PLAN
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="user-email">
+            <% if current_user %>
+            <a href="#"><%= current_user.email %> </a>
+            <a id="logOut" data-method="delete" href="/users/sign_out" rel="nofollow">Logout
+            </a>
+            <% end %>
+          </li>
+          <li class="user-pic"><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border">
+    </div>
+    <!-- <div class="container">
+      <div class="navbar-collapse collapse sub-header">
+        <ul class="nav navbar-nav">
+          <li><a><input type="text" placeholder="Search"></a></li>
+          <li class="subheader-folder"><a href="#"><img src="/assets/add-folder.png"></a></li>
+          <li class="subheader-folder" data-toggle="popover" data-contentId="searchPopContent"><a href="#"><i class="icon-box-add"></i></a></li>
+        </ul>
+      </div>
+    </div> -->
+  </div>
+</header>
+
+<!-- Footer -->
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="footer-container">
+            <p class="navbar-text pull-right"> <span class="footer-text1">POWERED BY:</span> <span class="footer-text2">NETHER</span><span class="footer-text3">MEAD</span></p>
+        </div>  
+      </div>
+<!--Footer -->
+
