@@ -681,11 +681,10 @@ textarea{
 	.popover {
 		width: 260px;
 		height: 45px;	
+
 	}
+
   .staticBin {
   	display: inline-block;
   }
-	.staticBin table tr td {
-		padding: 28px 0;
-	}
 
