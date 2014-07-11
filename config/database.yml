@@ -37,11 +37,11 @@ default: &default
   password: root
 
 #Office PC
-defult: &default
- adapter: postgresql
- username: dev1-nethermead
- password: Hacker1*
- host: 127.0.0.1
+# defult: &default
+#  adapter: postgresql
+#  username: dev1-nethermead
+#  password: Hacker1*
+#  host: 127.0.0.1
 
 development:
   <<: *default
