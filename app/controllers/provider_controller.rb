@@ -19,6 +19,22 @@ class ProviderController < ApplicationController
   end
 
   def makefav
+    @userfav_check = UserFavorite.where("provider_id IN (?) and user_id IN (?)", params["provider_id"], current_user.id).first
+    if @userfav_check == nil 
+      user_fav = Hash.new
+      user_fav[:user_id] = current_user.id
+      user_fav[:provider_id] = params["provider_id"]
+      user_fav[:procedure_id] = params["procedure_id"]
+      user_fav[:date_added] = Time.now.strftime("%m/%d/%Y")
+      user_fav[:status] = 1
+      UserFavorite.create(user_fav)
+    else
+      if (@userfav_check.status == 0)
+        @userfav_check.update_attributes(:status => 1)
+      else
+        @userfav_check.update_attributes(:status => 0)
+      end
+    end
     binding.pry
   end
 end
