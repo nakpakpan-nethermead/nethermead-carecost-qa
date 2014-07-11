@@ -44,11 +44,13 @@ class ProcedureController < ApplicationController
                    :service_place => procedure["current_facility"],
                    "#{city['dataType']}" => "#{city['data']}")
             .order(:service_charge)
-        
+          price = Hash.new
           if (charges[0])
-            price = charges[0].service_charge
+            price["val"] = charges[0].service_charge
+            price["originalVal"] = charges[0].service_charge
           else
-            price = 0
+            price["val"] = 0
+            price["originalVal"] = 0
           end
 
           sendBack["charge"] << price
@@ -117,7 +119,7 @@ class ProcedureController < ApplicationController
       condition_array << element
     end
 
-    cities = ProviderCharge.where("service_city ILIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
+    cities = ProviderCharge.where("service_city LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
     cities.each do |c|
       element = Hash.new
       element[:category] = "City"
@@ -127,7 +129,7 @@ class ProcedureController < ApplicationController
       condition_array << element
     end
 
-    states = ProviderCharge.where("service_state ILIKE '%#{params[:term]}%'").limit(10).select(:service_state)
+    states = ProviderCharge.where("service_state LIKE '%#{params[:term]}%'").limit(10).select(:service_state)
     states.each do |c|
       element = Hash.new
       element[:category] = "State"

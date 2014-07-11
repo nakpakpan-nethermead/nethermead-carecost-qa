@@ -63,58 +63,60 @@
   </div> <!-- My medical conditions -->
 
   <!-- My Insurance status -->
-  <div class="content-header">
-    <div class="menu-icon">
-      <img src="/assets/insurance.png">
+  <div id="insuranceController" ng-controller="insuranceController">
+    <div class="content-header">
+      <div class="menu-icon">
+        <img src="/assets/insurance.png">
+      </div>
+      <div class="content-title">
+        MY INSURANCE STATUS
+      </div>
     </div>
-    <div class="content-title">
-      MY INSURANCE STATUS
-    </div>
+    <div class="status-box">
+      <div class="row color-slider">
+        <div class="col-lg-3">
+          <div class="total-ded">
+            <div class="title">
+              Total Deductible
+            </div>
+            <input class="amount" ng-model="totalDeductible" value="$0" prefix="$">
+            <div class="slider-range" max="10000">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="ded-date">
+            <div class="title">
+              Deductible Paid-To-Date
+            </div>
+            <input class="amount" ng-model="deductiblePaid" value="$0" prefix="$">
+            <div class="slider-range" max="10000">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="copay">
+            <div class="title">
+              Copay
+            </div>
+            <input class="amount" ng-model="copay" value="$0" prefix="$">
+            <div class="slider-range" max="100">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="coinsurance">
+            <div class="title">
+              Coinsurance
+            </div>
+            <input class="amount" ng-model="coInsurance" value="0%" prefix="%">
+            <div class="slider-range" max="100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- Insurance status -->
   </div>
-  <div class="status-box">
-    <div class="row color-slider">
-      <div class="col-lg-3">
-        <div class="total-ded">
-          <div class="title">
-            Total Deductible
-          </div>
-          <input class="amount" value="$0" prefix="$">
-          <div class="slider-range" max="10000">
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="ded-date">
-          <div class="title">
-            Deductible Paid-To-Date
-          </div>
-          <input class="amount" value="$0" prefix="$">
-          <div class="slider-range" max="10000">
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="copay">
-          <div class="title">
-            Copay
-          </div>
-          <input class="amount" value="$0" prefix="$">
-          <div class="slider-range" max="100">
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="coinsurance">
-          <div class="title">
-            Coinsurance
-          </div>
-          <input class="amount" value="0%" prefix="%">
-          <div class="slider-range" max="100">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> <!-- Insurance status -->
 
   <div ng-controller="procedureController">
     <!-- My procedures -->
@@ -181,7 +183,7 @@
             </tr>
             <tr ng-repeat="procedure in procedures track by $index">
               <td class="avg-cost" ng-repeat="c in procedure.charge track by $index"> 
-                ${{c}}
+                ${{c.val}}
               </td>
             </tr>
           </table>
@@ -411,7 +413,7 @@
   	<!--Footer -->
 
    <!-- Share via email modal -->
-  		<div class="modal fade" id="email-share" role="dialog" ng-controller="emailController">
+  		<div class="modal fade" id="email-share" role="dialog">
       	<div class="modal-dialog">
           	<div class="modal-content">
               	<form class="form-horizontal">

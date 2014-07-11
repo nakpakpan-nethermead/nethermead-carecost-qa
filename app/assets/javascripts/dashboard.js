@@ -16,6 +16,10 @@ $(document).ready(function(){
           value = $(event.target).prev().attr("prefix") + ui.value;
         }
         $(event.target).prev().val(value);
+        $(event.target).prev().trigger('input');
+      },
+      change: function( event, ui ) {
+        angular.element('#insuranceController').scope().calculatePrice();
       }
     });
   });
