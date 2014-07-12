@@ -19,8 +19,8 @@
     </div>
   </div>
   <div class="search-bar" ng-controller="conditionController">
-    <input id="medicalCondition" ng-model="newProcedure" placeholder="Type your Condition" />
-    <button class="btn btn-success" id="procedure-btn" ng-click="add()">Add Procedure</button>
+    <input id="medicalCondition" ng-model="newProcedure" placeholder="Add a procedure to get started" />
+    <button class="btn btn-success" id="procedure-btn" ng-click="add()">ADD PROCEDURE</button>
   </div> <!-- My medical conditions -->
 
   <!-- My Insurance status -->
@@ -265,9 +265,21 @@
 
   <div class="physician-selection" ng-controller="physicianController">
     <div ng-hide="noPhysician()" class="noPhysician">
-      Please add some procedure.
+      Add a procedure to get started
     </div>
     <div class="selection-items" ng-show="noPhysician()">
+      <ul>
+        <li>
+          <span class="provider-search-result"><b>30 Results for &nbsp;</b></span>
+        </li>
+        <li> 
+          <select ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure" id="physicianProcedure">
+          </select>
+        </li>
+        <li ng-click="sortPhysic('')">
+          <span class="provider-search-result"><b>Location (10010)</b></span>
+        </li>
+      </ul>
       <ul>
         <li ng-click="sortPhysic('')">
           Quality of Care &nbsp;
@@ -278,17 +290,17 @@
           <i class="fa fa-caret-down"></i>
         </li>
         <li>
-          <span ng-click="sortPhysic('cost')">Cost &nbsp;</span>
+          <span ng-click="sortPhysic('cost')" class="provider-filter">Cost &nbsp;</span>
           <i class="fa fa-caret-down" data-toggle="popover" data-content="demo"></i>
         </li>
         <li>
-          <span ng-click="sortPhysic('first_name')">Provider Name &nbsp;</span>
+          <span ng-click="sortPhysic('first_name')" class="provider-filter">Provider Name &nbsp;</span>
           <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
         </li>
-        <li> 
+        <!--<li> 
           <select ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure" id="physicianProcedure">
           </select>
-        </li>
+        </li>-->
       </ul>
     </div>
     <div class="physician-list" ng-show="noPhysician()">

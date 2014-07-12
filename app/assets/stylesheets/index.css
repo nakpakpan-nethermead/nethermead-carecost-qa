@@ -452,6 +452,14 @@ textarea{
 	.selection-items li>span, .selection-items li>i{
 		color: #fb9388;
 	}
+
+	.provider-search-result {
+		color: #3e4852 !important;
+	}
+
+	.provider-filter {
+		color: #313131 !important;
+	}
 	.physician-list{
 		font-family: 'OpenSansRegular';
 		margin-top: 2%;
@@ -580,6 +588,10 @@ textarea{
 		border: 1px solid #000; 
 		background-color: #fff;
 		width: 125px;
+	}
+
+	#physicianProcedure {
+		width: 258px;
 	}
 
 	.ui-autocomplete-category {
