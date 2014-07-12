@@ -138,7 +138,7 @@
             </td>
           <tr>
         </table>
-        <div class="overflowScroll table-responsive">
+        <div class="overflowScroll">
           <div class="arrows">
             <i id="previous-column" class="glyphicon glyphicon-chevron-left" ng-show="cities.length > 2"></i>
           </div>
@@ -279,8 +279,8 @@
         </li>
         <li ng-click="sortPhysic('')">
           <select ng-model="myphyPro" ng-change="updatePhysician()"  name="physicianProcedure" id="physicianProcedure">
-            <option ng-repeat="city in cities" value="{{city.id}}">
-              {{city.data}}({{city.dataType}})
+            <option ng-repeat="city in cities" value="{{city.dataId}}">
+              {{city.data}}({{city.dataDisType}})
             </option>
           </select>
         </li>
