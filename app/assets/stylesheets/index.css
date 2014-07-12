@@ -245,7 +245,6 @@ textarea{
 	border: none;
 	padding: 7px;
 	padding-left: 0;
-	width: 175px;
 }
 .content-body table tr td{
 	border: none;
@@ -272,7 +271,7 @@ textarea{
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	width: 120px;
+	width: 160px;
 }
 .content-body table .labs input.style-check{
 	width: 15px;
@@ -307,6 +306,8 @@ textarea{
 .content-body table .zip-cost-heading{
 	color: #fe9487;
 	text-align: left;
+	min-width: 175px;
+	width: 175px;
 }
 /*map-view*/
 .map-view{
