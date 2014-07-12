@@ -72,11 +72,9 @@ myApp.service('Procedure',function($http){
 
     for(i=0;i<procedures.length;i++) {
       $.each(procedures[i].charge , function(key,val){
-        console.log(val.originalVal);
         var newCharge = val.originalVal - netDedutable;
         newCharge = (newCharge * netInsurance)/100;
         newCharge =  newCharge + netDedutable + copay;
-        console.log(newCharge);
         procedures[i].charge[key]["val"] = newCharge;
       });
     }
@@ -264,10 +262,13 @@ function cityController($scope, $http, Procedure, City) {
       if (c.data == $scope.newLocation && c.dataType == $scope.newLocationType) 
         cityExists = true;
     });
-    if(!cityExists)
+    if(!cityExists) {
       City.add($scope.newLocation,$scope.newLocationType,$scope.newLocationCategory);
+      $("#next-column").trigger('click');
+    }
     $scope.autoLocation = ''
     Procedure.filter($scope.cities,-1);
+
   }
 }
 
