@@ -735,3 +735,7 @@ textarea{
 	width: 15px;
 	margin-top: 21px;
 }
+
+.token-input-dropdown-facebook {
+	z-index: 10 !important;
+}
