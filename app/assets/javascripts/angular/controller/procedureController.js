@@ -17,11 +17,11 @@ myApp.service('Procedure',function($http){
     procedures.splice(index,1);
   }
 
-  var removeCityCost = function(index) {
+  var removeCityCost = function(index,$scope) {
     for(i=0;i<procedures.length;i++) {
-      // console.log(procedures[i].charge);
-      procedures[i].charge.splice(index,1);
+      procedures[i].charge.splice(index-1,1);
     }
+
   }
 
   var filter = function(cities,index) {
@@ -97,7 +97,9 @@ myApp.service('City',function($http){
 
   var add = function(data,dataType,dataDisType) {
     var width = $("#costTable").width();
-    $("#costTable").width(width+200);
+    var slider_width = $(".sliding-window").width();
+    $("#costTable").width(width+175);
+    $(".sliding-window").width(slider_width+175);
     var tmpCity = {}
     tmpCity["data"] = data;
     tmpCity["dataType"] = dataType;
@@ -107,8 +109,10 @@ myApp.service('City',function($http){
 
   var destroy = function(index) {
     cities.splice(index-1,1);
+    var slider_width = $(".sliding-window").width();
     var width = $("#costTable").width();
-    $("#costTable").width(width-200);
+    $("#costTable").width(width-175);
+    $(".sliding-window").width(slider_width-175);
   }
 
   return {
@@ -186,9 +190,7 @@ myApp.service('Physician',function($http){
 
 function conditionController($scope, $http, Procedure,City, Physician) {
   $scope.cities = City.all;
-  $scope.add = function() {
-    console.log($scope.newProcedure);
-    
+  $scope.add = function() {    
     if($scope.newProcedure !== undefined){
     
       $("#procedure-btn").html("Added succesfully!")
@@ -234,7 +236,9 @@ function procedureController($scope, $http, Procedure, City, Physician) {
 
   $scope.cityDestroy = function(index) {
     City.destroy(index);
-    Procedure.removeCityCost(index);
+    Procedure.removeCityCost(index, $scope);
+    $("#previous-column").trigger('click');
+
   }
 
   $scope.filter = function(index){

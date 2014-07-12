@@ -131,7 +131,6 @@ $(document).ready(function(){
     });
   },300);
 
-  console.log(medicalConditionUrl());
   $("#medicalCondition").tokenInput(medicalConditionUrl, {
     theme: "facebook",
     preventDuplicates: true,
@@ -149,7 +148,6 @@ $(document).ready(function(){
     },
     onResult: function(results){
       currentCategory = '';
-      console.log('On Result Called');
       return results;
     },
     onKeyDown: function() {
@@ -201,3 +199,45 @@ function medicalConditionUrl(){
     medicalConditionUrl += "&procedure="+$("#searchProcedure").is(':checked')
     return medicalConditionUrl;
 }
+
+
+
+
+
+$(document).ready(function() {
+    var colWidth = 175;
+    
+    // $('#previous-column').hide();
+    
+    $('#next-column').click(function(event) {
+        event.preventDefault();
+        
+        $t = $('.sliding-window');
+        $tUp = $('.table-container');
+        
+        $tUp.animate({scrollLeft:'+=' + colWidth}, 'slow');
+        console.log($t.scrollLeft() , colWidth*2, $t.width())
+
+        // if ($tUp.scrollLeft() + colWidth*2  >= $t.width())
+        //     $(this).hide();
+        // else {
+        //     $('#previous-column').show();
+        //     $(this).show();
+        // }
+    });
+    
+    $('#previous-column').click(function(event) {
+        event.preventDefault();
+        
+        $t = $('.sliding-window');
+        $tUp = $('.table-container');
+        $tUp.animate({scrollLeft:'-=' + colWidth}, 'slow');
+        
+        // if ($tUp.scrollLeft() <= colWidth)
+        //     $(this).hide();
+        // else {
+        //     $(this).show();
+        //     $('#next-column').show();
+        // }
+    });
+});

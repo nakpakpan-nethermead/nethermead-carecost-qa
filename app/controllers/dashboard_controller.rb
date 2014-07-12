@@ -10,18 +10,28 @@ class DashboardController < ApplicationController
     searchDiagnosis = params['diagnosis']
 
     if(searchProcedure == 'true')
-      result = Condition.joins(
-               "INNER JOIN procedures on conditions.code = procedures.code 
-                where conditions.consumer_name LIKE '%#{params[:q]}%' AND conditions.condition_type='procedure' order by conditions.id")
-                .select("conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name")
-      result.each do |c|
+      # result = Condition.joins(
+      #          "INNER JOIN procedures on conditions.code = procedures.code 
+      #           where conditions.consumer_name LIKE '%#{params[:q]}%' AND conditions.condition_type='procedure' order by conditions.id")
+      #           .select("conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name")
+      # result.each do |c|
+      #   element = Hash.new
+      #   if c.consumer_name != ''
+      #     element[:category] = c.consumer_name
+      #     element[:name] = c.short_name
+      #     element[:id] = c.p_id
+      #     condition_array << element
+      #   end 
+      # end
+      result = Procedure.where("short_name LIKE '%#{params[:q]}%'")
+      result.each do |p|
         element = Hash.new
-        if c.consumer_name != ''
-          element[:category] = c.consumer_name
-          element[:name] = c.short_name
-          element[:id] = c.p_id
+        if p.full_name != ''
+          element[:category] = "Procedures"
+          element[:name] = p.full_name
+          element[:id] = p.id
           condition_array << element
-        end 
+        end
       end
     end
 
@@ -34,7 +44,7 @@ class DashboardController < ApplicationController
       result.each do |d|
         element = Hash.new
         if d.consumer_name != ''
-          element[:category] = d.consumer_name
+          element[:category] = "Diagonis : #{d.consumer_name}"
           element[:name] =  d.short_name
           element[:id] = d.d_id
           condition_array << element
@@ -43,16 +53,7 @@ class DashboardController < ApplicationController
     end
 
 
-    result = Procedure.where("short_name LIKE '%#{params[:q]}%'")
-    result.each do |p|
-      element = Hash.new
-      if p.full_name != ''
-        element[:category] = "Procedures"
-        element[:name] = p.full_name
-        element[:id] = p.id
-        condition_array << element
-      end
-    end
+    
 
     # result = Diagnosis.where("short_name LIKE '%#{params[:term]}%'")
     # result.each do |p|

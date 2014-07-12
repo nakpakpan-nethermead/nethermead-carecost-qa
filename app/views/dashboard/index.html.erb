@@ -138,20 +138,32 @@
           <tr>
         </table>
         <div class="overflowScroll table-responsive">
-          <table id="costTable">
-            <tr>
-              <!-- <th class="avg-cost-heading">National Avg</th> -->
-              <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
-                 {{city.dataDisType}} : {{city.data}}
-                <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
-              </th>
-            </tr>
-            <tr ng-repeat="procedure in procedures track by $index">
-              <td class="avg-cost" ng-repeat="c in procedure.charge track by $index"> 
-                ${{c.val}}
-              </td>
-            </tr>
-          </table>
+          <div class="arrows">
+            <i id="previous-column" class="glyphicon glyphicon-chevron-left" ng-show="cities.length > 2"></i>
+          </div>
+          <div class="table-container">
+            <div class="sliding-window">
+              <div>
+                <table id="costTable">
+                  <tr>
+                    <!-- <th class="avg-cost-heading">National Avg</th> -->
+                    <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
+                       {{city.dataDisType}} : {{city.data}}
+                      <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
+                    </th>
+                  </tr>
+                  <tr ng-repeat="procedure in procedures track by $index">
+                    <td class="avg-cost" ng-repeat="c in procedure.charge track by $index"> 
+                      ${{c.val}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="arrows">
+            <i id="next-column" class="glyphicon glyphicon-chevron-right" ng-show="cities.length > 2"></i>
+          </div>
         </div>
       </div> <!-- my procedures -->
     </div> <!-- list-view -->
