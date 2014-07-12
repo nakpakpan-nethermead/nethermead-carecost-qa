@@ -93,6 +93,7 @@
         <button class="btn btn-default procedureView" data-show="map-view" ng-click="setListView(0)">Map view</button>
         <input type="text" id="cityComplete" ng-model="autoLocation" placeholder="State / City / Zip">
         <input ng-show="0" id="newLocation" ng-model="newLocation">
+        <input ng-show="0" id="newLocationZip" ng-model="newLocationZip">
         <input ng-show="0" id="newLocationType" ng-model="newLocationType">
         <input ng-show="0" id="newLocationCategory" ng-model="newLocationCategory">
         <input id="cityAdd" type="submit" value="+" ng-click="add()">
@@ -277,16 +278,17 @@
           </select>
         </li>
         <li ng-click="sortPhysic('')">
-          <span class="provider-search-result"><b>Location (10010)</b></span>
+          <select ng-model="myphyPro" ng-change="updatePhysician()"  name="physicianProcedure" id="physicianProcedure">
+            <option ng-repeat="city in cities" value="{{city.id}}">
+              {{city.data}}({{city.dataType}})
+            </option>
+          </select>
         </li>
       </ul>
+
       <ul>
         <li ng-click="sortPhysic('')">
           Quality of Care &nbsp;
-          <i class="fa fa-caret-down"></i>
-        </li>
-        <li ng-click="sortPhysic('')">
-          Location ( <span>10010</span> ) &nbsp;
           <i class="fa fa-caret-down"></i>
         </li>
         <li>

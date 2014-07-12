@@ -68,30 +68,6 @@ $(document).ready(function(){
     }
   });
 
-// $( "#medicalCondition" ).catcomplete({
-//     source: function( request, response ) {
-//       $.getJSON( "/dashboard/get_suggestions", {
-//         term: extractLast( request.term ),
-//         diagnosis: $("#searchDiagnosis").is(':checked'),
-//         procedure: $("#searchProcedure").is(':checked')
-//       }, response );
-//     },
-//     minLength: 3,
-//     select: function( event, ui ) {
-//       var terms = split( this.value );
-//       // remove the current input
-//       terms.pop();
-//       // add the selected item
-//       terms.push( ui.item.value );
-//       // add placeholder to get the comma-and-space at the end
-//       terms.push( "" );
-//       this.value = terms.join( ", " );
-//       $("#procedureId").val(this.value);
-//       $("#procedureId").trigger('input');
-//      return false;
-//     }
-//   });
-
   $( "#cityComplete" ).catcomplete({
       source: function( request, response ) {
         $.getJSON( "/procedure/get_city_suggestions", {
@@ -100,14 +76,14 @@ $(document).ready(function(){
       },
       minLength: 2,
       select: function( event, ui ) {
-        $("#newLocation").val(ui.item.id);
+        $("#newLocation").val(ui.item.name);
+        $("#newLocationZip").val(ui.item.id);
         $("#newLocationType").val(ui.item.originalCat);
         if (ui.item.category == "ZipCode")
           ui.item.category = 'City'
         $("#newLocationCategory").val(ui.item.category);
-        $("#newLocation").trigger('input');
-        $("#newLocationType").trigger('input');
-        $("#newLocationCategory").trigger('input');
+
+        $("#newLocation,#newLocationZip,#newLocationType,#newLocationCategory").trigger('input');
       }
     });
 
@@ -158,6 +134,20 @@ $(document).ready(function(){
   });
 
 
+  var colWidth = 175;
+  $('#next-column').click(function(event) {
+    $t = $('.sliding-window');
+    $tUp = $('.table-container');        
+    $tUp.animate({scrollLeft:'+=' + colWidth}, 'slow');
+  });
+  
+  $('#previous-column').click(function(event) {
+    $t = $('.sliding-window');
+    $tUp = $('.table-container');
+    $tUp.animate({scrollLeft:'-=' + colWidth}, 'slow');
+  });
+
+
   var world = new Datamap({
     element: document.getElementById('mapContainer'),
     scope: 'usa',
@@ -200,44 +190,3 @@ function medicalConditionUrl(){
     return medicalConditionUrl;
 }
 
-
-
-
-
-$(document).ready(function() {
-    var colWidth = 175;
-    
-    // $('#previous-column').hide();
-    
-    $('#next-column').click(function(event) {
-        event.preventDefault();
-        
-        $t = $('.sliding-window');
-        $tUp = $('.table-container');
-        
-        $tUp.animate({scrollLeft:'+=' + colWidth}, 'slow');
-        console.log($t.scrollLeft() , colWidth*2, $t.width())
-
-        // if ($tUp.scrollLeft() + colWidth*2  >= $t.width())
-        //     $(this).hide();
-        // else {
-        //     $('#previous-column').show();
-        //     $(this).show();
-        // }
-    });
-    
-    $('#previous-column').click(function(event) {
-        event.preventDefault();
-        
-        $t = $('.sliding-window');
-        $tUp = $('.table-container');
-        $tUp.animate({scrollLeft:'-=' + colWidth}, 'slow');
-        
-        // if ($tUp.scrollLeft() <= colWidth)
-        //     $(this).hide();
-        // else {
-        //     $(this).show();
-        //     $('#next-column').show();
-        // }
-    });
-});

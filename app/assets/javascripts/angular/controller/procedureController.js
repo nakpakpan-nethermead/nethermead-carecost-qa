@@ -93,13 +93,14 @@ myApp.service('Procedure',function($http){
 myApp.service('City',function($http){
   var cities = [];
 
-  var add = function(data,dataType,dataDisType) {
+  var add = function(data,dataId,dataType,dataDisType) {
     var width = $("#costTable").width();
     var slider_width = $(".sliding-window").width();
     $("#costTable").width(width+175);
     $(".sliding-window").width(slider_width+175);
     var tmpCity = {}
     tmpCity["data"] = data;
+    tmpCity["dataId"] = dataId;
     tmpCity["dataType"] = dataType;
     tmpCity["dataDisType"] = dataDisType;
     cities.push(tmpCity);
@@ -259,11 +260,11 @@ function cityController($scope, $http, Procedure, City) {
   $scope.add = function() {
     var cityExists = false;
     $.map($scope.cities, function(c) {
-      if (c.data == $scope.newLocation && c.dataType == $scope.newLocationType) 
+      if (c.dataId == $scope.newLocationZip) 
         cityExists = true;
     });
     if(!cityExists) {
-      City.add($scope.newLocation,$scope.newLocationType,$scope.newLocationCategory);
+      City.add($scope.newLocation,$scope.newLocationZip,$scope.newLocationType,$scope.newLocationCategory);
       $("#next-column").trigger('click');
     }
     $scope.autoLocation = ''
@@ -280,6 +281,7 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   // $scope.physicians = $scope.physician.all
   $scope.physicians = Physician.all
   $scope.procedures = Procedure.all
+  $scope.cities = City.all
   
   $scope.flipGraph = function(index){
     $("#f"+index).toggleClass('hide');
