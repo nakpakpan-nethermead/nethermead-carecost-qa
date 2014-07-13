@@ -9,51 +9,37 @@ class DashboardController < ApplicationController
     searchProcedure = params['procedure']
     searchDiagnosis = params['diagnosis']
 
-
     if(searchDiagnosis == 'true')
-      result = Condition.joins(
-               "INNER JOIN diagnosis on conditions.code = diagnosis.code 
-                where conditions.consumer_name LIKE '%#{params[:q]}%' AND conditions.condition_type='diagnosis' order by conditions.id")
-                .select("conditions.id,conditions.consumer_name, diagnosis.id AS d_id, diagnosis.short_name")
-
-      result.each do |d|
-        element = Hash.new
-        if d.consumer_name != ''
-          element[:category] = "Diagnosis : #{d.consumer_name}"
-          element[:name] =  d.short_name
-          element[:id] = d.d_id
-          condition_array << element
-        end
-      end
+      conditions = Condition.where("consumer_name LIKE '%#{params[:q]}%' and condition_type='diagnosis'").includes(:procedures)
+      condition_array.concat(procedureList(conditions,'d'));
     end
-
+      
     if(searchProcedure == 'true')
-      # result = Condition.joins(
-      #          "INNER JOIN procedures on conditions.code = procedures.code 
-      #           where conditions.consumer_name LIKE '%#{params[:q]}%' AND conditions.condition_type='procedure' order by conditions.id")
-      #           .select("conditions.id,conditions.consumer_name, procedures.id AS p_id, procedures.short_name")
-      # result.each do |c|
-      #   element = Hash.new
-      #   if c.consumer_name != ''
-      #     element[:category] = c.consumer_name
-      #     element[:name] = c.short_name
-      #     element[:id] = c.p_id
-      #     condition_array << element
-      #   end 
-      # end
-      result = Procedure.where("short_name LIKE '%#{params[:q]}%'")
-      result.each do |p|
-        element = Hash.new
-        if p.full_name != ''
-          element[:category] = "Procedures"
-          element[:name] = p.full_name
-          element[:id] = p.id
-          condition_array << element
-        end
-      end
+      conditions = Condition.where("consumer_name LIKE '%#{params[:q]}%' and condition_type='procedure'").includes(:procedures)
+      condition_array.concat(procedureList(conditions,'p'));
     end
+
     render :json => condition_array
   end
 
-	private
+  def procedureList(conditions,condition_type)
+    condition_array_tosend = Array.new
+
+    conditions.each do |c|
+      c.procedures.each do |p|
+        element = Hash.new
+        if c.consumer_name != ''
+          if(condition_type == 'd')
+            element[:category] = "Diagnosis : #{c.consumer_name}"
+          else
+            element[:category] = "Procedures"
+          end
+          element[:name] =  p.short_name
+          element[:id] = p.id
+          condition_array_tosend << element
+        end
+      end
+    end
+    return condition_array_tosend
+  end
 end
