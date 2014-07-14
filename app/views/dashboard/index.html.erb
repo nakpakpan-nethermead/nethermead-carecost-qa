@@ -266,7 +266,8 @@
 
   <div class="physician-selection" ng-controller="physicianController">
     <div ng-hide="noPhysician()" class="noPhysician">
-      <span class="procedure-focus" onclick="$('.content-header')[0].focus()">Add a procedure to get started</span>
+      Add a <a ng-click="addProcedure()"> procedure </a> and <a ng-click="addLocation()">location</a> to get started
+
     </div>
     <div class="selection-items" ng-show="noPhysician()">
       <ul>
@@ -278,7 +279,7 @@
           </select>
         </li>
         <li ng-click="sortPhysic('')">
-          <select ng-model="myphyPro" ng-change="updatePhysician()"  name="physicianProcedure" id="physicianProcedure">
+          <select ng-model="locationAdded" ng-change="updatePhysician()"  name="locationAdded" id="locationAdded">
             <option ng-repeat="city in cities" value="{{city.dataId}}">
               {{city.data}}({{city.dataDisType}})
             </option>
@@ -306,10 +307,10 @@
       </ul>
     </div>
     <div class="physician-list" ng-show="noPhysician()">
-      <div ng-hide="physicians.length" class="noPhysician">
+      <div ng-hide="physicians.length && cities.length" class="noPhysician">
         No Providers for currently chosen Procedure.
       </div>
-      <div class="physician-available"  ng-show="physicians.length">
+      <div class="physician-available"  ng-show="physicians.length && cities.length">
         <div class="row">
           <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians | orderBy:column:descending track by $index ">
             <div class="physician-details" id="f{{$index}}">

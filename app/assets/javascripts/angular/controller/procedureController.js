@@ -11,6 +11,10 @@ myApp.service('Procedure',function($http){
           procedures.push(response);
         });
     });
+
+    setTimeout(function(){
+        $("#physicianProcedure").val(0);
+    },500);
   }
 
   var destroy = function(index) {
@@ -104,6 +108,10 @@ myApp.service('City',function($http){
     tmpCity["dataType"] = dataType;
     tmpCity["dataDisType"] = dataDisType;
     cities.push(tmpCity);
+    setTimeout(function(){
+      console.log($("#locationAdded option:first").val());
+      $("#locationAdded").find('option:eq(1)').prop('selected', true);
+    },500);
   }
 
   var destroy = function(index) {
@@ -283,6 +291,24 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   $scope.procedures = Procedure.all
   $scope.cities = City.all
   
+  $scope.addProcedure = function(index){
+    $("#token-input-medicalCondition").focus();
+    $("html, body").animate({scrollTop:0}, '500', 'swing')
+  }
+
+  $scope.addLocation = function(index){
+    $("#cityComplete").focus();
+    $("#cityComplete").animate({
+      width: "200"
+    },500).animate({
+      width: "160"
+    },500).animate({
+      width: "200"
+    },500).animate({
+      width: "160"
+    },500);
+  }
+
   $scope.flipGraph = function(index){
     $("#f"+index).toggleClass('hide');
     $("#b"+index).toggleClass('hide');
@@ -297,10 +323,11 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.noPhysician = function(){
-    if($scope.physicians.length == 0 && $scope.procedures.length == 0)
-      return 0;
-    else
+    console.log($scope.physicians.length,$scope.cities.length,$scope.procedures.length);
+    if($scope.physicians.length != 0 && $scope.procedures.length != 0 && $scope.cities.length != 0)
       return 1;
+    else
+      return 0;
   }
 
   $scope.filterPrice = function(){

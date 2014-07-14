@@ -10,12 +10,12 @@ class DashboardController < ApplicationController
     searchDiagnosis = params['diagnosis']
 
     if(searchDiagnosis == 'true')
-      conditions = Condition.where("consumer_name LIKE '%#{params[:q]}%' and condition_type='diagnosis'").includes(:procedures)
+      conditions = Condition.where("consumer_name ILIKE '%#{params[:q]}%' and condition_type='diagnosis'").includes(:procedures)
       condition_array.concat(procedureList(conditions,'d'));
     end
       
     if(searchProcedure == 'true')
-      conditions = Condition.where("consumer_name LIKE '%#{params[:q]}%' and condition_type='procedure'").includes(:procedures)
+      conditions = Condition.where("consumer_name ILIKE '%#{params[:q]}%' and condition_type='procedure'").includes(:procedures)
       condition_array.concat(procedureList(conditions,'p'));
     end
 
@@ -32,7 +32,7 @@ class DashboardController < ApplicationController
           if(condition_type == 'd')
             element[:category] = "Diagnosis : #{c.consumer_name}"
           else
-            element[:category] = "Procedures"
+            element[:category] = c.consumer_name
           end
           element[:name] =  p.short_name
           element[:id] = p.id
