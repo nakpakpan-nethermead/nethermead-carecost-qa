@@ -347,7 +347,7 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.noPhysician = function(){
-    console.log($scope.physicians.length,$scope.cities.length,$scope.procedures.length);
+    // console.log($scope.physicians.length,$scope.cities.length,$scope.procedures.length);
     if($scope.physicians.length != 0 && $scope.procedures.length != 0 && $scope.cities.length != 0)
       return 1;
     else
