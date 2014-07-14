@@ -49,7 +49,7 @@ class DashboardController < ApplicationController
     message = params["message"]
     Emailer.contact(recipient, subject, message).deliver
     return if request.xhr?
-    binding.pry
+    # binding.pry
     render :json => 1
   end
 end
