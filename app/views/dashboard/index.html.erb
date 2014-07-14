@@ -278,7 +278,7 @@
           </select>
         </li>
         <li ng-click="sortPhysic('')">
-          <select ng-model="locationAdded" ng-change="updatePhysician()"  name="locationAdded" id="locationAdded">
+          <select ng-model="locationAdded"  name="locationAdded" id="locationAdded">
             <option ng-repeat="city in cities" value="{{city.dataId}}">
               {{city.data}}({{city.dataDisType}})
             </option>

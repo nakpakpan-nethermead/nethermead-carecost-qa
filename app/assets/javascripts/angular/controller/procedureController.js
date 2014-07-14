@@ -130,7 +130,6 @@ myApp.service('City',function($http){
     tmpCity["dataDisType"] = dataDisType;
     cities.push(tmpCity);
     setTimeout(function(){
-      console.log($("#locationAdded option:first").val());
       $("#locationAdded").find('option:eq(1)').prop('selected', true);
     },500);
   }
@@ -354,7 +353,7 @@ function physicianController($scope, $http, City, Physician, Procedure) {
 
   $scope.noPhysician = function(){
     // console.log($scope.physicians.length,$scope.cities.length,$scope.procedures.length);
-    if($scope.physicians.length != 0 && $scope.procedures.length != 0 && $scope.cities.length != 0)
+    if($scope.procedures.length != 0 && $scope.cities.length != 0)
       return 1;
     else
       return 0;
