@@ -32,7 +32,7 @@ class DashboardController < ApplicationController
           if(condition_type == 'd')
             element[:category] = "Diagonis : #{c.consumer_name}"
           else
-            element[:category] = "Procedures"
+            element[:category] = c.consumer_name
           end
           element[:name] =  p.short_name
           element[:id] = p.id

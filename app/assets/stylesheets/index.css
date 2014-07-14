@@ -574,6 +574,10 @@ textarea{
 
 	}
 
+	.noPhysician a {
+		cursor: pointer;
+	}
+
 	select {
 		display: inline-block;
 		height: 30px;
