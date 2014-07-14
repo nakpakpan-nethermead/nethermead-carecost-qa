@@ -234,6 +234,8 @@ function procedureController($scope, $http, Procedure, City, Physician) {
 
   $scope.setListView = function(value){
     $scope.list = value;
+    if(value == 0)
+      $(".labs input:eq(0)").prop('checked','true');
     // drawMap();
   }
 
