@@ -57,6 +57,9 @@ myApp.service('Procedure',function($http){
           }
         }
       }
+      setTimeout(function(){
+        $(".slider-range:last").slider('option', 'change')()
+      },50);
     });
   }
 
