@@ -85,9 +85,13 @@ myApp.service('Procedure',function($http){
   }
 
   var emailShare = function(){
+    var email = $('#contact-email').val();
+    var message = $('#email-msg').val();
     toSend = {}
     toSend["procedures"] = [];
     toSend["procedures"].push(procedures);
+    toSend["email"] = email;
+    toSend["message"] = message;
     // toSend["cities"].push(cities);
 
     $http({
