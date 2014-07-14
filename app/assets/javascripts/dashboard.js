@@ -191,3 +191,8 @@ function medicalConditionUrl(){
     return medicalConditionUrl;
 }
 
+function CloseModal() {
+  $('#email-share').modal('hide');
+  //alert("Email sent Successfully");
+  //confirm('mail sent');
+}
