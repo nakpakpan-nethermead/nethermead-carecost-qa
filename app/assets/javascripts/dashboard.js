@@ -172,6 +172,14 @@ $(document).ready(function(){
     $("#showList").trigger('click');
   },100);
 
+  $("#emailShare").click(function(){
+    // Space for Shalini
+
+    // Space for Shalini
+    
+    // On Everything success call this
+    angular.element('#procedureController').scope().emailShare();
+  });
 
 });
 
