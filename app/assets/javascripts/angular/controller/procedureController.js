@@ -84,7 +84,25 @@ myApp.service('Procedure',function($http){
     }
   }
 
+  var emailShare = function(){
+    toSend = {}
+    toSend["procedures"] = [];
+    toSend["procedures"].push(procedures);
+    // toSend["cities"].push(cities);
+
+    $http({
+      url: '/dashboard/email_share',
+      method: 'GET',
+      params: toSend
+    }).success(function (response) {
+      $.each(response, function(index, value){
+        physicians.push(value);
+      });
+    });
+  }
+
   return {
+    emailShare: emailShare,
     calculatePrice: calculatePrice,
     add: add,
     destroy: destroy,
@@ -234,6 +252,8 @@ function procedureController($scope, $http, Procedure, City, Physician) {
 
   $scope.setListView = function(value){
     $scope.list = value;
+    if(value == 0)
+      $(".labs input:eq(0)").prop('checked','true');
     // drawMap();
   }
 
@@ -260,6 +280,10 @@ function procedureController($scope, $http, Procedure, City, Physician) {
 
   //   Physician.refresh();
   // }
+
+  $scope.emailShare = function(){
+    Procedure.emailShare();
+  }
 
 }
 

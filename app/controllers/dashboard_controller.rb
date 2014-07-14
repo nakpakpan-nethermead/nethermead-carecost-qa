@@ -42,4 +42,9 @@ class DashboardController < ApplicationController
     end
     return condition_array_tosend
   end
+
+  def email_share
+    binding.pry
+    render :json => 1
+  end
 end
