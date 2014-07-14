@@ -44,6 +44,11 @@ class DashboardController < ApplicationController
   end
 
   def email_share
+    recipient = params["email"]
+    subject = "Test Mail"
+    message = params["message"]
+    Emailer.contact(recipient, subject, message).deliver
+    return if request.xhr?
     binding.pry
     render :json => 1
   end

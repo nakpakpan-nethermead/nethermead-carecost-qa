@@ -27,9 +27,10 @@ default: &default
 #  pool: 5
 #  username: root
 #  password: root
+#  host: 127.0.0.1
 
 #Office PC
-# defult: &default
+#defult: &default
 #  adapter: postgresql
 #  username: dev1-nethermead
 #  password: Hacker1*
