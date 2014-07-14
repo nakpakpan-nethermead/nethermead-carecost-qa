@@ -299,6 +299,9 @@ function cityController($scope, $http, Procedure, City) {
       City.add($scope.newLocation,$scope.newLocationZip,$scope.newLocationType,$scope.newLocationCategory);
       $("#next-column").trigger('click');
     }
+    setTimeout(function(){
+      $(".slider-range:last").slider('option', 'change')()
+    },50);
     $scope.autoLocation = ''
     Procedure.filter($scope.cities,-1);
 
