@@ -118,7 +118,7 @@ myApp.service('Procedure',function($http){
 myApp.service('City',function($http){
   var cities = [];
 
-  var add = function(data,dataId,dataType,dataDisType) {
+  var add = function(data,dataId,dataType,dataDisType,state) {
     var width = $("#costTable").width();
     var slider_width = $(".sliding-window").width();
     $("#costTable").width(width+175);
@@ -128,13 +128,25 @@ myApp.service('City',function($http){
     tmpCity["dataId"] = dataId;
     tmpCity["dataType"] = dataType;
     tmpCity["dataDisType"] = dataDisType;
+    tmpCity["state"] = state;
     cities.push(tmpCity);
+
+    $.each(cities, function(key,value){
+      console.log(value.state);
+      var data = {};
+      data[value.state] = {fillKey: 'zipFound'}
+      world.updateChoropleth(data);
+    });
+
     setTimeout(function(){
       $("#locationAdded").find('option:eq(1)').prop('selected', true);
     },500);
   }
 
   var destroy = function(index) {
+    var data = {};
+    data[cities[index-1].state] = {fillKey: 'defaultFill'}
+    world.updateChoropleth(data);
     cities.splice(index-1,1);
     var slider_width = $(".sliding-window").width();
     var width = $("#costTable").width();
@@ -298,7 +310,7 @@ function cityController($scope, $http, Procedure, City) {
         cityExists = true;
     });
     if(!cityExists) {
-      City.add($scope.newLocation,$scope.newLocationZip,$scope.newLocationType,$scope.newLocationCategory);
+      City.add($scope.newLocation,$scope.newLocationZip,$scope.newLocationType,$scope.newLocationCategory,$scope.state);
       $("#next-column").trigger('click');
     }
     setTimeout(function(){
