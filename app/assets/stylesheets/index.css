@@ -176,6 +176,7 @@ textarea{
 	padding: 10px;
 
 }
+
 .search-bar .btn-success{
 	background: #fd9288;
 	padding: 5px;
@@ -571,12 +572,15 @@ textarea{
 		font-family: 'OpenSansLight';
 		font-size: 24px;
 		text-align: center;
-
+		/*cursor: pointer;*/
 		padding-left: 5px;
 		padding-top: 50px;
 
 	}
 
+	.procedure-focus {
+		cursor: pointer !important;
+	}
 	select {
 		display: inline-block;
 		height: 30px;

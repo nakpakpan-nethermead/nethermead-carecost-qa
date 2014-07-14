@@ -4,7 +4,6 @@ $(document).ready(function(){
 
   $( ".slider-range" ).each(function() {
     
-    //alert(slvalue);
     $( this ).slider({
       range: "max",
       min: 0,
@@ -19,22 +18,9 @@ $(document).ready(function(){
 
         }
         $(event.target).prev().val(value);
-            // totaldeduct = $('#slider-total-deduct').attr('max', ui.value);
-            // deductptd = $('#slider-deduct-ptd').attr('max', ui.value);
-            // $('#slider-copay').attr('max', ui.value);
-            // var coin= $('#slider-coinsurance').attr('max', ui.value);
-            // //slvalue = value;
-            // //alert($('#slider-total-deduct').attr('max', ui.value));
-            // if (totaldeduct == totaldeduct) {
-            //   var deductptdnew = totaldeduct;
-            //   alert(deductptdnew);
-            // }
-            // //alert(coin);
-            // //alert($('#deduct-ptd').attr('max', ui.value));
-            // //alert($('#copay').attr('max'));
-            // //alert($('#coinsur').attr('max'));
         $(event.target).prev().trigger('input');
       },
+      
       change: function( event, ui ) {
         angular.element('#insuranceController').scope().calculatePrice();
         angular.element('#insuranceController').scope().$apply();
