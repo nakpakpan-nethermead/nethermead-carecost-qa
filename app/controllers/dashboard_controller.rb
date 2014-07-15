@@ -47,10 +47,12 @@ class DashboardController < ApplicationController
     recipient = params["email"]
     subject = "Test Mail"
     message = params["message"]
-    Procedure.generate_procedure_pdf
-    Emailer.contact(recipient, subject, message).deliver
+    @procedures = JSON.parse(params["procedures"])
+    Emailer.contact(recipient, subject, @procedures, message).deliver
     return if request.xhr?
     binding.pry
     render :json => 1
   end
+
+
 end

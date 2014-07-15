@@ -5,7 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
+ROADIE_I_KNOW_ABOUT_VERSION_3 = true # Remove after Roadie 3.1
 module ClearCost
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

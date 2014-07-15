@@ -149,7 +149,7 @@ class ProcedureController < ApplicationController
   end
 
   def fav_list
-    puts "SSSSSSSSSSSSSS"
+    
   end
 
 end
