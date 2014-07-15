@@ -147,5 +147,4 @@ class ProcedureController < ApplicationController
 
     render :json => condition_array.uniq{|x| x}
   end
-
 end

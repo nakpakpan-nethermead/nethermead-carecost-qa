@@ -15,10 +15,10 @@ gem 'rails', '4.1.1'
 # gem 'sqlite3'
 
 # Use postgres rather than sqlite3 as the database for Active Record
-# gem 'pg', '0.17.1'
+ gem 'pg', '0.17.1'
 
 #temp
-gem 'mysql2'
+#gem 'mysql2'
 #temp
 
 # Use SCSS for stylesheets
@@ -38,6 +38,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'roadie', '~> 2.4'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 # gem 'spring',        group: :development

@@ -74,11 +74,15 @@ myApp.service('Procedure',function($http){
     }
   }
 
+
   var emailShare = function(cities){
     toSend = {}
     toSend["procedures"] = [];
+    toSend["cities"] = [];
     toSend["procedures"].push(procedures);
     toSend["cities"].push(cities);
+    toSend["email"] = email;
+    toSend["message"] = message;
 
     $http({
       url: '/dashboard/email_share',
