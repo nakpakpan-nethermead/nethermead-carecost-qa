@@ -1,10 +1,11 @@
 class Emailer < ActionMailer::Base
   default from: "herokuda@gmail.com"
 
-  def contact(recipient, subject, message)
+  def contact(recipient, subject, procedures, message)
   	file_path = Rails.root.join('app', 'assets/pdf/procedures.txt')
-  	  attachments['procedures.txt'] = File.read(file_path)
-      mail(to: recipient, subject: subject, body: message)
+  	@message = message
+  	@procedures = procedures
+      mail(to: recipient, subject: subject)
    end
 
 end

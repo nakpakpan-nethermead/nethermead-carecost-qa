@@ -267,7 +267,7 @@ textarea{
 	width: 30%;
 }
 
-.content-body table .labs label{
+.content-body table .labs span{
 	font-weight: normal;
 	cursor: pointer;
 	font-size: 14px;
@@ -276,6 +276,7 @@ textarea{
 	text-overflow: ellipsis;
 	overflow: hidden;
 	width: 160px;
+	display: inline-block;
 }
 .content-body table .labs input.style-check{
 	width: 15px;
@@ -334,13 +335,9 @@ textarea{
 	padding: 0% 6%;
 	padding-right: 1%;
 }
-.map-view-table table{
-	font-family: 'OpenSansRegular';
-}
 .map-view-table table thead th{
 	text-align: center;
 	border: 0;
-	font-family: 'OpenSansSemibold';
 	font-size: 18px;
 }
 .map-view-table table tbody tr td{
@@ -350,7 +347,13 @@ textarea{
 .map-view-table table tbody tr td label{
 	font-weight: normal;
 	font-size: 13px;
-	font-family: 'OpenSansSemibold';
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	word-wrap: break-word;
+	width: 200px;
+	overflow: hidden;
+	margin-bottom: -5px;
 }
 .map-view-table table tbody tr td select{
 	padding: 1% 5%;
@@ -358,20 +361,24 @@ textarea{
 .criteria-cost, .location{
 	border: 1px #ccc solid;
 	background: #fff;
-	font-family: 'OpenSansSemibold';
 	padding: 2%;
 	margin-top: 5%;
 }
 .criteria-heading, .location-heading{
-	font-size: 18px;
+	font-size: 17px;
 	padding-bottom: 2%;
 	text-align: center;
+	font-weight: bold;
 }
 .criteria-fields{
-	width: 135px;
+	width: 250px;
 	margin: 0 auto;
 	padding-left: 5%;
 	padding-top: 2%;
+	text-align: left;
+}
+.criteria-fields label{
+	font-weight: normal;
 }
 .criteria-fields span{
 	display: block;
@@ -436,6 +443,8 @@ textarea{
 }
 .zip-sug{
 	margin-top: 5%;
+	text-align: left;
+	padding-left: 5px;
 }
 .zip-sug span, .zip-sug i{
 	cursor: pointer;
@@ -453,9 +462,11 @@ textarea{
 	}
 	.selection-items ul li{
 		display: inline-block;
-		padding-right: 20px;
+		padding-right: 10px;
 		font-family: 'OpenSansSemibold';
 		font-size: 16px;
+		text-align: center;
+		color: black;
 	}
 	.selection-items ul li:hover{
 		cursor: pointer;
@@ -482,7 +493,7 @@ textarea{
 		margin-top: 8%;
 	}
 	.physician-details .row{
-		padding: 2% 5%;
+		padding: 2% 10%;
 		padding-bottom: 0;
 	}
 	.details-col{
@@ -756,4 +767,26 @@ textarea{
 
 .token-input-dropdown-facebook {
 	z-index: 10 !important;
+}
+
+.physicianNameSearch {
+	padding: 20px;
+}
+
+.physicianNameSearch input {
+	font-size: 14px;
+}
+
+.physicianNameSearch  span {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.displayType {
+	font-size: 12px;
+	color: black;
+}
+
+.PhyFilterProviderName {
+	color: black !important;
 }

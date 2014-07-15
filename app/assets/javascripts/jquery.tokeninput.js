@@ -690,8 +690,16 @@ $.TokenList = function (input, url_or_data, settings) {
                
                 // Few confusing code written on Own : Senthil
                 if($(this_li).prop("tagName") == 'LH') {
-                    var this_lh = this_li.split('<li')[0]
-                    this_lh = find_value_and_highlight_term(this_lh ,value['category'], query);         
+                    var this_lh = this_li.split('<li')[0];
+                    var withOutHeading = value['category'].split(':')[1]
+                    
+                    if(withOutHeading === undefined) {
+                        text = value['category']
+                    } else {
+                        text = withOutHeading
+                    }
+
+                    this_lh = find_value_and_highlight_term(this_lh ,text, query);         
                     this_lh = $(this_lh).appendTo(dropdown_ul);
                     if(index === 0) {
                         select_dropdown_item();

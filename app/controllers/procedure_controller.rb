@@ -92,7 +92,7 @@ class ProcedureController < ApplicationController
       
       sendBack = Hash.new
       sendBack["id"] = params[:id]
-      sendBack["name"] = Procedure.find(params[:id]).full_name
+      sendBack["name"] = Procedure.find(params[:id]).short_name
       sendBack["current_network"] = current_network
       sendBack["current_facility"] = current_facility
       sendBack["all_networks"] = service_networks
@@ -147,9 +147,4 @@ class ProcedureController < ApplicationController
 
     render :json => condition_array.uniq{|x| x}
   end
-
-  def fav_list
-    puts "SSSSSSSSSSSSSS"
-  end
-
 end

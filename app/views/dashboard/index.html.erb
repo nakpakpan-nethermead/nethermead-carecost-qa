@@ -119,12 +119,9 @@
               <i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i>
             </td>
             <td class="labs">
-              <!--<label for="{{procedure.id}}" id="procedure-name" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{procedure.name}}">{{ procedure.name }}</label>-->
-              <!--<label for="{{procedure.id}}" id="procedure-name" tooltip="{{procedure.name}}" tooltip-append-to-body="true">{{ procedure.name }}</label>-->
-              <label for="{{procedure.id}}" id="procedure-name" title="{{procedure.name}}">{{ procedure.name }}</label>
-              <!--<script type="text/javascript" >
-						$('#procedure-name').popover();
-				  </script>-->
+               <span  data-toggle="tooltip" data-placement="bottom" title="{{ procedure.name }}">
+                  {{ procedure.name }}
+                </span>
             </td>
             <td>
               <select ng-model="procedure.current_network" ng-change="filter($index)" >
@@ -152,8 +149,12 @@
                   <tr>
                     <!-- <th class="avg-cost-heading">National Avg</th> -->
                     <th class="zip-cost-heading" ng-repeat="city in cities track by $index">
-                       {{city.dataDisType}} : {{city.data}}
                       <a href="" ng-click="cityDestroy($index+1)"><i class="fa fa-trash-o"></i></a>
+                      <span class="displayType">({{city.dataDisType}})</span>
+                      <span data-toggle="tooltip" data-placement="left" title="{{ city.data }}">
+                        {{city.data}}
+                      </span>
+                      
                     </th>
                   </tr>
                   <tr ng-repeat="procedure in procedures track by $index">
@@ -190,7 +191,7 @@
                 <tr ng-repeat="procedure in procedures track by $index">
                   <td class="labs">
                   <input type="radio" name="procedure" class="style-check" id="{{$index}}" /> 
-                  <label for="{{$in}}">{{procedure.name}}</label></td>
+                  <label for="{{$in}}" data-toggle="tooltip" data-placement="right" title="{{ procedure.name }}">{{procedure.name}}</label></td>
                   <td>
                     <select ng-model="procedure.current_network" ng-change="filter($index)" >
                       <option ng-repeat="network in procedure.all_networks" value="{{network}}">{{network}}</option>
@@ -229,8 +230,8 @@
                   </div>
                   <div class="zip-sug">
                     <div ng-repeat="city in cities track by $index">
-                      <span class="zip">{{city.dataDisType}} : {{city.data}}</span>&nbsp;
-                      <i class="fa fa-trash-o" ng-click="cityDestroy($index+1)"></i>
+                      <i class="fa fa-trash-o" ng-click="cityDestroy($index+1)"></i>   <span class="zip">{{city.dataDisType}} : {{city.data}}</span>&nbsp;
+                      
                     </div>
                   </th>
                   </div>
@@ -268,7 +269,7 @@
     <div class="selection-items" ng-show="noPhysician()">
       <ul>
         <li>
-          <span class="provider-search-result"><b>30 Results for &nbsp;</b></span>
+          <span class="provider-search-result"><b>{{(physicians|filter:phyName).length}} Results for &nbsp;</b></span>
         </li>
         <li> 
           <select ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure" id="physicianProcedure">
@@ -290,42 +291,48 @@
         </li>
         <li>
           <span ng-click="sortPhysic('cost')" class="provider-filter">Cost &nbsp;</span>
-          <i class="fa fa-caret-down" data-toggle="popover" data-content="demo"></i>
+          <i class="fa fa-caret-down" data-toggle="popoverSlider" data-content="demo"></i>
         </li>
-        <li>
-          <span ng-click="sortPhysic('first_name')" class="provider-filter">Provider Name &nbsp;</span>
-          <i class="fa fa-caret-down" data-toggle="popover" data-content="Sample Text<br>"></i>
+        <li class="dropdown">
+          <span ng-click="sortPhysic('first_name')" class="PhyFilterProviderName">
+            Provider Name <span ng-show="phyName">({{phyName}})</span> <i data-toggle="dropdown" class="fa fa-caret-down name"></i>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li class="physicianNameSearch"> 
+                <span>Filter by Name</span>
+                <input type="text" placeholder="Type Provider Name" ng-model="phyName">
+              </li>
+            </ul>
+          </span>          
         </li>
+
         <!--<li> 
           <select ng-model="myphyPro" ng-change="updatePhysician()" ng-options="procedure.id as procedure.name for procedure in procedures" name="physicianProcedure" id="physicianProcedure">
           </select>
         </li>-->
       </ul>
     </div>
+
     <div class="physician-list" ng-show="noPhysician()">
       <div ng-hide="physicians.length && cities.length" class="noPhysician">
         No Providers for currently chosen Procedure.
       </div>
       <div class="physician-available"  ng-show="physicians.length && cities.length">
         <div class="row">
-          <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians | orderBy:column:descending track by $index ">
+          <div class="col-lg-4 col-md-4 clo-xs-6" ng-repeat="physician in physicians | orderBy:column:descending | filter:phyName track by $index ">
             <div class="physician-details" id="f{{$index}}">
               <div class="row">
-                <div class="col-lg-4 details-col">
-                  <div class="profile-pic">
-                    <img src="/assets/{{physician.img_url}}">
-                  </div>
-                  <div class="physician-name">
-                    Dr. {{physician.first_name}}
-                  </div>
-                </div>
-                <div class="col-lg-8 details-col">
+                <div class="col-lg-12 details-col">
                   <div class="profile-content">
                     <ul>
+                      <li>
+                        <span class="profile-fields">
+                          Dr. {{physician.first_name}}
+                        </span>
+                      </li>
                       <li><span class="profile-fields">Speciality :</span> {{physician.provider_type}} </li>
                       <li><span class="profile-fields">Years In Practice :</span> From {{physician.physician_since}} </li>
                       <li><span class="profile-fields">Location :</span> {{physician.provider_address}} </li>
-                      <li><span class="profile-fields">My Estimated Cost :</span> ${{physician.cost}} </li>
+                      <li><span class="profile-fields">My Estimated Cost :</span> ${{physician.cost['price']}} </li>
                       <li><span class="profile-fields">NCQA Rating :</span> 
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>

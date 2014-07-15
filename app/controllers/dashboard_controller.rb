@@ -30,7 +30,7 @@ class DashboardController < ApplicationController
         element = Hash.new
         if c.consumer_name != ''
           if(condition_type == 'd')
-            element[:category] = "Diagnosis : #{c.consumer_name}"
+            element[:category] = "Diagnosis: #{c.consumer_name}"
           else
             element[:category] = c.consumer_name
           end
@@ -47,9 +47,12 @@ class DashboardController < ApplicationController
     recipient = params["email"]
     subject = "Test Mail"
     message = params["message"]
-    Emailer.contact(recipient, subject, message).deliver
+    @procedures = JSON.parse(params["procedures"])
+    Emailer.contact(recipient, subject, @procedures, message).deliver
     return if request.xhr?
     # binding.pry
     render :json => 1
   end
+
+
 end

@@ -49,4 +49,4 @@ test:
 
 production:
   <<: *default
-  database: clear_cost_prod
+  database: clear_cost_dev

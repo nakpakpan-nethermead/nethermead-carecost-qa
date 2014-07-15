@@ -64,38 +64,25 @@ myApp.service('Procedure',function($http){
   }
 
   var calculatePrice = function(s){
-    
-    var totalDeductible = parseInt(s.totalDeductible.substring(1));
-    var deductiblePaid = parseInt(s.deductiblePaid.substring(1));
-    var coInsurance = parseInt(s.coInsurance.substring(0,s.coInsurance.length-1));
-    var copay = parseInt(s.copay.substring(1));
-
-    console.log(totalDeductible,deductiblePaid,coInsurance,copay);
-
-    var netDedutable = Math.abs(totalDeductible - deductiblePaid);
-    var netInsurance = 100 - coInsurance;
-
-    console.log(netDedutable,netInsurance);
-
     for(i=0;i<procedures.length;i++) {
       $.each(procedures[i].charge , function(key,val){
-        var newCharge = val.originalVal - netDedutable;
-        newCharge = (newCharge * netInsurance)/100;
-        newCharge =  newCharge + netDedutable + copay;
+        var newCharge = val.originalVal - s.netDedutable;
+        newCharge = (newCharge * s.netInsurance)/100;
+        newCharge =  newCharge + s.netDedutable + s.copayValue;
         procedures[i].charge[key]["val"] = newCharge;
       });
     }
   }
 
-  var emailShare = function(){
-    var email = $('#contact-email').val();
-    var message = $('#email-msg').val();
+
+  var emailShare = function(cities){
     toSend = {}
     toSend["procedures"] = [];
+    toSend["cities"] = [];
     toSend["procedures"].push(procedures);
+    toSend["cities"].push(cities);
     toSend["email"] = email;
     toSend["message"] = message;
-    // toSend["cities"].push(cities);
 
     $http({
       url: '/dashboard/email_share',
@@ -156,6 +143,9 @@ myApp.service('City',function($http){
     var width = $("#costTable").width();
     $("#costTable").width(width-175);
     $(".sliding-window").width(slider_width-175);
+    setTimeout(function(){
+      $("#locationAdded").find('option:eq(1)').prop('selected', true);
+    },100);
   }
 
   return {
@@ -169,11 +159,12 @@ myApp.service('Physician',function($http){
   var physicians = [];
   var toSend = {};
 
-  var refresh = function(fetch, $q) {
+  var refresh = function(fetch, location, $q) {
     
     physicians.splice(0,physicians.length);
 
     toSend['selectedPro'] = fetch;
+    toSend['location'] = location;
 
     $http({
       url: '/provider/',
@@ -183,18 +174,6 @@ myApp.service('Physician',function($http){
       $.each(response, function(index, value){
         physicians.push(value);
       });
-        // console.log(physicians);
-        // var geocoder = new google.maps.Geocoder();
-        // // { 'address': value.provider_address }, 
-        // geocoder.geocode(
-        //   { 'address': "Perundurai , Erode, India" }, 
-        //   function (results, status) {
-        //     if (status == google.maps.GeocoderStatus.OK) {
-        //       var loc = results[0].geometry.location;
-        //       value.locate = { 'lat': loc.lat(), 'lng': loc.lng() };
-        //       physicians.push(value);
-        //     }
-        //   });
     });
   }
 
@@ -202,7 +181,7 @@ myApp.service('Physician',function($http){
     var highPrice = false;
     var high = 0;
     angular.forEach(physicians, function(physician, key) {
-      if (physician.cost < high || highPrice === false) {
+      if (physician.cost['price'] < high || highPrice === false) {
         high = value;
         highPrice = true;
       }
@@ -222,11 +201,21 @@ myApp.service('Physician',function($http){
       
     });
   }
+
+  var updatePrice = function(s){
+    angular.forEach(physicians, function(physician, key) {
+        var newCharge = physician.cost['originalPrice'] - s.netDedutable;
+        newCharge = (newCharge * s.netInsurance)/100;
+        newCharge =  newCharge + s.netDedutable + s.copayValue;
+        physician.cost['price'] = newCharge;
+    });
+  }
  
   return {
     makeFav: makeFav,
     refresh: refresh,
     all: physicians,
+    updatePrice: updatePrice,
     highPrice: highPrice
   };
 })
@@ -248,7 +237,7 @@ function conditionController($scope, $http, Procedure,City, Physician) {
       setTimeout(function() {
 
         Procedure.filter($scope.cities,-1);
-        
+        $("[data-toggle=tooltip]").tooltip();
         if (Procedure.all.length == 1)
           Physician.myphyPro = Procedure.all[0]
 
@@ -290,17 +279,8 @@ function procedureController($scope, $http, Procedure, City, Physician) {
     Procedure.filter($scope.cities,index);
   }
 
-  // $scope.updatePhysician = function($event, procedureId){
-  //   if($($event.target).prop('checked'))
-  //     Physician.addProcedure(procedureId);
-  //   else
-  //     Physician.removeProcedure(procedureId);
-
-  //   Physician.refresh();
-  // }
-
   $scope.emailShare = function(){
-    Procedure.emailShare();
+    Procedure.emailShare($scope.cities);
   }
 
 }
@@ -319,19 +299,16 @@ function cityController($scope, $http, Procedure, City) {
     }
     setTimeout(function(){
       $(".slider-range:last").slider('option', 'change')()
+      $("[data-toggle=tooltip]").tooltip();
     },50);
     $scope.autoLocation = ''
     Procedure.filter($scope.cities,-1);
-
   }
 }
 
 
 function physicianController($scope, $http, City, Physician, Procedure) {
 
-  // Physician.refresh();
-  // $scope.physician = Physician;
-  // $scope.physicians = $scope.physician.all
   $scope.physicians = Physician.all
   $scope.procedures = Procedure.all
   $scope.cities = City.all
@@ -364,6 +341,8 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.updatePhysician = function(){
+    // var location = $.trim($("#locationAdded option:selected").text());
+    // Physician.refresh($scope.myphyPro, location);
     Physician.refresh($scope.myphyPro);
   }
 
@@ -395,12 +374,21 @@ function physicianController($scope, $http, City, Physician, Procedure) {
 }
 
 
-function insuranceController($scope, Procedure){
+function insuranceController($scope, Procedure, Physician){
   $scope.totalDeductible = "$0"
   $scope.deductiblePaid = "$0"
   $scope.copay = "$0"
   $scope.coInsurance = "0%"
+
   $scope.calculatePrice = function(){
+    $scope.totalDeductibleValue = parseInt($scope.totalDeductible.substring(1))
+    $scope.deductiblePaidValue = parseInt($scope.deductiblePaid.substring(1))
+    $scope.coInsuranceValue = parseInt($scope.coInsurance.substring(0,$scope.coInsurance.length-1))
+    $scope.copayValue = parseInt($scope.copay.substring(1))
+    $scope.netDedutable = Math.abs($scope.totalDeductibleValue - $scope.deductiblePaidValue);
+    $scope.netInsurance = 100 - $scope.coInsuranceValue;
+    
     Procedure.calculatePrice($scope);
+    Physician.updatePrice($scope);
   }
 }
