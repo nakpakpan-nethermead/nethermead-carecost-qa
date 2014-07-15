@@ -148,8 +148,4 @@ class ProcedureController < ApplicationController
     render :json => condition_array.uniq{|x| x}
   end
 
-  def fav_list
-    puts "SSSSSSSSSSSSSS"
-  end
-
 end

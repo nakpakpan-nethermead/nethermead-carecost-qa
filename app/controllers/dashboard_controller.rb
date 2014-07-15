@@ -30,7 +30,7 @@ class DashboardController < ApplicationController
         element = Hash.new
         if c.consumer_name != ''
           if(condition_type == 'd')
-            element[:category] = "Diagnosis : #{c.consumer_name}"
+            element[:category] = "Diagnosis: #{c.consumer_name}"
           else
             element[:category] = c.consumer_name
           end

@@ -80,8 +80,8 @@ $(document).ready(function(){
         $("#newLocation").val(ui.item.name);
         $("#newLocationZip").val(ui.item.id);
         $("#newLocationType").val(ui.item.originalCat);
-        if (ui.item.category == "ZipCode")
-          ui.item.category = 'City'
+        // if (ui.item.category == "ZipCode")
+        //   ui.item.category = 'City'
         $("#newLocationCategory").val(ui.item.category);
         $("#state").val(ui.item.state);
 
