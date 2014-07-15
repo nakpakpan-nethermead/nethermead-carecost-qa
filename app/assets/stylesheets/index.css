@@ -263,7 +263,7 @@ textarea{
 	width: 30%;
 }
 
-.content-body table .labs label{
+.content-body table .labs span{
 	font-weight: normal;
 	cursor: pointer;
 	font-size: 14px;
@@ -272,6 +272,7 @@ textarea{
 	text-overflow: ellipsis;
 	overflow: hidden;
 	width: 160px;
+	display: inline-block;
 }
 .content-body table .labs input.style-check{
 	width: 15px;
@@ -346,6 +347,9 @@ textarea{
 	text-overflow: ellipsis;
 	word-break: break-all;
 	word-wrap: break-word;
+	width: 200px;
+	overflow: hidden;
+	margin-bottom: -5px;
 }
 .map-view-table table tbody tr td select{
 	padding: 1% 5%;

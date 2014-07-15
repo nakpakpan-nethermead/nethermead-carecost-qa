@@ -118,16 +118,9 @@
               <i class="fa fa-trash-o deleteMyProcedure" ng-click="destroy($index)"></i>
             </td>
             <td class="labs">
-              <!--<label for="{{procedure.id}}" id="procedure-name" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{procedure.name}}">{{ procedure.name }}</label>-->
-              <!--<label for="{{procedure.id}}" id="procedure-name" tooltip="{{procedure.name}}" tooltip-append-to-body="true">{{ procedure.name }}</label>-->
-              <!-- <label for="{{procedure.id}}" id="procedure-name" title="{{procedure.name}}"> -->
                <span  data-toggle="tooltip" data-placement="bottom" title="{{ procedure.name }}">
                   {{ procedure.name }}
                 </span>
-              <!-- </label> -->
-              <!--<script type="text/javascript" >
-						$('#procedure-name').popover();
-				  </script>-->
             </td>
             <td>
               <select ng-model="procedure.current_network" ng-change="filter($index)" >

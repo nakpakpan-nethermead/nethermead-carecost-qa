@@ -74,11 +74,11 @@ myApp.service('Procedure',function($http){
     }
   }
 
-  var emailShare = function(){
+  var emailShare = function(cities){
     toSend = {}
     toSend["procedures"] = [];
     toSend["procedures"].push(procedures);
-    // toSend["cities"].push(cities);
+    toSend["cities"].push(cities);
 
     $http({
       url: '/dashboard/email_share',
@@ -276,7 +276,7 @@ function procedureController($scope, $http, Procedure, City, Physician) {
   }
 
   $scope.emailShare = function(){
-    Procedure.emailShare();
+    Procedure.emailShare($scope.cities);
   }
 
 }
