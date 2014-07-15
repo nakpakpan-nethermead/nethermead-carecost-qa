@@ -57,6 +57,9 @@ myApp.service('Procedure',function($http){
           }
         }
       }
+      setTimeout(function(){
+        $(".slider-range:last").slider('option', 'change')()
+      },50);
     });
   }
 
@@ -119,7 +122,7 @@ myApp.service('Procedure',function($http){
 myApp.service('City',function($http){
   var cities = [];
 
-  var add = function(data,dataId,dataType,dataDisType) {
+  var add = function(data,dataId,dataType,dataDisType,state) {
     var width = $("#costTable").width();
     var slider_width = $(".sliding-window").width();
     $("#costTable").width(width+175);
@@ -129,14 +132,25 @@ myApp.service('City',function($http){
     tmpCity["dataId"] = dataId;
     tmpCity["dataType"] = dataType;
     tmpCity["dataDisType"] = dataDisType;
+    tmpCity["state"] = state;
     cities.push(tmpCity);
+
+    $.each(cities, function(key,value){
+      console.log(value.state);
+      var data = {};
+      data[value.state] = {fillKey: 'zipFound'}
+      world.updateChoropleth(data);
+    });
+
     setTimeout(function(){
-      console.log($("#locationAdded option:first").val());
       $("#locationAdded").find('option:eq(1)').prop('selected', true);
     },500);
   }
 
   var destroy = function(index) {
+    var data = {};
+    data[cities[index-1].state] = {fillKey: 'defaultFill'}
+    world.updateChoropleth(data);
     cities.splice(index-1,1);
     var slider_width = $(".sliding-window").width();
     var width = $("#costTable").width();
@@ -300,9 +314,12 @@ function cityController($scope, $http, Procedure, City) {
         cityExists = true;
     });
     if(!cityExists) {
-      City.add($scope.newLocation,$scope.newLocationZip,$scope.newLocationType,$scope.newLocationCategory);
+      City.add($scope.newLocation,$scope.newLocationZip,$scope.newLocationType,$scope.newLocationCategory,$scope.state);
       $("#next-column").trigger('click');
     }
+    setTimeout(function(){
+      $(".slider-range:last").slider('option', 'change')()
+    },50);
     $scope.autoLocation = ''
     Procedure.filter($scope.cities,-1);
 
@@ -351,8 +368,8 @@ function physicianController($scope, $http, City, Physician, Procedure) {
   }
 
   $scope.noPhysician = function(){
-    console.log($scope.physicians.length,$scope.cities.length,$scope.procedures.length);
-    if($scope.physicians.length != 0 && $scope.procedures.length != 0 && $scope.cities.length != 0)
+    // console.log($scope.physicians.length,$scope.cities.length,$scope.procedures.length);
+    if($scope.procedures.length != 0 && $scope.cities.length != 0)
       return 1;
     else
       return 0;

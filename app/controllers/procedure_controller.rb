@@ -112,6 +112,7 @@ class ProcedureController < ApplicationController
     pincodes = ProviderCharge.where("service_zip_code LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
     pincodes.each do |c|
       element = Hash.new
+      element[:state] = c.service_state
       element[:category] = "ZipCode"
       element[:originalCat] = "service_zip_code"
       element[:label] = "#{c.service_city}, #{c.service_state} , #{c.service_zip_code}"
@@ -123,6 +124,7 @@ class ProcedureController < ApplicationController
     cities = ProviderCharge.where("service_city LIKE '%#{params[:term]}%'").limit(10).select(:service_city,:service_state,:service_zip_code)
     cities.each do |c|
       element = Hash.new
+      element[:state] = c.service_state
       element[:category] = "City"
       element[:originalCat] = "service_city"
       element[:label] = "#{c.service_city}, #{c.service_state} , #{c.service_zip_code}"
@@ -134,6 +136,7 @@ class ProcedureController < ApplicationController
     states = ProviderCharge.where("service_state LIKE '%#{params[:term]}%'").limit(10).select(:service_state)
     states.each do |c|
       element = Hash.new
+      element[:state] = c.service_state
       element[:category] = "State"
       element[:originalCat] = "service_state"
       element[:label] = c.service_state
