@@ -229,8 +229,8 @@
                   </div>
                   <div class="zip-sug">
                     <div ng-repeat="city in cities track by $index">
-                      <span class="zip">{{city.dataDisType}} : {{city.data}}</span>&nbsp;
-                      <i class="fa fa-trash-o" ng-click="cityDestroy($index+1)"></i>
+                      <i class="fa fa-trash-o" ng-click="cityDestroy($index+1)"></i>   <span class="zip">{{city.dataDisType}} : {{city.data}}</span>&nbsp;
+                      
                     </div>
                   </th>
                   </div>
