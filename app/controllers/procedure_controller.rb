@@ -92,7 +92,7 @@ class ProcedureController < ApplicationController
       
       sendBack = Hash.new
       sendBack["id"] = params[:id]
-      sendBack["name"] = Procedure.find(params[:id]).full_name
+      sendBack["name"] = Procedure.find(params[:id]).short_name
       sendBack["current_network"] = current_network
       sendBack["current_facility"] = current_facility
       sendBack["all_networks"] = service_networks
