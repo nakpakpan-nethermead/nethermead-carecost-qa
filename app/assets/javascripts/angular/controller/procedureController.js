@@ -76,6 +76,8 @@ myApp.service('Procedure',function($http){
 
 
   var emailShare = function(cities){
+    var email = $('#contact-email').val();
+    var message = $('#email-msg').val();
     toSend = {}
     toSend["procedures"] = [];
     toSend["cities"] = [];
@@ -89,9 +91,7 @@ myApp.service('Procedure',function($http){
       method: 'GET',
       params: toSend
     }).success(function (response) {
-      $.each(response, function(index, value){
-        physicians.push(value);
-      });
+      alert("Email Sent.")
     });
   }
 
