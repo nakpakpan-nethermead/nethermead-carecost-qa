@@ -97,9 +97,11 @@
         <input ng-show="0" id="newLocationZip" ng-model="newLocationZip">
         <input ng-show="0" id="newLocationType" ng-model="newLocationType">
         <input ng-show="0" id="newLocationCategory" ng-model="newLocationCategory">
+        <input ng-show="0" id="state" ng-model="state">
         <input id="cityAdd" type="submit" value="+" ng-click="add()">
       </div>
     </div>
+    
     
     <!-- list view -->
     <div class="list-view procedureLayout">
@@ -212,18 +214,11 @@
                   </div>
                   <div class="criteria-fields">
                     <span>
-                      <input type="checkbox" class="style-check"  id="my-cost" /> <label for="my-cost">My Cost</label>
+                      <input type="radio" name="costGroup" class="style-check"  id="my-cost" /> <label for="my-cost">My Cost</label>
                     </span>
                     <span>
-                      <input type="checkbox" class="style-check"  id="avg-cost" /> <label for="avg-cost">Average Cost</label>
+                      <input type="radio" name="costGroup" class="style-check"  id="avg-cost" /> <label for="avg-cost">Average Cost</label>
                     </span>
-                  </div>
-                  <div class="criteria-slider">
-                    <div class="slider-heading">
-                      Cost
-                    </div>
-                    <div class="slider-range-cost">
-                    </div>
                   </div>
                 </div>
               </div>
@@ -280,7 +275,7 @@
           </select>
         </li>
         <li ng-click="sortPhysic('')">
-          <select ng-model="locationAdded" ng-change="updatePhysician()"  name="locationAdded" id="locationAdded">
+          <select ng-model="locationAdded"  name="locationAdded" id="locationAdded">
             <option ng-repeat="city in cities" value="{{city.dataId}}">
               {{city.data}}({{city.dataDisType}})
             </option>

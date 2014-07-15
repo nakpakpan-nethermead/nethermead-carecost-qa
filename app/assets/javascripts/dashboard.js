@@ -1,5 +1,6 @@
 var maxHeight=0;
 var currentCategory = 1;
+var world;
 $(document).ready(function(){
 
   $( ".slider-range" ).each(function() {
@@ -75,8 +76,9 @@ $(document).ready(function(){
         if (ui.item.category == "ZipCode")
           ui.item.category = 'City'
         $("#newLocationCategory").val(ui.item.category);
+        $("#state").val(ui.item.state);
 
-        $("#newLocation,#newLocationZip,#newLocationType,#newLocationCategory").trigger('input');
+        $("#newLocation,#newLocationZip,#newLocationType,#newLocationCategory,#state").trigger('input');
       }
     });
 
@@ -141,14 +143,10 @@ $(document).ready(function(){
   });
 
 
-  var world = new Datamap({
+  world = new Datamap({
     element: document.getElementById('mapContainer'),
     scope: 'usa',
     projection: 'mercator',
-    fills: {
-        defaultFill: '#ABDDA4',
-        'DEM': 'blue'
-    },
     geographyConfig: {
         hideAntarctica: false
     },
@@ -157,7 +155,7 @@ $(document).ready(function(){
         zipFound: 'rgba(0,244,244,0.9)',
     },
     data: {
-        'AZ': {fillKey: 'zipFound' },
+        
     }
   });
 

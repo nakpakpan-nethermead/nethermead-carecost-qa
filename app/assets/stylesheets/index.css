@@ -312,6 +312,12 @@ textarea{
 	text-align: left;
 	min-width: 175px;
 	width: 175px;
+	max-width: 175px;
+	overflow:hidden;
+	word-break: break-all;
+	word-wrap:break-word;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 /*map-view*/
 .map-view{
@@ -362,7 +368,7 @@ textarea{
 	text-align: center;
 }
 .criteria-fields{
-	width: 125px;
+	width: 135px;
 	margin: 0 auto;
 	padding-left: 5%;
 	padding-top: 2%;

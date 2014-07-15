@@ -661,6 +661,7 @@ $.TokenList = function (input, url_or_data, settings) {
     // Highlight the query part of the search term
     function highlight_term(value, term) {
         // Senthil Code Edit
+        // console.log(value,term)
         return value.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + term + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<u>$1</u>");
     }
     
@@ -690,7 +691,7 @@ $.TokenList = function (input, url_or_data, settings) {
                 // Few confusing code written on Own : Senthil
                 if($(this_li).prop("tagName") == 'LH') {
                     var this_lh = this_li.split('<li')[0]
-                    this_lh = find_value_and_highlight_term(this_lh ,value[settings.propertyToSearch], query);            
+                    this_lh = find_value_and_highlight_term(this_lh ,value['category'], query);         
                     this_lh = $(this_lh).appendTo(dropdown_ul);
                     if(index === 0) {
                         select_dropdown_item();
@@ -700,7 +701,7 @@ $.TokenList = function (input, url_or_data, settings) {
                 }
 
                 if($(this_li).prop("tagName") == 'LI') {
-                    this_li = find_value_and_highlight_term(this_li ,value[settings.propertyToSearch], query);            
+                    // this_li = find_value_and_highlight_term(this_li ,value[settings.propertyToSearch], query);
                     this_li = $(this_li).appendTo(dropdown_ul);
                     if(index % 2) {
                         this_li.addClass(settings.classes.dropdownItem);
