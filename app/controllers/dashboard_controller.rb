@@ -47,6 +47,7 @@ class DashboardController < ApplicationController
     recipient = params["email"]
     subject = "Test Mail"
     message = params["message"]
+    Procedure.generate_procedure_pdf
     Emailer.contact(recipient, subject, message).deliver
     return if request.xhr?
     binding.pry
